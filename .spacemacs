@@ -372,6 +372,20 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; Term Mode
   ;; ---------------------------------------------------------------------------
+  (defun private/open-ansi-term ()
+    (interactive)
+    (let* (
+           (term-buffer-name-var (concat (projectile-project-name) "-ansi-term"))
+           (term-buffer-name (concat "*" term-buffer-name-var "*"))
+           )
+      (if (get-buffer term-buffer-name)
+          (switch-to-buffer term-buffer-name)
+        (ansi-term "/usr/local/bin/zsh" term-buffer-name-var))
+      (evil-append nil)))
+
+  (evil-leader/set-key
+    "ot" 'private/open-ansi-term)
+
   (setq multi-term-program "/usr/local/bin/zsh")
   (evil-declare-key 'insert term-raw-map (kbd "C-p") 'term-send-raw)
   (evil-declare-key 'insert term-raw-map (kbd "C-n") 'term-send-raw)
@@ -756,10 +770,11 @@ before layers configuration."
 
   (defun private/appt-display (min-to-app new-time msg)
     (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app))
-    (appt-disp-window min-to-app new-time msg)
+    ;; (appt-disp-window min-to-app new-time msg)
     )
 
   (setq appt-disp-window-function (function private/appt-display))
+  (setq appt-delete-window-function 'nil)
 
   ;; -----------------------------
   ;; MobileOrg
