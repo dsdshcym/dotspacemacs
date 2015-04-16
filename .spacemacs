@@ -374,14 +374,15 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   (defun private/open-ansi-term ()
     (interactive)
-    (let* (
-           (term-buffer-name-var (concat (projectile-project-name) "-ansi-term"))
-           (term-buffer-name (concat "*" term-buffer-name-var "*"))
-           )
-      (if (get-buffer term-buffer-name)
-          (switch-to-buffer term-buffer-name)
-        (ansi-term "/usr/local/bin/zsh" term-buffer-name-var))
-      (evil-append nil)))
+    (if (string-match "\/ssh:.*" (buffer-file-name)) (eshell)
+      (let* (
+             (term-buffer-name-var (concat (projectile-project-name) "-ansi-term"))
+             (term-buffer-name (concat "*" term-buffer-name-var "*"))
+             )
+        (if (get-buffer term-buffer-name)
+            (switch-to-buffer term-buffer-name)
+          (ansi-term "/usr/local/bin/zsh" term-buffer-name-var))
+        (evil-append nil))))
 
   (evil-leader/set-key
     "ot" 'private/open-ansi-term)
