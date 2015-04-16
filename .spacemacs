@@ -28,7 +28,7 @@
                                        c-c++
                                        osx-dictionary)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-escape neotree company-quickhelp ox-gfm)
+   dotspacemacs-excluded-packages '(evil-escape neotree company-quickhelp)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -562,17 +562,17 @@ before layers configuration."
   ;; -----------------------------
   ;; Refile
   ;; -----------------------------
-  (defun opened-buffer-files ()
-    "Return the list of files currently opened in emacs"
-    (delq nil
-          (mapcar (lambda (x)
-                    (if (and (buffer-file-name x)
-                             (string-match "\\.org$"
-                                           (buffer-file-name x)))
-                        (buffer-file-name x)))
-                  (buffer-list))))
+  ;; (defun opened-buffer-files ()
+  ;;   "Return the list of files currently opened in emacs"
+  ;;   (delq nil
+  ;;         (mapcar (lambda (x)
+  ;;                   (if (and (buffer-file-name x)
+  ;;                            (string-match "\\.org$"
+  ;;                                          (buffer-file-name x)))
+  ;;                       (buffer-file-name x)))
+  ;;                 (buffer-list))))
   (setq org-refile-targets '((nil :maxlevel . 9)
-                             (opened-buffer-files :maxlevel . 6)
+                             ;; (opened-buffer-files :maxlevel . 6)
                              (org-agenda-files :maxlevel . 6)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
@@ -726,7 +726,8 @@ before layers configuration."
 
   (setq org-export-with-sub-superscripts '{}
         org-export-with-section-numbers 3
-        org-export-with-todo-keywords nil)
+        org-export-with-todo-keywords nil
+        org-export-with-timestamps nil)
 
   ;; Do not prompt to confirm evaluation
   ;; This may be dangerous - make sure you understand the consequences
@@ -759,6 +760,14 @@ before layers configuration."
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
 
+  (defun private/appt-display (min-to-app new-time msg)
+    (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app))
+    ;; (appt-disp-window min-to-app new-time msg)
+    )
+
+  (setq appt-disp-window-function (function private/appt-display))
+  (setq appt-delete-window-function 'nil)
+
   ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
   (bh/org-agenda-to-appt)
 
@@ -767,15 +776,6 @@ before layers configuration."
 
   ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
   (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
-
-
-  (defun private/appt-display (min-to-app new-time msg)
-    (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app))
-    ;; (appt-disp-window min-to-app new-time msg)
-    )
-
-  (setq appt-disp-window-function (function private/appt-display))
-  (setq appt-delete-window-function 'nil)
 
   ;; -----------------------------
   ;; MobileOrg
@@ -844,7 +844,6 @@ before layers configuration."
 
   ;; (add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
   ;; (evil-leader/set-key "ot" 'bh/insert-inactive-timestamp)
-  (setq org-export-with-timestamps nil)
 
   ;; Showing source block syntax highlighting
   (setq org-src-fontify-natively t)
