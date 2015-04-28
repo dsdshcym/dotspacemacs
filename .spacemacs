@@ -1,4 +1,4 @@
-;; -*- mode: dotspacemacs -*-
+;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -15,18 +15,17 @@
                                        (git :variables
                                             git-enable-github-support t)
                                        auto-completion
-                                       ;; (perspectives :variables
-                                       ;;               perspective-enable-persp-projectile)
                                        fasd
                                        osx
                                        org
                                        python
                                        auctex
-                                       ;; workgroups2
                                        markdown
                                        syntax-checking
-                                       c-c++
-                                       osx-dictionary)
+                                       html
+                                       osx-dictionary
+                                       eyebrowse
+                                       sql)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree company-quickhelp)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -44,7 +43,7 @@ before layers configuration."
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
-   ;; If non nil output loading progess in `*Messages*' buffer.
+   ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -125,8 +124,14 @@ before layers configuration."
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
+   ;; Select a scope to highlight delimiters. Possible value is `all',
+   ;; `current' or `nil'. Default is `all'
+   dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server t
+   ;; List of search tool executable names. Spacemacs uses the first installed
+   ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
+   dotspacemacs-search-tools '("ag" "ack" "grep")
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
@@ -187,12 +192,12 @@ before layers configuration."
             (lambda ()
               (toggle-truncate-lines t)))
 
-  (evil-leader/set-key-for-mode 'sql-mode
-    "msb" 'sql-send-buffer
-    "msr" 'sql-send-region
-    "mss" 'sql-send-string
-    "msp" 'sql-send-paragraph
-    "msi" 'sql-mysql)
+  ;; (evil-leader/set-key-for-mode 'sql-mode
+  ;;   "msb" 'sql-send-buffer
+  ;;   "msr" 'sql-send-region
+  ;;   "mss" 'sql-send-string
+  ;;   "msp" 'sql-send-paragraph
+  ;;   "msi" 'sql-mysql)
 
   ;; ---------------------------------------------------------------------------
   ;; paradox
@@ -214,6 +219,8 @@ before layers configuration."
   ;; C/C++ indent style
   ;; ---------------------------------------------------------------------------
   (setq-default c-default-style "java")
+  (setq gdb-many-windows t
+        gdb-show-main t)
 
   ;; ---------------------------------------------------------------------------
   ;; Google Translate
@@ -249,7 +256,7 @@ before layers configuration."
   (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
 
-  (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
+  ;; (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
 
   (define-key evil-insert-state-map (kbd "C-u")
     (lambda ()
@@ -336,24 +343,22 @@ before layers configuration."
 
   (global-set-key "\M-x" 'helm-M-x)
 
-  (evil-leader/set-key
-    "xgg" 'helm-google-suggest
-    "ff" 'helm-find-files)
-
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
 
-  ;; Fix issues with org-refile or org-jump
+  ;; Fix issues with org-refile or org-jump and other helm keybindings
   (eval-after-load 'helm
     (lambda ()
       (define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
-      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-      (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
-      (define-key helm-map (kbd "C-z") 'helm-select-action)))
+      ;; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+      ;; (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
+      ;; (define-key helm-map (kbd "C-z") 'helm-select-action)
+      (define-key helm-map (kbd "C-u") 'backward-kill-sentence)
+      ))
 
-  (setq helm-split-window-in-side-p t)
+  ;; (setq helm-split-window-in-side-p t)
   (setq helm-ff-search-library-in-sexp t)
-  (setq helm-split-window-default-side 'other)
+  ;; (setq helm-split-window-default-side 'other)
 
   ;; ---------------------------------------------------------------------------
   ;; OS X
@@ -374,6 +379,7 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   (defun private/open-ansi-term ()
     (interactive)
+    ;; (split-window-right-and-focus)
     (if (string-match "\/ssh:.*" (buffer-file-name)) (eshell)
       (let* (
              (term-buffer-name-var (concat (projectile-project-name) "-ansi-term"))
@@ -387,7 +393,7 @@ before layers configuration."
   (evil-leader/set-key
     "ot" 'private/open-ansi-term)
 
-  (setq multi-term-program "/usr/local/bin/zsh")
+  ;; (setq multi-term-program "/usr/local/bin/zsh")
   (evil-declare-key 'insert term-raw-map (kbd "C-p") 'term-send-raw)
   (evil-declare-key 'insert term-raw-map (kbd "C-n") 'term-send-raw)
   (evil-declare-key 'normal term-raw-map "p" 'term-paste)
@@ -431,7 +437,13 @@ before layers configuration."
     (sp-local-pair "\\left(" "\\right)")
     (sp-local-pair "\\left\\{" "\\right\\}"))
 
-  (add-to-hooks #'smartparens-mode '(text-mode-hook prog-mode-hook org-mode-hook))
+  ;; (add-to-hooks #'smartparens-mode '(text-mode-hook prog-mode-hook org-mode-hook))
+
+
+  ;; ---------------------------------------------------------------------------
+  ;; web-mode
+  ;; ---------------------------------------------------------------------------
+  (sp-local-pair 'web-mode "{%" "%}")
 
   ;; ---------------------------------------------------------------------------
   ;; yaml-mode
@@ -448,6 +460,7 @@ before layers configuration."
       (define-key company-active-map (kbd "\C-p") 'company-select-previous)
       (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
       (define-key company-active-map (kbd "<tab>") 'company-complete-common)
+      ;; (define-key company-active-map [escape] 'evil-normal-state)
       ;; (setq company-auto-complete nil)
       ;; (setq company-idle-delay 0.5)
       ;; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
@@ -484,9 +497,9 @@ before layers configuration."
     "os" 'org-iswitchb
     "og" 'org-clock-goto
     "oo" 'org-clock-out
+    "op" 'org-pomodoro
     "oc" 'org-capture
-    "oj" '(lambda () (interactive) (org-refile (universal-argument)))
-    "op" '(lambda () (interactive) (find-file "~/Org/personal.org")))
+    "oj" '(lambda () (interactive) (org-refile (universal-argument))))
 
   (evil-leader/set-key-for-mode 'org-mode
     "ns" 'org-narrow-to-subtree
@@ -675,6 +688,7 @@ before layers configuration."
 
   (defun bh/clock-out-maybe ()
     (when (and
+           (not (org-pomodoro-active-p))
            ;; bh/keep-clock-running
            (not org-clock-clocking-in)
            ;; (marker-buffer org-clock-default-task)
@@ -719,7 +733,7 @@ before layers configuration."
      (org . t)
      (sql . t)
      (C . t)
-     (ditaa . t)
+     (dot . t)
      ))
 
   (setq org-export-backends '(beamer html latex md gfm))
@@ -796,7 +810,7 @@ before layers configuration."
   (setq org-cycle-include-plain-lists 'integrate)
 
   (setq org-id-locations-file "~/.emacs.d/org-files/.org-id-locations")
-  (setq org-enforce-todo-dependencies t)
+  (setq org-enforce-todo-dependencies nil)
 
   (setq org-return-follows-link t)
 
