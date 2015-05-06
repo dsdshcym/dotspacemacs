@@ -14,7 +14,11 @@
                                                colors-enable-nyan-cat-progress-bar ,(display-graphic-p))
                                        (git :variables
                                             git-enable-github-support t)
-                                       auto-completion
+                                       (auto-completion :variables
+                                                        auto-completion-return-key-behavior nil
+                                                        auto-completion-tab-key-behavior complete
+                                                        auto-completion-complete-with-key-sequence nil
+                                                        )
                                        fasd
                                        osx
                                        org
@@ -454,16 +458,23 @@ before layers configuration."
   ;; company-mode
   ;; ---------------------------------------------------------------------------
   ;; (global-company-mode)
+
+  (defun private/company-complete-common-or-complete (&optional arg)
+  (interactive "p")
+  (when (company-manual-begin)
+    (let ((tick (buffer-chars-modified-tick)))
+      (call-interactively 'company-complete-common)
+      (when (eq tick (buffer-chars-modified-tick))
+        (call-interactively 'company-complete-selection)))))
+
   (eval-after-load 'company
     (lambda ()
       (define-key company-active-map (kbd "\C-n") 'company-select-next)
       (define-key company-active-map (kbd "\C-p") 'company-select-previous)
       (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-      (define-key company-active-map (kbd "<tab>") 'company-complete-common)
-      ;; (define-key company-active-map [escape] 'evil-normal-state)
+      (define-key company-active-map (kbd "<tab>") 'private/company-complete-common-or-complete)
+      ;; (define-key company-active-map (kbd "<RET>") (lambda () (interactive) (progn (company-complete-selection) (newline-and-indent))))
       ;; (setq company-auto-complete nil)
-      ;; (setq company-idle-delay 0.5)
-      ;; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
       (setq company-global-modes '(not shell-mode))
       ))
 
