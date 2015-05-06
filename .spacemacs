@@ -709,7 +709,9 @@ before layers configuration."
 
   (defun bh/clock-out-maybe ()
     (when (and
-           (not (org-pomodoro-active-p))
+           (or
+            (equal org-pomodoro-state nil)
+            (equal org-pomodoro-state :none))
            ;; bh/keep-clock-running
            (not org-clock-clocking-in)
            ;; (marker-buffer org-clock-default-task)
