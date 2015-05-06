@@ -260,6 +260,15 @@ before layers configuration."
   (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
   (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
+  ;; Make evil-mode up/down operate in screen lines instead of logical lines
+  (define-key evil-normal-state-map "j" 'evil-next-visual-line)
+  (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
+  ;; Also in visual mode
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+
+  (define-key evil-visual-state-map "<" 'evil-shift-left)
+  (define-key evil-visual-state-map ">" 'evil-shift-right)
 
   ;; (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
 
