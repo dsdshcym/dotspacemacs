@@ -18,7 +18,8 @@
                                                         auto-completion-return-key-behavior nil
                                                         auto-completion-tab-key-behavior complete
                                                         auto-completion-complete-with-key-sequence nil
-                                                        )
+                                                        auto-completion-enable-sort-by-usage t)
+                                       emacs-lisp
                                        fasd
                                        osx
                                        org
