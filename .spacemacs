@@ -29,6 +29,7 @@
                                        syntax-checking
                                        html
                                        osx-dictionary
+                                       org-tree-slide
                                        eyebrowse
                                        sql
                                        dash)
