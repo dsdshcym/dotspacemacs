@@ -788,9 +788,13 @@ before layers configuration."
   ;; {{ export org-mode in Chinese into PDF
   ;; @see http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
   (setq org-latex-pdf-process
-        '("xelatex -interaction nonstopmode -output-directory %o %f"
-          "xelatex -interaction nonstopmode -output-directory %o %f"
-          "xelatex -interaction nonstopmode -output-directory %o %f"))
+        '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+  ;; Use minted to export code blocks
+  (setq org-latex-listings 'minted)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
 
   (setq org-html-mathjax-options
         (quote
