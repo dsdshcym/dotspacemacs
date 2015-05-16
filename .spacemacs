@@ -793,8 +793,18 @@ before layers configuration."
           "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
   ;; Use minted to export code blocks
-  (setq org-latex-listings 'minted)
-  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;; (setq org-latex-listings 'minted)
+  ;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;; (setq org-latex-minted-options
+  ;;       '(("frame" "lines") ("linenos" "true") ("breaklines" "true")))
+
+  ;; Use listings to export code blocks
+  (setq org-latex-listings t)
+  (setq org-latex-listings-options
+        '(("breaklines" "")
+          ("keywordstyle" "\\color{black}\\bfseries")))
+  (add-to-list 'org-latex-packages-alist '("" "listings"))
+  (add-to-list 'org-latex-packages-alist '("" "color"))
 
   (setq org-html-mathjax-options
         (quote
