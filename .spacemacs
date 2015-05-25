@@ -19,6 +19,12 @@
                                                         auto-completion-tab-key-behavior complete
                                                         auto-completion-complete-with-key-sequence nil
                                                         auto-completion-enable-sort-by-usage t)
+                                       (ibuffer
+                                        :variables ibuffer-group-buffers-by projects)
+                                       (shell
+                                        :variables
+                                        shell-default-shell ansi-term
+                                        shell-default-term-shell "/usr/local/bin/zsh")
                                        emacs-lisp
                                        fasd
                                        osx
@@ -828,10 +834,11 @@ before layers configuration."
 
   (defun private/appt-display (min-to-app new-time msg)
     (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app))
-    (appt-disp-window min-to-app new-time msg)
+    ;; (appt-disp-window min-to-app new-time msg)
     )
 
   (setq appt-disp-window-function (function private/appt-display))
+  (setq appt-delete-window-function nil)
 
   ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
   (bh/org-agenda-to-appt)
