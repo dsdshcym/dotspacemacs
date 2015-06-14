@@ -11,26 +11,26 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '((colors :variables
-                                               colors-enable-nyan-cat-progress-bar ,(display-graphic-p))
+                                               colors-enable-nyan-cat-progress-bar t)
                                        (git :variables
                                             git-enable-github-support t)
                                        (auto-completion :variables
                                                         auto-completion-return-key-behavior nil
-                                                        auto-completion-tab-key-behavior complete
+                                                        auto-completion-tab-key-behavior 'complete
                                                         auto-completion-complete-with-key-sequence nil
                                                         auto-completion-enable-sort-by-usage t)
                                        (ibuffer
-                                        :variables ibuffer-group-buffers-by projects)
+                                        :variables ibuffer-group-buffers-by 'projects)
                                        (shell
                                         :variables
-                                        shell-default-shell ansi-term
+                                        shell-default-shell 'ansi-term
                                         shell-default-term-shell "/usr/local/bin/zsh")
                                        emacs-lisp
                                        fasd
                                        osx
                                        org
                                        python
-                                       auctex
+                                       latex
                                        markdown
                                        syntax-checking
                                        html
@@ -44,7 +44,7 @@
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages nil))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -57,16 +57,14 @@ before layers configuration."
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer.
-   dotspacemacs-verbose-loading nil
+   dotspacemacs-verbose-loading t
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
-   ;; directory. A string value must be a path to a .PNG file.
+   ;; directory. A string value must be a path to an image format supported
+   ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed.
-   ;; dotspacemacs-startup-banner 'official
    dotspacemacs-startup-banner 'official
-   ;; t if you always want to see the changelog at startup
-   dotspacemacs-always-show-changelog t
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
@@ -86,7 +84,7 @@ before layers configuration."
                                :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -101,7 +99,10 @@ before layers configuration."
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
-   ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
+   ;; If non nil then `ido' replaces `helm' for some commands. For now only
+   ;; `find-files' (SPC f f) is replaced.
+   dotspacemacs-use-ido nil
+   ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content.
    dotspacemacs-enable-paste-micro-state t
    ;; Guide-key delay in seconds. The Guide-key is the popup buffer listing
@@ -773,6 +774,7 @@ before layers configuration."
      (emacs-lisp . t)
      (latex . t)
      (python . t)
+     (ruby . t)
      (org . t)
      (sql . t)
      (C . t)
