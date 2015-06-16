@@ -730,8 +730,8 @@ before layers configuration."
 
   (defun bh/clock-out-maybe ()
     (when (and
-           (or
-            (equal org-pomodoro-state nil)
+           (and
+            (boundp org-pomodoro-state)
             (equal org-pomodoro-state :none))
            ;; bh/keep-clock-running
            (not org-clock-clocking-in)
