@@ -30,6 +30,7 @@
                                        osx
                                        org
                                        python
+                                       ruby
                                        latex
                                        markdown
                                        syntax-checking
@@ -152,6 +153,9 @@ before layers configuration."
    dotspacemacs-default-package-repository nil
    )
   ;; User initialization goes here
+  (setq-default
+   ruby-enable-ruby-on-rails-support t
+   ruby-version-manager 'rvm)
   )
 
 (defun dotspacemacs/config ()
