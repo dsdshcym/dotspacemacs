@@ -175,7 +175,7 @@ before layers configuration."
     (dolist (charset '(han cjk-misc))
       (set-fontset-font (frame-parameter nil 'font) charset
                         (font-spec :family chinese :size chinese-size))))
-  (if (eq window-system 'mac) (private/set-font "Source Han Sans HW SC" 16))
+  (if (eq window-system 'mac) (private/set-font "SHS UI HW PRChinaGB" 16))
 
   (setq sentence-end-double-space nil)
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
