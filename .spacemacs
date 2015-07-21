@@ -12,8 +12,6 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '((colors :variables
                                                colors-enable-nyan-cat-progress-bar t)
-                                       (git :variables
-                                            git-enable-github-support t)
                                        (auto-completion :variables
                                                         auto-completion-return-key-behavior nil
                                                         auto-completion-tab-key-behavior 'complete
@@ -25,6 +23,9 @@
                                         :variables
                                         shell-default-shell 'ansi-term
                                         shell-default-term-shell "/usr/local/bin/zsh")
+                                       git
+                                       github
+                                       version-control
                                        emacs-lisp
                                        fasd
                                        osx
@@ -33,13 +34,15 @@
                                        ruby
                                        latex
                                        markdown
+                                       pandoc
                                        syntax-checking
                                        html
                                        osx-dictionary
                                        org-tree-slide
                                        eyebrowse
                                        sql
-                                       dash)
+                                       dash
+                                       javascript)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree company-quickhelp)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -175,7 +178,7 @@ before layers configuration."
     (dolist (charset '(han cjk-misc))
       (set-fontset-font (frame-parameter nil 'font) charset
                         (font-spec :family chinese :size chinese-size))))
-  (if (eq window-system 'mac) (private/set-font "SHS UI HW PRChinaGB" 16))
+  (if (eq window-system 'mac) (private/set-font "Origin Han Sans UI HW PRChinaGB" 16))
 
   (setq sentence-end-double-space nil)
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
@@ -230,7 +233,7 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; magit
   ;; ---------------------------------------------------------------------------
-  (setq magit-repo-dirs '("~/GitHub/"))
+  (setq magit-repository-directories '("~/GitHub/"))
   (setq magit-use-overlays nil)
 
   ;; ---------------------------------------------------------------------------
@@ -320,7 +323,7 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; Ace Jump
   ;; ---------------------------------------------------------------------------
-  (setq ace-jump-mode-scope 'visible)
+  (setq ace-jump-mode-scope 'window)
 
   (setq aw-background nil)
 
@@ -735,7 +738,7 @@ before layers configuration."
   (defun bh/clock-out-maybe ()
     (when (and
            (and
-            (boundp org-pomodoro-state)
+            (boundp 'org-pomodoro-state)
             (equal org-pomodoro-state :none))
            ;; bh/keep-clock-running
            (not org-clock-clocking-in)
