@@ -205,6 +205,10 @@ before layers configuration."
         (remq 'process-kill-buffer-query-function
               kill-buffer-query-functions))
 
+  ;; ---------------------------------------------------------------------------
+  ;; Python / Anaconda Mode
+  ;; ---------------------------------------------------------------------------
+  (setq anaconda-mode-server-script "/usr/local/lib/python2.7/site-packages/anaconda_mode.py")
 
   ;; ---------------------------------------------------------------------------
   ;; osx-dictionary
