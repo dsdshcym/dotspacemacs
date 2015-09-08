@@ -32,6 +32,9 @@
                                        fasd
                                        osx
                                        org
+                                       (c-c++
+                                        :variables
+                                        c-c++-enable-clang-support t)
                                        python
                                        ruby
                                        ruby-on-rails
