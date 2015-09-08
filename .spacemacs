@@ -224,22 +224,10 @@ before layers configuration."
             (lambda ()
               (toggle-truncate-lines t)))
 
-  ;; (evil-leader/set-key-for-mode 'sql-mode
-  ;;   "msb" 'sql-send-buffer
-  ;;   "msr" 'sql-send-region
-  ;;   "mss" 'sql-send-string
-  ;;   "msp" 'sql-send-paragraph
-  ;;   "msi" 'sql-mysql)
-
   ;; ---------------------------------------------------------------------------
   ;; paradox
   ;; ---------------------------------------------------------------------------
   (setq paradox-github-token "dd8ec7f2000aa64f8a81ceabe95aa76406d0e34d")
-
-  ;; ---------------------------------------------------------------------------
-  ;; projectile
-  ;; ---------------------------------------------------------------------------
-  ;; (evil-leader/set-key "pp" 'projectile-persp-switch-project)
 
   ;; ---------------------------------------------------------------------------
   ;; magit
@@ -259,11 +247,6 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   (setq google-translate-default-source-language "auto"
         google-translate-default-target-language "zh")
-
-  ;; ---------------------------------------------------------------------------
-  ;; golden-ratio-mode
-  ;; ---------------------------------------------------------------------------
-  ;; (golden-ratio-mode 1)
 
   ;; ---------------------------------------------------------------------------
   ;; image-mode
@@ -309,26 +292,15 @@ before layers configuration."
   (define-key evil-visual-state-map "<" 'evil-shift-left)
   (define-key evil-visual-state-map ">" 'evil-shift-right)
 
-  ;; (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
-
   (define-key evil-insert-state-map (kbd "C-u")
     (lambda ()
       (interactive)
       (evil-delete (point-at-bol) (point))))
 
-  ;; (global-evil-matchit-mode 1)
-
   (evil-leader/set-key
-    ;; "wo" 'delete-other-windows
-    ;; "wO" 'other-frame
-    ;; "wS" (lambda () (interactive) (split-window-below-and-focus) (helm-mini))
-    ;; "wV" (lambda () (interactive) (split-window-right-and-focus) (helm-mini))
     "ww" 'ace-window
     "wW" 'other-window
-    ;; "/" 'helm-ag
     )
-
-  ;; (evil-leader/set-key "SPC" 'evil-ace-jump-char-mode)
 
   ;; Define my own text object // use spacemacs|define-and-bind-text-object
 
@@ -380,7 +352,7 @@ before layers configuration."
 
   (defun private/osx-notif (title msg &optional subtitle sound)
     "Show a OS X notification. Sound can be found in ~/Library/Sounds and
-/System/Library/Sounds"
+    /System/Library/Sounds"
     (interactive)
     (if (eq window-system 'mac)
         (call-process-shell-command
@@ -404,15 +376,10 @@ before layers configuration."
   (eval-after-load 'helm
     (lambda ()
       (define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
-      ;; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-      ;; (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
-      ;; (define-key helm-map (kbd "C-z") 'helm-select-action)
       (define-key helm-map (kbd "C-u") 'backward-kill-sentence)
       ))
 
-  ;; (setq helm-split-window-in-side-p t)
   (setq helm-ff-search-library-in-sexp t)
-  ;; (setq helm-split-window-default-side 'other)
 
   ;; ---------------------------------------------------------------------------
   ;; OS X
@@ -431,22 +398,6 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; Term Mode
   ;; ---------------------------------------------------------------------------
-  (defun private/open-ansi-term ()
-    (interactive)
-    ;; (split-window-right-and-focus)
-    (if (string-match "\/ssh:.*" (buffer-file-name)) (eshell)
-      (let* (
-             (term-buffer-name-var (concat (projectile-project-name) "-ansi-term"))
-             (term-buffer-name (concat "*" term-buffer-name-var "*"))
-             )
-        (if (get-buffer term-buffer-name)
-            (switch-to-buffer term-buffer-name)
-          (ansi-term "/usr/local/bin/zsh" term-buffer-name-var))
-        (evil-append nil))))
-
-  (evil-leader/set-key
-    "ot" 'private/open-ansi-term)
-
   ;; (setq multi-term-program "/usr/local/bin/zsh")
   (evil-declare-key 'insert term-raw-map (kbd "C-p") 'term-send-raw)
   (evil-declare-key 'insert term-raw-map (kbd "C-n") 'term-send-raw)
@@ -466,9 +417,6 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; smartparens
   ;; ---------------------------------------------------------------------------
-  ;; (setq sp-autoescape-string-quote nil)
-  ;; (setq sp-autoinsert-pair nil)
-
   (define-key evil-insert-state-map (kbd "C-s") 'sp-forward-slurp-sexp)
   (define-key evil-insert-state-map (kbd "S-C-S") 'sp-backward-slurp-sexp)
 
@@ -491,9 +439,6 @@ before layers configuration."
     (sp-local-pair "\\left(" "\\right)")
     (sp-local-pair "\\left\\{" "\\right\\}"))
 
-  ;; (add-to-hooks #'smartparens-mode '(text-mode-hook prog-mode-hook org-mode-hook))
-
-
   ;; ---------------------------------------------------------------------------
   ;; web-mode
   ;; ---------------------------------------------------------------------------
@@ -506,25 +451,10 @@ before layers configuration."
   ;; ---------------------------------------------------------------------------
   ;; company-mode
   ;; ---------------------------------------------------------------------------
-  ;; (global-company-mode)
-
-  (defun private/company-complete-common-or-complete (&optional arg)
-  (interactive "p")
-  (when (company-manual-begin)
-    (let ((tick (buffer-chars-modified-tick)))
-      (call-interactively 'company-complete-common)
-      (when (eq tick (buffer-chars-modified-tick))
-        (call-interactively 'company-complete-selection)))))
-
   (eval-after-load 'company
     (lambda ()
       (define-key company-active-map (kbd "\C-n") 'company-select-next)
       (define-key company-active-map (kbd "\C-p") 'company-select-previous)
-      (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-      ;; (define-key company-active-map (kbd "<tab>") 'private/company-complete-common-or-complete)
-      ;; (define-key company-active-map (kbd "<RET>") (lambda () (interactive) (progn (company-complete-selection) (newline-and-indent))))
-      ;; (setq company-auto-complete nil)
-      (setq company-global-modes '(not shell-mode))
       ))
 
   ;; --------------------------------------------------------------------
@@ -635,17 +565,17 @@ before layers configuration."
   ;; -----------------------------
   ;; Refile
   ;; -----------------------------
-  ;; (defun opened-buffer-files ()
-  ;;   "Return the list of files currently opened in emacs"
-  ;;   (delq nil
-  ;;         (mapcar (lambda (x)
-  ;;                   (if (and (buffer-file-name x)
-  ;;                            (string-match "\\.org$"
-  ;;                                          (buffer-file-name x)))
-  ;;                       (buffer-file-name x)))
-  ;;                 (buffer-list))))
+  (defun opened-buffer-files ()
+    "Return the list of files currently opened in emacs"
+    (delq nil
+          (mapcar (lambda (x)
+                    (if (and (buffer-file-name x)
+                             (string-match "\\.org$"
+                                           (buffer-file-name x)))
+                        (buffer-file-name x)))
+                  (buffer-list))))
   (setq org-refile-targets '((nil :maxlevel . 9)
-                             ;; (opened-buffer-files :maxlevel . 6)
+                             (opened-buffer-files :maxlevel . 6)
                              (org-agenda-files :maxlevel . 6)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
@@ -871,18 +801,6 @@ before layers configuration."
   (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
 
   ;; -----------------------------
-  ;; MobileOrg
-  ;; -----------------------------
-  ;; ;; Set to the name of the file where new notes will be stored
-  ;; (setq org-mobile-inbox-for-pull "~/Org/refile.org")
-  ;; ;; Set to <your Dropbox root directory>/MobileOrg.
-  ;; (setq org-mobile-directory "~/Dropbox/应用/MobileOrg")
-  ;; (run-at-time "01:00" 86400 '(lambda ()
-  ;;                               (org-save-all-org-buffers)
-  ;;                               (org-mobile-push)))
-
-
-  ;; -----------------------------
   ;; Others
   ;; -----------------------------
 
@@ -915,28 +833,6 @@ before layers configuration."
   (setq org-habit-graph-column 50)
 
   (run-at-time "06:00" 86400 '(lambda () (setq org-habit-show-habits t)))
-
-  ;; ;; Insert inactive timestamps and exclude from export
-  ;; (defvar bh/insert-inactive-timestamp t)
-
-  ;; (defun bh/toggle-insert-inactive-timestamp ()
-  ;;   (interactive)
-  ;;   (setq bh/insert-inactive-timestamp (not bh/insert-inactive-timestamp))
-  ;;   (message "Heading timestamps are %s" (if bh/insert-inactive-timestamp "ON" "OFF")))
-
-  ;; (defun bh/insert-inactive-timestamp ()
-  ;;   (interactive)
-  ;;   (org-insert-time-stamp nil t t nil nil nil))
-
-  ;; (defun bh/insert-heading-inactive-timestamp ()
-  ;;   (save-excursion
-  ;;     (when bh/insert-inactive-timestamp
-  ;;       (org-return)
-  ;;       (org-cycle)
-  ;;       (bh/insert-inactive-timestamp))))
-
-  ;; (add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
-  ;; (evil-leader/set-key "ot" 'bh/insert-inactive-timestamp)
 
   ;; Showing source block syntax highlighting
   (setq org-src-fontify-natively t)
