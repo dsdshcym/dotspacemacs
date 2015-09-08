@@ -16,7 +16,8 @@
                                                         auto-completion-return-key-behavior nil
                                                         auto-completion-tab-key-behavior 'complete
                                                         auto-completion-complete-with-key-sequence nil
-                                                        auto-completion-enable-sort-by-usage t)
+                                                        auto-completion-enable-sort-by-usage t
+                                                        auto-completion-show-snippets-in-popup t)
                                        (ibuffer
                                         :variables ibuffer-group-buffers-by 'projects)
                                        (shell
@@ -27,11 +28,14 @@
                                        github
                                        version-control
                                        emacs-lisp
+                                       common-lisp
                                        fasd
                                        osx
                                        org
                                        python
                                        ruby
+                                       ruby-on-rails
+                                       yaml
                                        latex
                                        markdown
                                        pandoc
@@ -48,7 +52,7 @@
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
-   dotspacemacs-delete-orphan-packages nil))
+   dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -284,6 +288,7 @@ before layers configuration."
   ;; evil
   ;; ---------------------------------------------------------------------------
   (setq evil-want-fine-undo 'No)
+  (setq evil-move-beyond-eol nil)
   (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
   (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
@@ -321,10 +326,9 @@ before layers configuration."
   ;; Define my own text object // use spacemacs|define-and-bind-text-object
 
   ;; ---------------------------------------------------------------------------
-  ;; Ace Jump
+  ;; Ace Jump / Avy
   ;; ---------------------------------------------------------------------------
-  (setq ace-jump-mode-scope 'window)
-
+  (setq avy-all-windows t)
   (setq aw-background nil)
 
   ;; ---------------------------------------------------------------------------
@@ -510,7 +514,7 @@ before layers configuration."
       (define-key company-active-map (kbd "\C-n") 'company-select-next)
       (define-key company-active-map (kbd "\C-p") 'company-select-previous)
       (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-      (define-key company-active-map (kbd "<tab>") 'private/company-complete-common-or-complete)
+      ;; (define-key company-active-map (kbd "<tab>") 'private/company-complete-common-or-complete)
       ;; (define-key company-active-map (kbd "<RET>") (lambda () (interactive) (progn (company-complete-selection) (newline-and-indent))))
       ;; (setq company-auto-complete nil)
       (setq company-global-modes '(not shell-mode))
@@ -817,7 +821,8 @@ before layers configuration."
   (setq org-latex-listings t)
   (setq org-latex-listings-options
         '(("breaklines" "")
-          ("keywordstyle" "\\color{black}\\bfseries")))
+          ("keywordstyle" "\\color{black}\\bfseries")
+          ("basicstyle" "\\ttfamily\\scriptsize")))
   (add-to-list 'org-latex-packages-alist '("" "listings"))
   (add-to-list 'org-latex-packages-alist '("" "color"))
 
@@ -930,9 +935,21 @@ before layers configuration."
   (setq org-src-fontify-natively t)
 
   (setq org-export-coding-system 'utf-8)
-  ;; (prefer-coding-system 'utf-8) ;; commented since it's default in spacemacs
   (set-charset-priority 'unicode)
   (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  ;; backwards compatibility as default-buffer-file-coding-system
+  ;; is deprecated in 23.2.
+  (if (boundp 'buffer-file-coding-system)
+      (setq-default buffer-file-coding-system 'utf-8)
+    (setq default-buffer-file-coding-system 'utf-8))
+
+  ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+  (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
   (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
 
