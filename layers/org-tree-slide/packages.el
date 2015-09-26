@@ -35,10 +35,12 @@
     :defer t
     :config
     (progn
-      (evil-define-key 'normal org-tree-slide-mode-map "gj" 'org-tree-slide-move-next-tree)
-      (evil-define-key 'normal org-tree-slide-mode-map "gk" 'org-tree-slide-move-previous-tree)
-      ;; (define-key org-tree-slide-mode-map (kbd "gk")
-        ;; 'org-tree-slide-move-next-tree)
+      (evil-leader/set-key-for-mode 'org-mode "." 'org-tree-slide-move-next-tree)
+      (evil-leader/set-key-for-mode 'org-mode "," 'org-tree-slide-move-previous-tree)
+      (evil-define-key 'normal org-tree-slide-mode-map "H" 'org-tree-slide-move-previous-tree)
+      (evil-define-key 'normal org-tree-slide-mode-map "L" 'org-tree-slide-move-next-tree)
+      ;; (define-key org-tree-slide-mode-map (kbd "H")
+      ;;   'org-tree-slide-move-next-tree)
       ;;   (define-key org-tree-slide-mode-map (kbd "gj")
       ;;     'org-tree-slide-move-next-tree)
       ;;   (define-key org-tree-slide-mode-map (kbd "<f11>")
