@@ -502,6 +502,8 @@ values."
 
   (evil-declare-key 'normal evil-org-mode-map "o" 'evil-open-below)
   (evil-declare-key 'normal evil-org-mode-map "O" 'evil-open-above)
+  (evil-declare-key 'normal evil-org-mode-map "<" 'evil-shift-left)
+  (evil-declare-key 'normal evil-org-mode-map ">" 'evil-shift-right)
   (evil-declare-key 'normal evil-org-mode-map (kbd "C-o") (lambda () (interactive) (evil-end-of-line) (org-insert-heading-respect-content) (evil-append nil)))
   (evil-declare-key 'normal evil-org-mode-map (kbd "M-o") (lambda () (interactive) ((lambda () (evil-end-of-line) (evil-append nil) (org-meta-return) ))))
   (evil-declare-key 'insert evil-org-mode-map (kbd "C-o") 'org-insert-heading-respect-content)
