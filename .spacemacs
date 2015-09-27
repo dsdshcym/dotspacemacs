@@ -215,11 +215,14 @@ values."
   ;; https://gist.github.com/Superbil/8554936
   ;; http://kkdevs.tumblr.com/post/38276076979/mac-os-x-org-mode
   ;; -----------------------------------------------------------
-  (defun private/set-font (chinese chinese-size)
+  (defun private/set-cjk-font (chinese chinese-size)
     (dolist (charset '(han cjk-misc))
       (set-fontset-font (frame-parameter nil 'font) charset
                         (font-spec :family chinese :size chinese-size))))
-  (if (eq window-system 'mac) (private/set-font "PingFang SC" 16))
+  (defun private/set-my-font ()
+    (interactive)
+    (if (eq window-system 'mac) (private/set-cjk-font "PingFang SC" 16)))
+  (private/set-my-font)
 
   (setq sentence-end-double-space nil)
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
