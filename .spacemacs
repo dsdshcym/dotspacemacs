@@ -384,17 +384,26 @@ values."
 
   (setq switch-to-visible-buffer nil)
 
-  (defun private/osx-notif (title msg &optional subtitle sound)
+  (defun private/osx-notif (title msg &optional subtitle group-id sound)
     "Show a OS X notification. Sound can be found in ~/Library/Sounds and
     /System/Library/Sounds"
     (interactive)
     (if (eq window-system 'mac)
         (call-process-shell-command
-         (concat
-          "osascript -e 'display notification \"" msg
-          "\" with title \"" title
-          (if subtitle (concat "\" subtitle \"" subtitle))
-          "\" sound name \"" (if sound sound "Basso")"\"'"))))
+         (concat "terminal-notifier"
+                 " -title \"" title
+                 "\" -message \"" msg
+                 (if subtitle (concat "\" -subtitle \"" subtitle))
+                 (if sound (concat "\" -sound \"" sound))
+                 (if group-id (concat "\" -group \"" group-id))
+                 "\" -activate " "org.gnu.Emacs"
+                 " -sender " "org.gnu.Emacs")
+         ;; (concat
+         ;;  "osascript -e 'display notification \"" msg
+         ;;  "\" with title \"" title
+         ;;  (if subtitle (concat "\" subtitle \"" subtitle))
+         ;;  "\" sound name \"" (if sound sound "Basso")"\"'")
+         )))
 
   ;; ---------------------------------------------------------------------------
   ;; helm
@@ -821,7 +830,7 @@ values."
   (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
 
   (defun private/appt-display (min-to-app new-time msg)
-    (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app))
+    (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
     ;; (appt-disp-window min-to-app new-time msg)
     )
 
