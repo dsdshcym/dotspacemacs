@@ -55,7 +55,8 @@ values."
                                        eyebrowse
                                        sql
                                        dash
-                                       javascript)
+                                       javascript
+                                       erc)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
