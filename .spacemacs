@@ -520,6 +520,9 @@ values."
                    plain-tex-mode
                    latex-mode
                    org-mode)
+    (sp-local-pair "（" "）")
+    (sp-local-pair "「" "」")
+    (sp-local-pair "『" "』")
     (sp-local-pair "$" "$")
     (sp-local-pair "\\[" "\\]")
     (sp-local-pair "\\(" "\\)")
