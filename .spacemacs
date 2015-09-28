@@ -256,7 +256,11 @@ values."
                                     (nnimap-address "mail.fudan.edu.cn")
                                     (nnimap-stream ssl)
                                     (nnir-search-engine imap)
-                                    (nnimap-authinfo-file "~/.authinfo.gpg")))
+                                    (nnimap-authinfo-file "~/.authinfo.gpg")
+                                    ;; @see http://www.gnu.org/software/emacs/manual/html_node/gnus/Expiring-Mail.html
+                                    ;; press 'E' to expire email
+                                    (nnmail-expiry-target "nnimap+gmail:[Gmail]/Trash")
+                                    (nnmail-expiry-wait 90)))
 
   (setq gnus-use-cache t)
 
