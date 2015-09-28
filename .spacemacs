@@ -228,6 +228,7 @@ values."
     (interactive)
     (if (eq window-system 'mac) (private/set-cjk-font "PingFang SC" 16)))
   (private/set-my-font)
+  (add-to-list 'after-make-frame-functions 'private/set-my-font)
 
   (setq sentence-end-double-space nil)
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
