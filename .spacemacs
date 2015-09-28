@@ -56,7 +56,8 @@ values."
                                        sql
                                        dash
                                        javascript
-                                       erc)
+                                       erc
+                                       gnus)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -211,6 +212,8 @@ values."
   ;; Basics
   ;; ---------------------------------------------------------------------------
   (set-frame-parameter nil 'fullscreen 'fullboth)
+  (setq user-mail-address "dsdshcym@gmail.com")
+  (setq user-full-name "Yiming Chen")
 
   ;; -----------------------------------------------------------
   ;; Solve the Chinese font issue
@@ -243,6 +246,42 @@ values."
   (setq kill-buffer-query-functions
         (remq 'process-kill-buffer-query-function
               kill-buffer-query-functions))
+
+  ;; ---------------------------------------------------------------------------
+  ;; Gnus
+  ;; ---------------------------------------------------------------------------
+  (setq gnus-select-method '(nnimap "Fudan Mail"
+                                    (nnimap-server-port 993)
+                                    (nnimap-address "mail.fudan.edu.cn")
+                                    (nnimap-stream ssl)
+                                    (nnir-search-engine imap)
+                                    (nnimap-authinfo-file "~/.authinfo.gpg")))
+
+  (setq gnus-use-cache t)
+
+  (setq gnus-secondary-select-methods
+        '(
+          (nnimap "Gmail"
+                  (nnimap-address "imap.gmail.com")
+                  (nnimap-server-port 993)
+                  (nnimap-stream ssl)
+                  (nnir-search-engine imap)
+                  (nnimap-authinfo-file "~/.authinfo.gpg"))
+          )
+        )
+
+  (setq send-mail-function 'smtpmail-send-it
+        smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+        smtpmail-auth-credentials '(("smtp.gmail.com" 587 "dsdshcym@gmail.com" nil))
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587
+        starttls-use-gnutls t)
+
+  (setq gnus-use-correct-string-widths nil)
+
+  (setq nnml-directory "~/.emacs.d/.cache/mails")
+  (setq message-directory "~/.emacs.d/.cache/mails")
 
   ;; ---------------------------------------------------------------------------
   ;; Python / Anaconda Mode
