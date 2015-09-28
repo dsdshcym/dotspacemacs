@@ -413,12 +413,12 @@ values."
     )
 
   (spacemacs|add-toggle rimeime
-                        :if (eq window-system 'mac)
-                        :status private/toggle-rimeime-mode
-                        :on (private/toggle-rime)
-                        :off (private/toggle-rime)
-                        :documentation "Use Chinese Input when exiting the insert mode"
-                        :evil-leader "tc")
+    :if (eq window-system 'mac)
+    :status private/toggle-rimeime-mode
+    :on (private/toggle-rime)
+    :off (private/toggle-rime)
+    :documentation "Use Chinese Input when exiting the insert mode"
+    :evil-leader "tc")
 
   ;; override spacemacs/alternate-buffer to switch between
   ;; current and last unvisible buffer
