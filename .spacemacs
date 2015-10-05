@@ -467,8 +467,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   (define-key evil-insert-state-map (kbd "M-y") 'helm-show-kill-ring)
 
-  (global-set-key "\M-x" 'helm-M-x)
-
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
 
