@@ -370,7 +370,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   (setq evil-want-fine-undo 'No)
   (setq evil-move-beyond-eol nil)
-  (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
   (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
