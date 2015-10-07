@@ -703,7 +703,11 @@ user code."
            "* %^{Content}\n%U"
            :clock-in t
            :clock-resume t)
-          ("l" "Link Bookmarks" entry
+          ("l" "Link from Safari" entry
+           (file+headline "~/Org/refile.org" "Links")
+           "* %(org-mac-safari-get-frontmost-url)"
+           :immediate-finish t)
+          ("L" "Link Bookmarks" entry
            (file+headline "~/Org/refile.org" "Links")
            "* [[%^{Link}][%^{Description}]]"
            :immediate-finish t)
