@@ -259,18 +259,17 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Gnus
   ;; ---------------------------------------------------------------------------
-  (setq gnus-select-method '(nnimap "Fudan Mail"
-                                    (nnimap-server-port 993)
-                                    (nnimap-address "mail.fudan.edu.cn")
-                                    (nnimap-stream ssl)
-                                    (nnir-search-engine imap)
-                                    (nnimap-authinfo-file "~/.authinfo.gpg")
-                                    ))
-
   (setq gnus-use-cache t)
 
   (setq gnus-secondary-select-methods
         '(
+          (nnimap "Fudan Mail"
+                  (nnimap-server-port 993)
+                  (nnimap-address "mail.fudan.edu.cn")
+                  (nnimap-stream ssl)
+                  (nnir-search-engine imap)
+                  (nnimap-authinfo-file "~/.authinfo.gpg")
+                  )
           (nnimap "Gmail"
                   (nnimap-address "imap.gmail.com")
                   (nnimap-server-port 993)
