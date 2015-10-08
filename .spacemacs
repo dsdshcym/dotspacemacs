@@ -57,8 +57,7 @@ values."
                                        dash
                                        javascript
                                        erc
-                                       gnus
-                                       org-mac-link)
+                                       gnus)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -986,6 +985,8 @@ user code."
                       org-bullets
                       org-eww
                       org-mac-link))
+  (eval-after-load 'org
+    '(org-load-modules-maybe t))
 
   ;; position the habit graph on the agenda to the right of the default
   (setq org-habit-graph-column 50)
