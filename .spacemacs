@@ -284,13 +284,21 @@ user code."
           )
         )
 
-  (setq send-mail-function 'smtpmail-send-it
-        smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-        smtpmail-auth-credentials '(("smtp.gmail.com" 587 "dsdshcym@gmail.com" nil))
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587
-        starttls-use-gnutls t)
+  ;; This is needed to allow msmtp to do its magic:
+  (setq message-sendmail-f-is-evil 't)
+
+  ;;need to tell msmtp which account we're using
+  (setq message-sendmail-extra-arguments '("--read-envelope-from"))
+
+  (setq message-send-mail-function 'message-send-mail-with-sendmail)
+  ;; we substitute sendmail with msmtp
+  (setq sendmail-program "/usr/local/bin/msmtp")
+  ;;need to tell msmtp which account we're using
+  (setq message-sendmail-extra-arguments '("-a" "gmail"))
+  ;; you might want to set the following too
+  (setq mail-host-address "gmail.com")
+  (setq user-full-name "Yiming Chen")
+  (setq user-mail-address "dsdshcym@gmail.com")
 
   (setq gnus-use-correct-string-widths nil)
 
