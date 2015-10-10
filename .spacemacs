@@ -24,8 +24,6 @@ values."
                                                         auto-completion-complete-with-key-sequence nil
                                                         auto-completion-enable-sort-by-usage t
                                                         auto-completion-show-snippets-in-popup t)
-                                       (ibuffer
-                                        :variables ibuffer-group-buffers-by 'projects)
                                        (shell
                                         :variables
                                         shell-default-shell 'ansi-term
@@ -283,24 +281,6 @@ user code."
                   )
           )
         )
-
-  (setq gnus-parameters
-        ;; Use notthere id for all gmane news group postings
-        '((".*fudan\\.edu\\.cn.*"
-           (posting-style
-            (address "12307130174@fudan.edu.cn")
-            (name "Yiming Chen")
-            ;; (body "\n\n\n sivaram\n -- ")
-            (eval (setq message-sendmail-extra-arguments '("-a" "fudan")))
-            (user-mail-address "12307130174@fudan.edu.cn")))
-          ;;use anotherguy id for all normal mails
-          (".*gmail\\.com"
-           (posting-style
-            (address "dsdshcym@gmail.com")
-            (name "Yiming Chen")
-            ;; (body "\n\n\n Sivaram A\n -- \n")
-            (eval (setq message-sendmail-extra-arguments '("-a" "gmail")))
-            (user-mail-address "dsdshcym@gmail.com")))))
 
   ;; This is needed to allow msmtp to do its magic:
   (setq message-sendmail-f-is-evil 't)
@@ -1069,9 +1049,9 @@ user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(magit-use-overlays nil t)
+ '(magit-use-overlays nil)
  '(paradox-automatically-star t)
- '(paradox-github-token t t)
+ '(paradox-github-token t)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
