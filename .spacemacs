@@ -249,13 +249,6 @@ user code."
   (setq anaconda-mode-server-script "/usr/local/lib/python2.7/site-packages/anaconda_mode.py")
 
   ;; ---------------------------------------------------------------------------
-  ;; osx-dictionary
-  ;; ---------------------------------------------------------------------------
-  (add-hook 'osx-dictionary-mode-hook
-            (lambda ()
-              (setq show-trailing-whitespace nil)))
-
-  ;; ---------------------------------------------------------------------------
   ;; SQL
   ;; ---------------------------------------------------------------------------
   (add-hook 'sql-interactive-mode-hook

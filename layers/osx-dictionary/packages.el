@@ -25,6 +25,9 @@
     (progn
       ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
       (evil-make-overriding-map osx-dictionary-mode-map 'normal)
-      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps))
+      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps)
+      (add-hook 'osx-dictionary-mode-hook
+                (lambda ()
+                  (setq show-trailing-whitespace nil))))
     )
   )
