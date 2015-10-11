@@ -380,27 +380,6 @@ user code."
 
   (setq switch-to-visible-buffer nil)
 
-  (defun private/osx-notif (title msg &optional subtitle group-id sound)
-    "Show a OS X notification. Sound can be found in ~/Library/Sounds and
-    /System/Library/Sounds"
-    (interactive)
-    (if (eq window-system 'mac)
-        (call-process-shell-command
-         (concat "terminal-notifier"
-                 " -title \"" title
-                 "\" -message \"" msg
-                 (if subtitle (concat "\" -subtitle \"" subtitle))
-                 (if sound (concat "\" -sound \"" sound))
-                 (if group-id (concat "\" -group \"" group-id))
-                 "\" -activate " "org.gnu.Emacs"
-                 " -sender " "org.gnu.Emacs")
-         ;; (concat
-         ;;  "osascript -e 'display notification \"" msg
-         ;;  "\" with title \"" title
-         ;;  (if subtitle (concat "\" subtitle \"" subtitle))
-         ;;  "\" sound name \"" (if sound sound "Basso")"\"'")
-         )))
-
   ;; ---------------------------------------------------------------------------
   ;; helm
   ;; ---------------------------------------------------------------------------
