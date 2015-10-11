@@ -295,34 +295,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Own Customizations
   ;; ---------------------------------------------------------------------------
-  ;; A hack to get english input mode in normal mode by simulating keystrokes
-  ;; when exit insert mode
-  (defvar private/toggle-rimeime-mode nil)
-
-  (defun private/simulate-shift ()
-    (call-process-shell-command "echo \"tell application \\\"System Events\\\"
-                                        key code 56
-                                        end tell\" | osascript")
-    )
-
-  (defun private/toggle-rime ()
-    (if (symbol-value private/toggle-rimeime-mode)
-        (progn
-          (remove-hook 'evil-insert-state-entry-hook 'private/simulate-shift)
-          (setq private/toggle-rimeime-mode nil))
-      (progn
-        (add-hook 'evil-insert-state-entry-hook 'private/simulate-shift)
-        (setq private/toggle-rimeime-mode t)))
-    )
-
-  (spacemacs|add-toggle rimeime
-    :if (eq window-system 'mac)
-    :status private/toggle-rimeime-mode
-    :on (private/toggle-rime)
-    :off (private/toggle-rime)
-    :documentation "Use Chinese Input when exiting the insert mode"
-    :evil-leader "tc")
-
   ;; override spacemacs/alternate-buffer to switch between
   ;; current and last unvisible buffer
   (defun spacemacs/alternate-buffer ()
