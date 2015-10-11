@@ -105,8 +105,8 @@
   "oj" '(lambda () (interactive) (org-refile (universal-argument))))
 
 (evil-leader/set-key-for-mode 'org-mode
-  "<"  'private/org-begin-template
   "ns" 'org-narrow-to-subtree
   "nb" 'org-narrow-to-block
   "ne" 'org-narrow-to-element
-  "m/" 'org-sparse-tree)
+  "m/" 'org-sparse-tree
+  "m<"  'private/org-begin-template)
