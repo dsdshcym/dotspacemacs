@@ -222,18 +222,6 @@ user code."
   (setq user-mail-address "dsdshcym@gmail.com")
   (setq user-full-name "Yiming Chen")
 
-  ;; -----------------------------------------------------------
-  ;; Solve the Chinese font issue
-  ;; https://gist.github.com/Superbil/8554936
-  ;; http://kkdevs.tumblr.com/post/38276076979/mac-os-x-org-mode
-  ;; -----------------------------------------------------------
-  (defun private/set-cjk-font (chinese chinese-size)
-    (dolist (charset '(han cjk-misc))
-      (set-fontset-font (frame-parameter nil 'font) charset
-                        (font-spec :family chinese :size chinese-size))))
-  (defun private/set-my-font ()
-    (interactive)
-    (if (eq window-system 'mac) (private/set-cjk-font "PingFang SC" 16)))
   (private/set-my-font)
   (add-to-list 'after-make-frame-functions 'private/set-my-font)
 

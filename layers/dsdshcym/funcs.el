@@ -10,6 +10,19 @@
 ;;
 ;;; License: GPLv3
 
+;; -----------------------------------------------------------
+;; Solve the Chinese font issue
+;; https://gist.github.com/Superbil/8554936
+;; http://kkdevs.tumblr.com/post/38276076979/mac-os-x-org-mode
+;; -----------------------------------------------------------
+(defun private/set-cjk-font (chinese chinese-size)
+  (dolist (charset '(han cjk-misc))
+    (set-fontset-font (frame-parameter nil 'font) charset
+                      (font-spec :family chinese :size chinese-size))))
+(defun private/set-my-font ()
+  (interactive)
+  (if (eq window-system 'mac) (private/set-cjk-font "PingFang SC" 16)))
+
 ;; --------------------------------------------------------------------
 ;; org-mode helper functions
 ;; --------------------------------------------------------------------
