@@ -18,10 +18,64 @@
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
         (org-plus-contrib :step pre)
+        gnus
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-gnus ()
+  (progn
+    (setq gnus-use-cache t)
+
+    (setq gnus-secondary-select-methods
+          '(
+            (nnimap "Fudan Mail"
+                    (nnimap-server-port 993)
+                    (nnimap-address "mail.fudan.edu.cn")
+                    (nnimap-stream ssl)
+                    (nnir-search-engine imap)
+                    (nnimap-authinfo-file "~/.authinfo.gpg")
+                    )
+            (nnimap "Gmail"
+                    (nnimap-address "imap.gmail.com")
+                    (nnimap-server-port 993)
+                    (nnimap-stream ssl)
+                    (nnir-search-engine imap)
+                    (nnimap-authinfo-file "~/.authinfo.gpg")
+                    ;; @see http://www.gnu.org/software/emacs/manual/html_node/gnus/Expiring-Mail.html
+                    ;; press 'E' to expire email
+                    (nnmail-expiry-target "nnimap+gmail:[Gmail]/Trash")
+                    (nnmail-expiry-wait 90)
+                    )
+            )
+          )
+
+    ;; This is needed to allow msmtp to do its magic:
+    (setq message-sendmail-f-is-evil 't)
+
+    ;;need to tell msmtp which account we're using
+    (setq message-sendmail-extra-arguments '("--read-envelope-from"))
+
+    (setq message-send-mail-function 'message-send-mail-with-sendmail)
+    ;; we substitute sendmail with msmtp
+    (setq sendmail-program "/usr/local/bin/msmtp")
+    ;;need to tell msmtp which account we're using
+    (setq message-sendmail-extra-arguments '("-a" "gmail"))
+    ;; you might want to set the following too
+    (setq mail-host-address "gmail.com")
+    (setq user-full-name "Yiming Chen")
+    (setq user-mail-address "dsdshcym@gmail.com")
+
+    (setq gnus-use-correct-string-widths nil)
+
+    (setq nnml-directory "~/.emacs.d/.cache/mails")
+    (setq message-directory "~/.emacs.d/.cache/mails")
+
+    ;; Do not archive sent messages
+    (setq gnus-message-archive-group nil)
+    )
+  )
 
 (defun dsdshcym/post-init-org ()
   (progn
