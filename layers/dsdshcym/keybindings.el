@@ -13,6 +13,16 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; --------------------------------------------------------------------
+;; company keybindings
+;; --------------------------------------------------------------------
+(eval-after-load 'company
+  (lambda ()
+    (define-key company-active-map (kbd "\C-n") 'company-select-next)
+    (define-key company-active-map (kbd "\C-p") 'company-select-previous)
+    (define-key company-active-map (kbd "\C-w") 'evil-delete-backward-word)
+    ))
+
+;; --------------------------------------------------------------------
 ;; org-mode keybindings
 ;; --------------------------------------------------------------------
 (evil-declare-key 'normal evil-org-mode-map "o" 'evil-open-below)

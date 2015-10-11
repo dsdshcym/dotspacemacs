@@ -488,16 +488,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   (use-package yaml-mode :defer t)
 
-  ;; ---------------------------------------------------------------------------
-  ;; company-mode
-  ;; ---------------------------------------------------------------------------
-  (eval-after-load 'company
-    (lambda ()
-      (define-key company-active-map (kbd "\C-n") 'company-select-next)
-      (define-key company-active-map (kbd "\C-p") 'company-select-previous)
-      (define-key company-active-map (kbd "\C-w") 'evil-delete-backward-word)
-      ))
-
   )
 
 ;; Custom variables
