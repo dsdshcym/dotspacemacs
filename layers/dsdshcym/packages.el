@@ -48,6 +48,17 @@
         (interactive)
         (evil-delete (point-at-bol) (point))))
     )
+
+  (evil-define-motion evil-goto-line (count)
+    "Go to the first non-blank character of line COUNT.
+By default the (truly) last line."
+    :jump t
+    :type line
+    (if (null count)
+        (goto-char (buffer-size))
+      (goto-char (point-min))
+      (forward-line (1- count)))
+    (evil-first-non-blank))
   )
 
 (defun dsdshcym/post-init-evil-leader ()
