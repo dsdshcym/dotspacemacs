@@ -294,33 +294,6 @@ user code."
 
   (setq-default markdown-enable-math t)
 
-  ;; ---------------------------------------------------------------------------
-  ;; evil
-  ;; ---------------------------------------------------------------------------
-  (setq evil-want-fine-undo 'No)
-  (setq evil-move-beyond-eol nil)
-  (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
-  ;; Make evil-mode up/down operate in screen lines instead of logical lines
-  (define-key evil-normal-state-map "j" 'evil-next-visual-line)
-  (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
-  ;; Also in visual mode
-  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-
-  (define-key evil-visual-state-map "<" 'evil-shift-left)
-  (define-key evil-visual-state-map ">" 'evil-shift-right)
-
-  (define-key evil-insert-state-map (kbd "C-u")
-    (lambda ()
-      (interactive)
-      (evil-delete (point-at-bol) (point))))
-
-  (evil-leader/set-key
-    "ww" 'ace-window
-    "wW" 'other-window
-    )
-
   ;; Define my own text object // use spacemacs|define-and-bind-text-object
 
   ;; ---------------------------------------------------------------------------

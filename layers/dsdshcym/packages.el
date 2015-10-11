@@ -14,6 +14,7 @@
 ;; which require an initialization must be listed explicitly in the list.
 (setq dsdshcym-packages
       '(
+        evil
         smartparens
         evil-org
         ;; org is installed by `org-plus-contrib'
@@ -24,6 +25,13 @@
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-evil ()
+  (progn
+    (setq evil-want-fine-undo 'No)
+    (setq evil-move-beyond-eol nil)
+    )
+  )
 
 (defun dsdshcym/post-init-smartparens ()
   (progn
