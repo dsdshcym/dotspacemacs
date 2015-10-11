@@ -226,15 +226,8 @@ user code."
   (add-to-list 'after-make-frame-functions 'private/set-my-font)
 
   (setq sentence-end-double-space nil)
-  (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
   (setq vc-follow-symlinks t)
   (setq global-hl-line-mode nil)
-
-  (setq mouse-wheel-scroll-amount '(1
-                                    ((shift) . 5)
-                                    ((control))))
-  (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
-  (setq flyspell-mode nil)
 
   ;; --------------------------
   ;; kill-buffer without prompt
@@ -346,16 +339,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   (setq-default show-trailing-whitespace t)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-  ;; ---------------------------------------------------------------------------
-  ;; web-mode
-  ;; ---------------------------------------------------------------------------
-
-  ;; ---------------------------------------------------------------------------
-  ;; yaml-mode
-  ;; ---------------------------------------------------------------------------
-  (use-package yaml-mode :defer t)
-
   )
 
 ;; Custom variables
