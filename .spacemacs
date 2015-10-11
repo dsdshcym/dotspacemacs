@@ -280,17 +280,6 @@ user code."
         google-translate-default-target-language "zh")
 
   ;; ---------------------------------------------------------------------------
-  ;; image-mode
-  ;; ---------------------------------------------------------------------------
-  (evil-define-key 'normal image-mode-map "h" 'image-backward-hscroll)
-  (evil-define-key 'normal image-mode-map "l" 'image-forward-hscroll)
-  (evil-define-key 'normal image-mode-map "j" 'image-next-line)
-  (evil-define-key 'normal image-mode-map "k" 'image-previous-line)
-  (evil-define-key 'normal image-mode-map (kbd "\C-d") 'image-scroll-up)
-  (evil-define-key 'normal image-mode-map (kbd "\C-u") 'image-scroll-down)
-
-
-  ;; ---------------------------------------------------------------------------
   ;; markdown
   ;; ---------------------------------------------------------------------------
   (defun markdown-preview-file ()
