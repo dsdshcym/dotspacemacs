@@ -452,34 +452,6 @@ user code."
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   ;; ---------------------------------------------------------------------------
-  ;; smartparens
-  ;; ---------------------------------------------------------------------------
-  (define-key evil-insert-state-map (kbd "C-s") 'sp-forward-slurp-sexp)
-  (define-key evil-insert-state-map (kbd "S-C-S") 'sp-backward-slurp-sexp)
-
-  (sp-with-modes '(emacs-lisp-mode
-                   inferior-emacs-lisp-mode
-                   dotspacemacs-mode
-                   lisp-interaction-mode
-                   lisp-mode)
-    (sp-local-pair "'" nil :actions nil)
-    (sp-local-pair "`" "'" :when '(sp-in-string-p) :actions '(insert wrap)))
-
-  (sp-with-modes '(tex-mode
-                   plain-tex-mode
-                   latex-mode
-                   org-mode)
-    (sp-local-pair "（" "）")
-    (sp-local-pair "「" "」")
-    (sp-local-pair "『" "』")
-    (sp-local-pair "$" "$")
-    (sp-local-pair "\\[" "\\]")
-    (sp-local-pair "\\(" "\\)")
-    (sp-local-pair "\\{" "\\}")
-    (sp-local-pair "\\left(" "\\right)")
-    (sp-local-pair "\\left\\{" "\\right\\}"))
-
-  ;; ---------------------------------------------------------------------------
   ;; web-mode
   ;; ---------------------------------------------------------------------------
 

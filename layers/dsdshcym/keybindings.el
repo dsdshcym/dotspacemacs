@@ -13,6 +13,12 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; --------------------------------------------------------------------
+;; smartparens keybindings
+;; --------------------------------------------------------------------
+(define-key evil-insert-state-map (kbd "C-s") 'sp-forward-slurp-sexp)
+(define-key evil-insert-state-map (kbd "S-C-S") 'sp-backward-slurp-sexp)
+
+;; --------------------------------------------------------------------
 ;; company keybindings
 ;; --------------------------------------------------------------------
 (eval-after-load 'company

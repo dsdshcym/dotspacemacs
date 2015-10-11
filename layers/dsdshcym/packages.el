@@ -14,6 +14,7 @@
 ;; which require an initialization must be listed explicitly in the list.
 (setq dsdshcym-packages
       '(
+        smartparens
         evil-org
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
@@ -23,6 +24,32 @@
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-smartparens ()
+  (progn
+    (sp-with-modes '(emacs-lisp-mode
+                     inferior-emacs-lisp-mode
+                     dotspacemacs-mode
+                     lisp-interaction-mode
+                     lisp-mode)
+      (sp-local-pair "'" nil :actions nil)
+      (sp-local-pair "`" "'" :when '(sp-in-string-p) :actions '(insert wrap)))
+
+    (sp-with-modes '(tex-mode
+                     plain-tex-mode
+                     latex-mode
+                     org-mode)
+      (sp-local-pair "（" "）")
+      (sp-local-pair "「" "」")
+      (sp-local-pair "『" "』")
+      (sp-local-pair "$" "$")
+      (sp-local-pair "\\[" "\\]")
+      (sp-local-pair "\\(" "\\)")
+      (sp-local-pair "\\{" "\\}")
+      (sp-local-pair "\\left(" "\\right)")
+      (sp-local-pair "\\left\\{" "\\right\\}"))
+    )
+  )
 
 (defun dsdshcym/post-init-gnus ()
   (progn
