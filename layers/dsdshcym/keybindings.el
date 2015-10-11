@@ -13,6 +13,16 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; --------------------------------------------------------------------
+;; helm keybindings
+;; --------------------------------------------------------------------
+(eval-after-load 'helm
+  (lambda ()
+    ;; Fix issues with org-refile or org-jump and other helm keybindings
+    (define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
+    (define-key helm-map (kbd "C-u") 'backward-kill-sentence)
+    ))
+
+;; --------------------------------------------------------------------
 ;; smartparens keybindings
 ;; --------------------------------------------------------------------
 (define-key evil-insert-state-map (kbd "C-s") 'sp-forward-slurp-sexp)

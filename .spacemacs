@@ -409,13 +409,6 @@ user code."
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
 
-  ;; Fix issues with org-refile or org-jump and other helm keybindings
-  (eval-after-load 'helm
-    (lambda ()
-      (define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
-      (define-key helm-map (kbd "C-u") 'backward-kill-sentence)
-      ))
-
   (setq helm-ff-search-library-in-sexp t)
 
   ;; ---------------------------------------------------------------------------
