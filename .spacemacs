@@ -282,16 +282,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; markdown
   ;; ---------------------------------------------------------------------------
-  (defun markdown-preview-file ()
-    "use Marked 2 to preview the current file"
-    (save-buffer)
-    (interactive)
-    (shell-command
-     (format "open -a 'Marked 2.app' %s"
-             (shell-quote-argument (buffer-file-name)))))
-
-  (evil-leader/set-key-for-mode 'markdown-mode "mp" 'markdown-preview-file)
-
   (setq-default markdown-enable-math t)
 
   ;; Define my own text object // use spacemacs|define-and-bind-text-object
