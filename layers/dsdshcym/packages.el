@@ -363,13 +363,6 @@ By default the (truly) last line."
     (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
 
     (setq appt-disp-window-function (function private/appt-display))
-    (setq appt-delete-window-function nil)
-
-    ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
-    (bh/org-agenda-to-appt)
-
-    ;; Activate appointments so we get notifications
-    (appt-activate t)
 
     ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
     (run-at-time "24:01" nil 'bh/org-agenda-to-appt)

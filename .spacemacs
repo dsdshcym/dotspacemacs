@@ -339,6 +339,15 @@ user code."
   ;; ---------------------------------------------------------------------------
   (setq-default show-trailing-whitespace t)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  ;; ---------------------------------------------------------------------------
+  ;; org-mode
+  ;; ---------------------------------------------------------------------------
+  ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
+  (bh/org-agenda-to-appt)
+
+  ;; Activate appointments so we get notifications
+  (appt-activate t)
   )
 
 ;; Custom variables
