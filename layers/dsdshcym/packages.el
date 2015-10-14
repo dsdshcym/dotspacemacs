@@ -17,6 +17,7 @@
         evil
         evil-leader
         smartparens
+        spaceline
         evil-org
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
@@ -94,6 +95,12 @@ By default the (truly) last line."
     )
   )
 
+(defun dsdshcym/post-init-spaceline ()
+  (progn
+    (setq spaceline-org-clock-p t)
+    )
+  )
+
 (defun dsdshcym/post-init-gnus ()
   (progn
     (setq gnus-use-cache t)
@@ -153,8 +160,6 @@ By default the (truly) last line."
     ;; Functions which name starts with "bh" are from
     ;; http://doc.norang.ca/org-mode.html
     ;; --------------------------------------------------------------------
-
-    (setq spacemacs-mode-line-org-clock-current-taskp t)
 
     ;; -----------------------------
     ;; Agenda
