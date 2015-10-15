@@ -160,6 +160,8 @@ By default the (truly) last line."
     ;; Functions which name starts with "bh" are from
     ;; http://doc.norang.ca/org-mode.html
     ;; --------------------------------------------------------------------
+    (mapc #'evil-declare-ignore-repeat
+          '(org-cycle))
 
     ;; -----------------------------
     ;; Agenda
