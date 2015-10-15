@@ -168,6 +168,8 @@ By default the (truly) last line."
     (mapc #'evil-declare-ignore-repeat
           '(org-cycle))
 
+    (add-hook 'org-mode-hook (lambda () (setq evil-shift-width 2)))
+
     ;; -----------------------------
     ;; Agenda
     ;; -----------------------------
