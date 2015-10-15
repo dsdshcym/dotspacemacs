@@ -321,10 +321,7 @@ By default the (truly) last line."
           org-export-with-todo-keywords nil
           org-export-with-timestamps nil)
 
-    ;; Do not prompt to confirm evaluation
-    ;; This may be dangerous - make sure you understand the consequences
-    ;; of setting this -- see the docstring for details
-    (setq org-confirm-babel-evaluate nil)
+    (setq org-confirm-babel-evaluate t)
 
     ;; {{ export org-mode in Chinese into PDF
     ;; @see http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
