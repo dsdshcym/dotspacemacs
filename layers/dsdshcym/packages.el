@@ -48,6 +48,11 @@
       (lambda ()
         (interactive)
         (evil-delete (point-at-bol) (point))))
+
+   (mapc #'evil-declare-ignore-repeat
+         '(spacemacs/describe-key
+           spacemacs/describe-function
+           spacemacs/describe-variable))
     )
 
   (evil-define-motion evil-goto-line (count)
