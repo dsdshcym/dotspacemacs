@@ -16,16 +16,12 @@
         ))
 
 (setq dsdshcym-post-extensions
-      '(
-        ;; post extension names go here
-        ))
+      '(clip2org))
 
-;; For each extension, define a function dsdshcym/init-<extension-name>
-;;
-;; (defun dsdshcym/init-my-extension ()
-;;   "Initialize my extension"
-;;   )
-;;
-;; Often the body of an initialize function uses `use-package'
-;; For more info on `use-package', see readme:
-;; https://github.com/jwiegley/use-package
+(defun dsdshcym/init-clip2org ()
+  (use-package clip2org
+    :config
+    (progn
+      (setq clip2org-clippings-file "/Volumes/Kindle/documents/My Clippings.txt")
+      (setq clip2org-persistence-file (expand-file-name "clip2org-persist.txt" spacemacs-cache-directory))))
+  )
