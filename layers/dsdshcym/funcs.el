@@ -162,9 +162,12 @@
 
 (defun bh/clock-out-maybe ()
   (when (and
-         (and
-          (boundp 'org-pomodoro-state)
-          (equal org-pomodoro-state :none))
+         (or
+          (not
+           (boundp 'org-pomodoro-state))
+          (and
+           (boundp 'org-pomodoro-state)
+           (equal org-pomodoro-state :none)))
          ;; bh/keep-clock-running
          (not org-clock-clocking-in)
          ;; (marker-buffer org-clock-default-task)
