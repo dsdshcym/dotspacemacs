@@ -165,9 +165,7 @@
          (or
           (not
            (boundp 'org-pomodoro-state))
-          (and
-           (boundp 'org-pomodoro-state)
-           (equal org-pomodoro-state :none)))
+           (equal org-pomodoro-state :none))
          ;; bh/keep-clock-running
          (not org-clock-clocking-in)
          ;; (marker-buffer org-clock-default-task)
