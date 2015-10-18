@@ -72,7 +72,8 @@
   "aa" 'org-agenda-list
   "oa" 'org-agenda
   "ol" 'org-store-link
-  "os" 'org-iswitchb
+  "ob" 'org-iswitchb
+  "os" '(lambda () (interactive) (insert (concat " " (org-mac-safari-get-frontmost-url))))
   "og" 'org-clock-goto
   "oo" 'org-clock-out
   "op" 'org-pomodoro
