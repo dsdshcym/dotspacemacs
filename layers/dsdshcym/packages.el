@@ -52,7 +52,8 @@
    (mapc #'evil-declare-ignore-repeat
          '(spacemacs/describe-key
            spacemacs/describe-function
-           spacemacs/describe-variable))
+           spacemacs/describe-variable
+           spacemacs/write-file))
     )
 
   (evil-define-motion evil-goto-line (count)
