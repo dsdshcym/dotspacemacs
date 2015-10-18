@@ -196,6 +196,10 @@ By default the (truly) last line."
              ((agenda "")
               (tags-todo "TOWATCH")))))
 
+    ;; Agenda clock report parameters
+    (setq org-agenda-clockreport-parameter-plist
+          '(:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80))
+
     ;; -----------------------------
     ;; Tasks and States
     ;; -----------------------------
