@@ -229,6 +229,9 @@ user code."
   (setq vc-follow-symlinks t)
   (setq global-hl-line-mode nil)
 
+  (add-hook 'view-mode-hook (lambda ()
+                              (setq show-trailing-whitespace nil)))
+
   ;; --------------------------
   ;; kill-buffer without prompt
   ;; --------------------------
