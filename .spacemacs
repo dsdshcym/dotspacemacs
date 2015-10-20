@@ -243,6 +243,7 @@ user code."
   ;; Python / Anaconda Mode
   ;; ---------------------------------------------------------------------------
   (setq anaconda-mode-server-script "/usr/local/lib/python2.7/site-packages/anaconda_mode.py")
+  (add-to-list 'dash-at-point-mode-alist '(python-mode . "python2,python3,django,twisted,sphinx,flask,tornado,sqlalchemy,numpy,scipy,saltcvp"))
 
   ;; ---------------------------------------------------------------------------
   ;; SQL
