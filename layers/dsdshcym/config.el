@@ -28,6 +28,3 @@
 (setq calendar-latitude 31.23)
 (setq calendar-longitude 121.47)
 (setq calendar-location-name "Shanghai")
-
-;; Make underscore a word character
-(modify-syntax-entry ?_ "w")
