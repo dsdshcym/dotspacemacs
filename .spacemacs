@@ -273,8 +273,7 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Google Translate
   ;; ---------------------------------------------------------------------------
-  (setq google-translate-default-source-language "auto"
-        google-translate-default-target-language "zh")
+  (spacemacs/set-google-translate-languages "auto" "zh")
 
   ;; ---------------------------------------------------------------------------
   ;; markdown
