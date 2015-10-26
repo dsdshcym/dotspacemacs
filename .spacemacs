@@ -227,7 +227,6 @@ user code."
 
   (setq sentence-end-double-space nil)
   (setq vc-follow-symlinks t)
-  (setq global-hl-line-mode nil)
 
   (add-hook 'view-mode-hook (lambda ()
                               (setq show-trailing-whitespace nil)))
