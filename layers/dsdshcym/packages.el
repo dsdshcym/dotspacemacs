@@ -22,11 +22,24 @@
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
         (org-plus-contrib :step pre)
+        org-page
         gnus
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-org-page ()
+  (use-package org-page
+    :config
+    (progn
+      (setq op/repository-directory "~/Github/dsdshcym.github.io")
+      (setq op/site-domain "http://dsdshcym.github.io")
+      (setq op/personal-github-link "https://github.com/dsdshcym")
+      (setq op/site-main-title "dsdshome")
+      (setq op/site-sub-title "This is my small blog :)")
+      ))
+  )
 
 (defun dsdshcym/post-init-evil ()
   (progn
