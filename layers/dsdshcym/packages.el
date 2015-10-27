@@ -244,8 +244,7 @@ By default the (truly) last line."
              :clock-resume t)
             ("l" "Link from Safari" entry
              (file+headline "~/Org/refile.org" "Links")
-             "* %(org-mac-safari-get-frontmost-url)"
-             :immediate-finish t)
+             "* %(org-mac-safari-get-frontmost-url)")
             ("L" "Link Bookmarks" entry
              (file+headline "~/Org/refile.org" "Links")
              "* [[%^{Link}][%^{Description}]]"
@@ -253,8 +252,6 @@ By default the (truly) last line."
             ("w" "New English word" checkitem
              (file+headline "~/Org/word_notes.org" "New Words")
              "- [ ] %^{Word} :: %?")
-            ("h" "Habit" entry (file "~/git/org/refile.org")
-             "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:")
             ))
 
     ;; -----------------------------
