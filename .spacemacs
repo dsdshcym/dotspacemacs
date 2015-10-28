@@ -209,6 +209,10 @@ user code."
   (setq-default
    ruby-enable-ruby-on-rails-support t
    ruby-version-manager 'rvm)
+  (setq url-proxy-services
+        '(("no_proxy" . "^\\(127.0.0.1\\|localhost\\|10.*\\)")
+          ("http" . "127.0.0.1:7777")
+          ("https" . "127.0.0.1:7777")))
   )
 
 (defun dotspacemacs/user-config ()
