@@ -196,7 +196,7 @@ By default the (truly) last line."
     ;; Overwrite the current window with the agenda
     (setq org-agenda-window-setup 'other-window)
 
-    (setq org-agenda-ndays 2)
+    (setq org-agenda-span 'day)
 
     (setq org-agenda-custom-commands
           '(("h" "Agenda and Home-related tasks"
