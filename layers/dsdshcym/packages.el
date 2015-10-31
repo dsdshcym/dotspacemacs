@@ -66,7 +66,9 @@
          '(spacemacs/describe-key
            spacemacs/describe-function
            spacemacs/describe-variable
-           spacemacs/write-file))
+           spacemacs/write-file
+           kill-this-buffer
+           ido-kill-buffer))
     )
 
   (evil-define-motion evil-goto-line (count)
