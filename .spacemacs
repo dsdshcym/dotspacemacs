@@ -47,6 +47,9 @@ values."
                                        markdown
                                        pandoc
                                        syntax-checking
+                                       (spell-checking
+                                        :variables
+                                        spell-checking-enable-by-default nil)
                                        html
                                        osx-dictionary
                                        org-tree-slide
