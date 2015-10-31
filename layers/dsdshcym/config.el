@@ -28,3 +28,5 @@
 (setq calendar-latitude 31.23)
 (setq calendar-longitude 121.47)
 (setq calendar-location-name "Shanghai")
+
+(setq-default cursor-in-non-selected-windows nil)
