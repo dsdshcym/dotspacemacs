@@ -24,10 +24,15 @@
         (org-plus-contrib :step pre)
         org-page
         gnus
+        flycheck
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-flycheck ()
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  )
 
 (defun dsdshcym/init-org-page ()
   (use-package org-page
