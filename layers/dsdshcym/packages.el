@@ -25,10 +25,15 @@
         org-page
         gnus
         flycheck
+        avy
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-avy ()
+  (evil-leader/set-key "SPC" 'avy-goto-char-timer)
+  )
 
 (defun dsdshcym/post-init-flycheck ()
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
