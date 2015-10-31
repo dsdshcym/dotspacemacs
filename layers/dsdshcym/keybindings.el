@@ -12,6 +12,10 @@
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
+(eval-after-load 'gnus
+  (lambda ()
+    (define-key gnus-summary-mode-map "d" 'gnus-summary-delete-article)))
+
 ;; ---------------------------------------------------------------------------
 ;; image-mode
 ;; ---------------------------------------------------------------------------

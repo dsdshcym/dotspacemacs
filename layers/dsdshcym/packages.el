@@ -129,8 +129,6 @@ By default the (truly) last line."
 
 (defun dsdshcym/post-init-gnus ()
   (progn
-    (define-key gnus-summary-mode-map "d" 'gnus-summary-delete-article)
-
     (setq gnus-use-cache t)
 
     (setq gnus-secondary-select-methods
