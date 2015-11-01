@@ -57,7 +57,10 @@ values."
                                        sql
                                        dash
                                        javascript
-                                       erc
+                                       (rcirc
+                                        :variables
+                                        rcirc-enable-authinfo-support t)
+                                       rcirc-accounts
                                        gnus
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
