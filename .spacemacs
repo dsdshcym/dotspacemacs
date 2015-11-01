@@ -8,7 +8,7 @@ You should not put any user code in this function besides modifying the variable
 values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
-   ;; `!distribution'. For now available distributions are `spacemacs-core'
+   ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
@@ -141,7 +141,7 @@ values."
    ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
    ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
    dotspacemacs-use-ido nil
-   ;; If non nil, `helm' will try to miminimize the space it uses. (default nil)
+   ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
@@ -188,6 +188,9 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
+   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'.
+   ;; (default nil)
+   dotspacemacs-global-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -204,8 +207,11 @@ values."
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
-   )
-  )
+   ;; Delete whitespace while saving buffer. Possible values are `all',
+   ;; `trailing', `changed' or `nil'. Default is `changed' (cleanup whitespace
+   ;; on changed lines) (default 'changed)
+   dotspacemacs-whitespace-cleanup 'changed
+   ))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -350,7 +356,6 @@ user code."
   ;; trailing-whitespace
   ;; ---------------------------------------------------------------------------
   (setq-default show-trailing-whitespace t)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   ;; ---------------------------------------------------------------------------
   ;; org-mode
