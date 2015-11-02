@@ -17,7 +17,7 @@
 ;; -----------------------------------------------------------
 (defun private/set-cjk-font (chinese chinese-size)
   (dolist (charset '(han cjk-misc))
-    (set-fontset-font (frame-parameter nil 'font) charset
+    (set-fontset-font t charset
                       (font-spec :family chinese :size chinese-size))))
 (defun private/set-my-font ()
   (interactive)
