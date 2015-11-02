@@ -234,7 +234,8 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Basics
   ;; ---------------------------------------------------------------------------
-  (set-frame-parameter nil 'fullscreen 'fullboth)
+  (modify-frame-parameters nil `((maximized . nil)
+                                 (fullscreen . fullscreen)))
   (setq user-mail-address "dsdshcym@gmail.com")
   (setq user-full-name "Yiming Chen")
 
