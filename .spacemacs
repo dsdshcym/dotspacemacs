@@ -41,10 +41,6 @@ values."
                                         c-c++-enable-clang-support t)
                                        python
                                        ruby
-                                       ruby-on-rails
-                                       yaml
-                                       latex
-                                       markdown
                                        pandoc
                                        syntax-checking
                                        (spell-checking
@@ -54,9 +50,7 @@ values."
                                        osx-dictionary
                                        org-tree-slide
                                        eyebrowse
-                                       sql
                                        dash
-                                       javascript
                                        (rcirc
                                         :variables
                                         rcirc-enable-authinfo-support t)
