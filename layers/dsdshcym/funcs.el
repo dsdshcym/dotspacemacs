@@ -38,23 +38,22 @@
                       (font-spec :family chinese :size chinese-size))))
 (defun private/set-my-font ()
   (interactive)
-  (if (eq window-system 'mac) (private/set-cjk-font "PingFang SC" 16)))
+  (private/set-cjk-font "PingFang SC" 16))
 
 (defun private/osx-notif (title msg &optional subtitle group-id sound)
   "Show a OS X notification. Sound can be found in ~/Library/Sounds and
     /System/Library/Sounds"
   (interactive)
-  (if (eq window-system 'mac)
-      (call-process-shell-command
-       (concat "terminal-notifier"
-               " -title \"" title
-               "\" -message \"" msg
-               (if subtitle (concat "\" -subtitle \"" subtitle))
-               (if sound (concat "\" -sound \"" sound))
-               (if group-id (concat "\" -group \"" group-id))
-               "\" -activate " "org.gnu.Emacs"
-               " -sender " "org.gnu.Emacs")
-       )))
+  (call-process-shell-command
+   (concat "terminal-notifier"
+           " -title \"" title
+           "\" -message \"" msg
+           (if subtitle (concat "\" -subtitle \"" subtitle))
+           (if sound (concat "\" -sound \"" sound))
+           (if group-id (concat "\" -group \"" group-id))
+           "\" -activate " "org.gnu.Emacs"
+           " -sender " "org.gnu.Emacs")
+   ))
 
 ;; --------------------------------------------------------------------
 ;; org-mode helper functions
