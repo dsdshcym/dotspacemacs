@@ -17,6 +17,13 @@
     (define-key gnus-summary-mode-map "d" 'gnus-summary-delete-article)))
 
 ;; ---------------------------------------------------------------------------
+;; Ruby mode
+;; ---------------------------------------------------------------------------
+(evil-leader/set-key-for-mode 'ruby-mode
+  "msb" 'ruby-send-buffer
+  "msB" 'ruby-send-buffer-and-go)
+
+;; ---------------------------------------------------------------------------
 ;; image-mode
 ;; ---------------------------------------------------------------------------
 (evil-define-key 'normal image-mode-map "h" 'image-backward-hscroll)

@@ -11,6 +11,23 @@
 ;;; License: GPLv3
 
 ;; -----------------------------------------------------------
+;; Ruby mode helper functions
+;; -----------------------------------------------------------
+(defun ruby-send-buffer ()
+  "Send the current buffer to the inferior Ruby process."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (widen)
+      (ruby-send-region (point-min) (point-max)))))
+
+(defun ruby-send-buffer-and-go ()
+  "Send the current buffer to the inferior Ruby process."
+  (interactive)
+  (ruby-send-buffer)
+  (ruby-switch-to-inf t))
+
+;; -----------------------------------------------------------
 ;; Solve the Chinese font issue
 ;; https://gist.github.com/Superbil/8554936
 ;; http://kkdevs.tumblr.com/post/38276076979/mac-os-x-org-mode
