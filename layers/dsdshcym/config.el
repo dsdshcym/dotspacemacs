@@ -32,3 +32,10 @@
 (setq-default cursor-in-non-selected-windows nil)
 
 (private/set-my-font)
+
+(spacemacs|add-toggle rimeime
+  :status private/toggle-rimeime-mode
+  :on (private/turn-on-rimeime-mode)
+  :off (private/turn-off-rimeime-mode)
+  :documentation "Use Chinese Input when exiting the insert mode"
+  :evil-leader "tR")

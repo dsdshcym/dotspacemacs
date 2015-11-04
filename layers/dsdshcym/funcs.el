@@ -40,6 +40,27 @@
   (interactive)
   (private/set-cjk-font "PingFang SC" 16))
 
+;; A hack to get english input mode in normal mode by simulating keystrokes
+;; when exit insert mode
+(defvar private/toggle-rimeime-mode nil)
+
+(defun private/simulate-shift ()
+  (call-process-shell-command "echo \"tell application \\\"System Events\\\"
+                                        key code 56
+                                        end tell\" | osascript"))
+
+(defun private/turn-off-rimeime-mode ()
+  (progn
+    (remove-hook 'evil-insert-state-entry-hook 'private/simulate-shift)
+    (remove-hook 'evil-insert-state-exit-hook 'private/simulate-shift)
+    (setq private/toggle-rimeime-mode nil)))
+
+(defun private/turn-on-rimeime-mode ()
+  (progn
+    (add-hook 'evil-insert-state-entry-hook 'private/simulate-shift)
+    (add-hook 'evil-insert-state-exit-hook 'private/simulate-shift)
+    (setq private/toggle-rimeime-mode t)))
+
 (defun private/osx-notif (title msg &optional subtitle group-id sound)
   "Show a OS X notification. Sound can be found in ~/Library/Sounds and
     /System/Library/Sounds"
