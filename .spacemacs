@@ -233,9 +233,6 @@ user code."
   (setq user-mail-address "dsdshcym@gmail.com")
   (setq user-full-name "Yiming Chen")
 
-  (private/set-my-font)
-  (add-to-list 'after-make-frame-functions (lambda (arg) (private/set-my-font)))
-
   (setq sentence-end-double-space nil)
   (setq vc-follow-symlinks t)
 

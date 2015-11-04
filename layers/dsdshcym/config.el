@@ -30,3 +30,5 @@
 (setq calendar-location-name "Shanghai")
 
 (setq-default cursor-in-non-selected-windows nil)
+
+(private/set-my-font)
