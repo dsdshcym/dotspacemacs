@@ -17,6 +17,14 @@
     (define-key gnus-summary-mode-map "d" 'gnus-summary-delete-article)))
 
 ;; ---------------------------------------------------------------------------
+;; Pdf-view mode
+;; ---------------------------------------------------------------------------
+(evil-define-key 'normal pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
+(evil-define-key 'normal pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
+(evil-define-key 'normal pdf-view-mode-map "/" 'isearch-forward)
+(evil-define-key 'normal pdf-view-mode-map "?" 'isearch-backward)
+
+;; ---------------------------------------------------------------------------
 ;; Ruby mode
 ;; ---------------------------------------------------------------------------
 (evil-leader/set-key-for-mode 'ruby-mode
@@ -92,8 +100,8 @@
   "oj" '(lambda () (interactive) (org-refile (universal-argument))))
 
 (evil-leader/set-key-for-mode 'org-mode
-  "ns" 'org-narrow-to-subtree
-  "nb" 'org-narrow-to-block
-  "ne" 'org-narrow-to-element
-  "m/" 'org-sparse-tree
-  "m<"  'private/org-begin-template)
+                              "ns" 'org-narrow-to-subtree
+                              "nb" 'org-narrow-to-block
+                              "ne" 'org-narrow-to-element
+                              "m/" 'org-sparse-tree
+                              "m<"  'private/org-begin-template)

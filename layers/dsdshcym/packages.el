@@ -28,10 +28,20 @@
         avy
         osx-dictionary
         org-tree-slide
+        pdf-tools
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-pdf-tools ()
+  (use-package pdf-tools
+    :config
+    (progn
+      (pdf-tools-install)
+      (evil-make-overriding-map pdf-view-mode-map 'normal)
+      (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)))
+  )
 
 (defun dsdshcym/init-org-tree-slide ()
   (use-package org-tree-slide
