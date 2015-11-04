@@ -26,10 +26,50 @@
         gnus
         flycheck
         avy
+        osx-dictionary
+        org-tree-slide
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-org-tree-slide ()
+  (use-package org-tree-slide
+    :defer t
+    :config
+    (progn
+      (evil-leader/set-key-for-mode 'org-mode "." 'org-tree-slide-move-next-tree)
+      (evil-leader/set-key-for-mode 'org-mode "," 'org-tree-slide-move-previous-tree)
+      (evil-define-key 'normal org-tree-slide-mode-map "H" 'org-tree-slide-move-previous-tree)
+      (evil-define-key 'normal org-tree-slide-mode-map "L" 'org-tree-slide-move-next-tree)
+      ;; (define-key org-tree-slide-mode-map (kbd "H")
+      ;;   'org-tree-slide-move-next-tree)
+      ;;   (define-key org-tree-slide-mode-map (kbd "gj")
+      ;;     'org-tree-slide-move-next-tree)
+      ;;   (define-key org-tree-slide-mode-map (kbd "<f11>")
+      ;;     'org-tree-slide-content)
+      (org-tree-slide-narrowing-control-profile)
+      (setq org-tree-slide-skip-outline-level 4)
+      (setq org-tree-slide-skip-done nil)))
+)
+
+(defun dsdshcym/init-osx-dictionary ()
+  (use-package osx-dictionary
+    :defer t
+    :init
+    (progn
+      (evil-leader/set-key
+        "xdd" 'osx-dictionary-search-pointer))
+    :config
+    (progn
+      ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
+      (evil-make-overriding-map osx-dictionary-mode-map 'normal)
+      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps)
+      (add-hook 'osx-dictionary-mode-hook
+                (lambda ()
+                  (setq show-trailing-whitespace nil))))
+    )
+  )
 
 (defun dsdshcym/post-init-avy ()
   (evil-leader/set-key "SPC" 'avy-goto-char-timer)
