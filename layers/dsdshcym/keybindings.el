@@ -17,6 +17,11 @@
     (define-key gnus-summary-mode-map "d" 'gnus-summary-delete-article)))
 
 ;; ---------------------------------------------------------------------------
+;; Dired
+;; ---------------------------------------------------------------------------
+(evil-define-key 'normal dired-mode-map "y" 'private/dired-kill-filename-for-visit)
+
+;; ---------------------------------------------------------------------------
 ;; Pdf-view mode
 ;; ---------------------------------------------------------------------------
 (evil-define-key 'normal pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)

@@ -11,6 +11,13 @@
 ;;; License: GPLv3
 
 ;; -----------------------------------------------------------
+;; Dired
+;; -----------------------------------------------------------
+(defun private/dired-kill-filename-for-visit ()
+  (interactive)
+  (kill-new (dired-get-file-for-visit)))
+
+;; -----------------------------------------------------------
 ;; Ruby mode helper functions
 ;; -----------------------------------------------------------
 (defun ruby-send-buffer ()
