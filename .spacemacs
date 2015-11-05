@@ -29,13 +29,14 @@ values."
                                         shell-default-shell 'ansi-term
                                         shell-default-term-shell "/usr/local/bin/zsh")
                                        git
-                                       github
+                                       ;; github
                                        version-control
                                        emacs-lisp
                                        common-lisp
                                        fasd
                                        osx
                                        org
+                                       markdown
                                        (c-c++
                                         :variables
                                         c-c++-enable-clang-support t)
@@ -56,7 +57,7 @@ values."
                                        gnus
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-escape neotree evil-mc)
+   dotspacemacs-excluded-packages '(evil-escape neotree evil-mc eval-sexp-fu evil-search-highlight-persist)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -374,10 +375,13 @@ user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(magit-use-overlays nil)
+ '(magit-use-overlays nil t)
+ '(package-selected-packages
+   (quote
+    (mmm-mode markdown-toc markdown-mode gh-md pdf-tools magit-gh-pulls github-clone github-browse-file git-link gist rvm ruby-tools ruby-test-mode robe bundler ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toc-org tagedit spray spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slime slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rcirc-notify rcirc-color rainbow-mode rainbow-identifiers rainbow-delimiters quelpa pyvenv pytest pyenv-mode popwin pip-requirements pcre2el pbcopy paradox pandoc-mode page-break-lines ox-pandoc osx-trash osx-dictionary org-tree-slide org-repo-todo org-present org-pomodoro org-plus-contrib org-page org-bullets open-junk-file multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode launchctl jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger flycheck-pos-tip flx-ido fill-column-indicator fasd fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl define-word dash-at-point cython-mode company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-automatically-star t)
- '(paradox-github-token t)
- '(ring-bell-function (quote ignore) t))
+ '(paradox-github-token t t)
+ '(ring-bell-function (quote ignore)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
