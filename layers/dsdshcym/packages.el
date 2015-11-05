@@ -28,10 +28,73 @@
         osx-dictionary
         org-tree-slide
         pdf-tools
+        (mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
+        (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
+        (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-mu4e ()
+  (use-package mu4e
+    :config
+    (progn
+      ;; default
+      (setq mu4e-maildir (expand-file-name "~/Maildir"))
+
+      (setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
+      (setq mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
+      (setq mu4e-trash-folder  "/Gmail/[Gmail].Trash")
+
+      ;; don't save message to Sent Messages, GMail/IMAP will take care of this
+      (setq mu4e-sent-messages-behavior 'delete)
+
+      (setq mu4e-html2text-command "pandoc -f html -t plain")
+
+      ;; setup some handy shortcuts
+      (setq mu4e-maildir-shortcuts
+            '(("/Gmail/INBOX"             . ?i)
+              ("/Gmail/[Gmail].Sent Mail" . ?s)
+              ("/Gmail/[Gmail].Trash"     . ?t)
+              ("/FudanMail/INBOX"         . ?f)
+              ("/FudanMail/Lab"           . ?l)
+              ("/FudanMail/13CS"          . ?c)
+              ("/FudanMail/Course"        . ?C)))
+
+      ;; allow for updating mail using 'U' in the main view:
+      (setq mu4e-get-mail-command "offlineimap")
+
+      (setq mu4e-attachment-dir "~/Downloads")
+
+      (setq mu4e-view-prefer-html t)
+      (add-to-list 'mu4e-view-actions
+                   '("viewInBrowser" . mu4e-action-view-in-browser) t)
+
+      (setq message-send-mail-function 'smtpmail-send-it
+            starttls-use-gnutls t
+            smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+            smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg")
+            smtpmail-default-smtp-server "smtp.gmail.com"
+            smtpmail-smtp-server "smtp.gmail.com"
+            smtpmail-smtp-service 587)
+      )
+    )
+  )
+
+(defun dsdshcym/init-mu4e-org ()
+  (use-package org-mu4e
+    :config
+    (progn
+      (setq org-mu4e-convert-to-html t)))
+  )
+
+(defun dsdshcym/init-mu4e-contrib ()
+  (use-package mu4e-contrib
+    :config
+    (progn
+      (setq mu4e-html2text-command 'mu4e-shr2text)))
+  )
 
 (defun dsdshcym/init-pdf-tools ()
   (use-package pdf-tools
