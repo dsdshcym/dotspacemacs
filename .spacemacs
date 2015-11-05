@@ -47,8 +47,6 @@ values."
                                         :variables
                                         spell-checking-enable-by-default nil)
                                        html
-                                       osx-dictionary
-                                       org-tree-slide
                                        eyebrowse
                                        dash
                                        (rcirc
