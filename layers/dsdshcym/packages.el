@@ -72,7 +72,7 @@
 
       (setq mu4e-view-prefer-html t)
       (add-to-list 'mu4e-view-actions
-                   '("viewInBrowser" . mu4e-action-view-in-browser) t)
+                   '("browser" . mu4e-action-view-in-browser) t)
 
       (setq message-send-mail-function 'smtpmail-send-it
             starttls-use-gnutls t
