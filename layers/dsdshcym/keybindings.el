@@ -98,7 +98,7 @@
   "oo" 'org-clock-out
   "op" 'org-pomodoro
   "oc" 'org-capture
-  "oj" '(lambda () (interactive) (org-refile (universal-argument))))
+  "oj" '(lambda () (interactive) (org-refile '(4))))
 
 (evil-leader/set-key-for-mode 'org-mode
                               "ns" 'org-narrow-to-subtree
