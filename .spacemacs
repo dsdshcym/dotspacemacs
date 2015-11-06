@@ -54,7 +54,6 @@ values."
                                         :variables
                                         rcirc-enable-authinfo-support t)
                                        rcirc-accounts
-                                       gnus
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape neotree evil-mc eval-sexp-fu evil-search-highlight-persist)
