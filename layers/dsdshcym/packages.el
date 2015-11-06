@@ -38,6 +38,8 @@
 
 (defun dsdshcym/init-mu4e ()
   (use-package mu4e
+    :init
+    (evil-leader/set-key "am" 'mu4e)
     :config
     (progn
       ;; default
@@ -81,6 +83,33 @@
             smtpmail-default-smtp-server "smtp.gmail.com"
             smtpmail-smtp-server "smtp.gmail.com"
             smtpmail-smtp-service 587)
+
+      (evil-make-overriding-map mu4e-main-mode-map 'normal t)
+      (evil-define-key 'normal mu4e-main-mode-map
+        "J" 'mu4e~headers-jump-to-maildir
+        "j" 'evil-next-line
+        "RET" 'mu4e-view-message)
+
+      (evil-make-overriding-map mu4e-headers-mode-map 'normal t)
+      (evil-define-key 'normal mu4e-headers-mode-map
+        "J" 'mu4e~headers-jump-to-maildir
+        "j" 'evil-next-line
+        "C" 'mu4e-compose-new
+        "o" 'mu4e-view-message
+        )
+
+      (evil-make-overriding-map mu4e-view-mode-map 'normal t)
+      (evil-define-key 'normal mu4e-view-mode-map
+        "J" 'mu4e~headers-jump-to-maildir
+        "j" 'evil-next-line
+        "C" 'mu4e-compose-new
+        "o" 'mu4e-view-message
+        "Q" 'mu4e-raw-view-quit-buffer)
+
+      (evil-set-initial-state 'mu4e-mode 'normal)
+      (evil-set-initial-state 'mu4e-main-mode 'normal)
+      (evil-set-initial-state 'mu4e-headers-mode 'normal)
+      (evil-set-initial-state 'mu4e-view-mode 'normal)
       )
     )
   )
