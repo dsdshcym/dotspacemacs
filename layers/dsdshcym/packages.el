@@ -104,6 +104,7 @@
       (evil-define-key 'normal mu4e-view-mode-map
         "J" 'mu4e~headers-jump-to-maildir
         "j" 'evil-next-line
+        "k" 'evil-previous-line
         "C" 'mu4e-compose-new
         "o" 'mu4e-view-message
         "Q" 'mu4e-raw-view-quit-buffer)
