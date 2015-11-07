@@ -52,6 +52,8 @@
       ;; don't save message to Sent Messages, GMail/IMAP will take care of this
       (setq mu4e-sent-messages-behavior 'delete)
 
+      (setq mu4e-update-interval 1800)
+
       (setq org-mu4e-convert-to-html t)
       (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)
 
