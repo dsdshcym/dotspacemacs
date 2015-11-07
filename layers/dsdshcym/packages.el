@@ -78,6 +78,12 @@
       (add-to-list 'mu4e-view-actions
                    '("browser" . mu4e-action-view-in-browser) t)
 
+      (setq mu4e-org-contacts-file (expand-file-name "~/Org/contacts.org"))
+      (add-to-list 'mu4e-headers-actions
+                   '("org-contact-add" . mu4e-action-add-org-contact) t)
+      (add-to-list 'mu4e-view-actions
+                   '("org-contact-add" . mu4e-action-add-org-contact) t)
+
       (setq message-send-mail-function 'smtpmail-send-it
             starttls-use-gnutls t
             smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
@@ -358,7 +364,10 @@ By default the (truly) last line."
             ("w" "New English word" checkitem
              (file+headline "~/Org/word_notes.org" "New Words")
              "- [ ] %^{Word} :: %?")
-            ))
+            ("c" "Contacts" entry
+             (file "~/Org/contacts.org")
+             "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:"
+             )))
 
     ;; -----------------------------
     ;; Refile
@@ -522,7 +531,8 @@ By default the (truly) last line."
                         org-w3m
                         org-bullets
                         org-eww
-                        org-mac-link))
+                        org-mac-link
+                        org-contacts))
     (eval-after-load 'org
       '(org-load-modules-maybe t))
 
