@@ -172,7 +172,8 @@
     :init
     (progn
       (evil-leader/set-key
-        "xdd" 'osx-dictionary-search-pointer))
+        "xdd" 'osx-dictionary-search-input
+        "xdD" 'osx-dictionary-search-pointer))
     :config
     (progn
       ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
