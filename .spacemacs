@@ -238,6 +238,14 @@ user code."
   ;; ---------------------------------------------------------------------------
   (setq dired-dwim-target t)
 
+  ;; ---------------------------------------------------------------------------
+  ;; Tramp
+  ;; ---------------------------------------------------------------------------
+  (setq tramp-default-method "ssh")
+
+  ;; See http://stackoverflow.com/questions/3465567/how-to-use-ssh-and-sudo-together-with-tramp-in-emacs
+  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+
   ;; --------------------------
   ;; kill-buffer without prompt
   ;; --------------------------
