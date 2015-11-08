@@ -24,6 +24,15 @@
 (evil-define-key 'normal pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
 (evil-define-key 'normal pdf-view-mode-map "/" 'isearch-forward)
 (evil-define-key 'normal pdf-view-mode-map "?" 'isearch-backward)
+(evil-define-key 'normal pdf-view-mode-map "o" 'pdf-outline)
+
+(evil-define-key 'normal pdf-outline-buffer-mode-map (kbd "<tab>") 'outline-toggle-children)
+(evil-define-key 'normal pdf-outline-buffer-mode-map (kbd "S-<tab>") 'outline-show-all)
+(evil-define-key 'normal pdf-outline-buffer-mode-map (kbd "<return>") 'pdf-outline-follow-link)
+(evil-define-key 'normal pdf-outline-buffer-mode-map "o" 'pdf-outline-follow-link)
+(evil-define-key 'normal pdf-outline-buffer-mode-map "O" 'pdf-outline-follow-link-and-quit)
+(evil-define-key 'normal pdf-outline-buffer-mode-map "q" 'pdf-outline-quit)
+(evil-define-key 'normal pdf-outline-buffer-mode-map "Q" 'pdf-outline-quit-and-kill)
 
 ;; ---------------------------------------------------------------------------
 ;; Ruby mode
