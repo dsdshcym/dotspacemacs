@@ -97,6 +97,9 @@
 (evil-declare-key 'normal evil-org-mode-map "gh" 'org-backward-heading-same-level)
 (evil-declare-key 'normal evil-org-mode-map "gl" 'org-forward-heading-same-level)
 
+(evil-declare-key 'normal evil-org-mode-map "H" 'evil-window-top)
+(evil-declare-key 'normal evil-org-mode-map "L" 'evil-window-bottom)
+
 (evil-leader/set-key
   "aa" 'org-agenda-list
   "oa" 'org-agenda
