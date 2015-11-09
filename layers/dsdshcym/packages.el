@@ -31,10 +31,24 @@
         (mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
         (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
+        langtool
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-langtool ()
+  (use-package langtool
+    :config
+    (progn
+      (setq langtool-language-tool-jar
+            "/usr/local/Cellar/languagetool/3.0/libexec/languagetool-commandline.jar")
+      (setq langtool-disabled-rules '("WHITESPACE_RULE"
+                                      "EN_UNPAIRED_BRACKETS"
+                                      "COMMA_PARENTHESIS_WHITESPACE"
+                                      "EN_QUOTES"))
+      ))
+  )
 
 (defun dsdshcym/init-mu4e ()
   (use-package mu4e
