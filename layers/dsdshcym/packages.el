@@ -68,9 +68,6 @@
 
       (setq mu4e-update-interval 1800)
 
-      (setq org-mu4e-convert-to-html t)
-      (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)
-
       (setq mu4e-html2text-command "pandoc -f html -t plain")
 
       ;; setup some handy shortcuts
@@ -178,11 +175,12 @@
     )
   )
 
-(defun dsdshcym/init-mu4e-org ()
+(defun dsdshcym/init-org-mu4e ()
   (use-package org-mu4e
     :config
     (progn
-      (setq org-mu4e-convert-to-html t)))
+      (setq org-mu4e-convert-to-html t)
+      (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)))
   )
 
 (defun dsdshcym/init-mu4e-contrib ()
