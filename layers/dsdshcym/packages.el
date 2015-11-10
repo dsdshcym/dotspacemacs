@@ -106,6 +106,47 @@
             smtpmail-smtp-server "smtp.gmail.com"
             smtpmail-smtp-service 587)
 
+      (defvar my-mu4e-account-alist
+        '(("Gmail"
+           (mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
+           (mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
+           (user-mail-address "dsdshcym@gmail.com")
+           (smtpmail-default-smtp-server "smtp.gmail.com")
+           (smtpmail-smtp-user "dsdshcym")
+           (smtpmail-smtp-server "smtp.gmail.com")
+           (smtpmail-stream-type starttls)
+           (smtpmail-smtp-service 587))
+          ("FudanMail"
+           (mu4e-sent-folder "/FudanMail/Sent Items")
+           (mu4e-drafts-folder "/FudanMail/Drafts")
+           (user-mail-address "12307130174@fudan.edu.cn")
+           (smtpmail-default-smtp-server "mail.fudan.edu.cn")
+           (smtpmail-smtp-user "12307130174@fudan.edu.cn")
+           (smtpmail-smtp-server "mail.fudan.edu.cn")
+           (smtpmail-stream-type ssl)
+           (smtpmail-smtp-service 465))))
+
+      (defun my-mu4e-set-account ()
+        "Set the account for composing a message."
+        (let* ((account
+                (if mu4e-compose-parent-message
+                    (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                      (string-match "/\\(.*?\\)/" maildir)
+                      (match-string 1 maildir))
+                  (completing-read (format "Compose with account: (%s) "
+                                           (mapconcat #'(lambda (var) (car var))
+                                                      my-mu4e-account-alist "/"))
+                                   (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                                   nil t nil nil (caar my-mu4e-account-alist))))
+               (account-vars (cdr (assoc account my-mu4e-account-alist))))
+          (if account-vars
+              (mapc #'(lambda (var)
+                        (set (car var) (cadr var)))
+                    account-vars)
+            (error "No email account found"))))
+
+      (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+
       (evil-make-overriding-map mu4e-main-mode-map 'normal t)
       (evil-define-key 'normal mu4e-main-mode-map
         "J" 'mu4e~headers-jump-to-maildir
