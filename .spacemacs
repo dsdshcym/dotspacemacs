@@ -29,7 +29,7 @@ values."
                                         shell-default-shell 'ansi-term
                                         shell-default-term-shell "/usr/local/bin/zsh")
                                        git
-                                       ;; github
+                                       github
                                        version-control
                                        emacs-lisp
                                        common-lisp
