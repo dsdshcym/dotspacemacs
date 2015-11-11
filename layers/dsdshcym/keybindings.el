@@ -11,6 +11,7 @@
 ;;; License: GPLv3
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(evil-leader/set-key "fs" 'evil-write)
 
 ;; ---------------------------------------------------------------------------
 ;; Dired
