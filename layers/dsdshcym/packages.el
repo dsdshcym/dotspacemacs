@@ -198,6 +198,7 @@
     :config
     (progn
       (pdf-tools-install)
+      (setq pdf-view-use-imagemagick t)
       (evil-make-overriding-map pdf-view-mode-map 'normal)
       (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)))
   )
