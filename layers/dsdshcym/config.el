@@ -39,3 +39,10 @@
   :off (private/turn-off-rimeime-mode)
   :documentation "Use Chinese Input when exiting the insert mode"
   :evil-leader "tR")
+
+(spacemacs|add-toggle hardtime
+  :status private/hardtime-mode
+  :on (private/turn-on-hardtime-mode)
+  :off (private/turn-off-hardtime-mode)
+  :documentation "Toggle vim hardtime mode"
+  :evil-leader "tH")

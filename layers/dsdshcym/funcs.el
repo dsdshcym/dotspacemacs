@@ -11,6 +11,34 @@
 ;;; License: GPLv3
 
 ;; -----------------------------------------------------------
+;; Hard-mode
+;; -----------------------------------------------------------
+(defvar private/hardtime-mode nil)
+
+(defun private/turn-on-hardtime-mode ()
+  (interactive "P")
+  (let ((keys '("h" "j" "k" "l")))
+    (dolist (key keys)
+      (define-key evil-normal-state-map (kbd key) 'private/nop)
+      (define-key evil-visual-state-map (kbd key) 'private/nop)))
+  (setq private/hardtime-mode t)
+  )
+
+(defun private/turn-off-hardtime-mode ()
+  (interactive "P")
+  (let ((keys '("h" "j" "k" "l")))
+    (dolist (key keys)
+      (define-key evil-normal-state-map (kbd key) nil)
+      (define-key evil-visual-state-map (kbd key) nil)))
+  (setq private/hardtime-mode nil)
+  )
+
+(defun private/nop ()
+  (interactive)
+  (message "Stop using hjkl!")
+  )
+
+;; -----------------------------------------------------------
 ;; Dired
 ;; -----------------------------------------------------------
 (defun private/dired-kill-filename-for-visit ()
