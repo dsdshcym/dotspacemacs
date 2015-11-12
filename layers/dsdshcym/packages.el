@@ -289,7 +289,12 @@
            spacemacs/describe-variable
            spacemacs/write-file
            kill-this-buffer
-           ido-kill-buffer))
+           ido-kill-buffer
+           org-forward-heading-same-level
+           org-backward-heading-same-level
+           outline-next-visible-heading
+           outline-previous-visible-heading
+           outline-up-heading))
     )
 
   (evil-define-motion evil-goto-line (count)
