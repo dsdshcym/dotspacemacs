@@ -95,7 +95,7 @@
 
 (evil-declare-key 'normal evil-org-mode-map "gj" 'outline-next-visible-heading)
 (evil-declare-key 'normal evil-org-mode-map "gk" 'outline-previous-visible-heading)
-(evil-declare-key 'normal evil-org-mode-map "gh" 'org-backward-heading-same-level)
+(evil-declare-key 'normal evil-org-mode-map "gh" 'outline-up-heading)
 (evil-declare-key 'normal evil-org-mode-map "gl" 'org-forward-heading-same-level)
 
 (evil-declare-key 'normal evil-org-mode-map "H" 'evil-window-top)
