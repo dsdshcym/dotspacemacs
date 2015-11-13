@@ -32,10 +32,18 @@
         (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
         langtool
+        persp-mode
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-persp-mode ()
+  (spacemacs|define-custom-layout "@mu4e"
+    :binding "m"
+    :body
+    (mu4e))
+  )
 
 (defun dsdshcym/init-langtool ()
   (use-package langtool
