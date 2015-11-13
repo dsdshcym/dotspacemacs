@@ -308,8 +308,6 @@
            spacemacs/write-file
            kill-this-buffer
            ido-kill-buffer
-           org-forward-heading-same-level
-           org-backward-heading-same-level
            outline-next-visible-heading
            outline-previous-visible-heading
            outline-up-heading))
@@ -373,7 +371,9 @@ By default the (truly) last line."
     ;; http://doc.norang.ca/org-mode.html
     ;; --------------------------------------------------------------------
     (mapc #'evil-declare-ignore-repeat
-          '(org-cycle))
+          '(org-cycle
+            org-next-visible-heading
+            org-previous-visible-heading))
 
     (add-hook 'org-mode-hook (lambda () (setq evil-shift-width 2)))
 
