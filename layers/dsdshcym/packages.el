@@ -33,10 +33,20 @@
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
         langtool
         persp-mode
+        org-pdfview
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-org-pdfview ()
+  (use-package org-pdfview
+    :config
+    (eval-after-load 'arg
+      (progn
+        (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
+        (add-to-list 'org-file-apps '("\\.pdf::\\([[:digit:]]+\\)\\'" . org-pdfview-open)))))
+  )
 
 (defun dsdshcym/post-init-persp-mode ()
   (spacemacs|define-custom-layout "@mu4e"
