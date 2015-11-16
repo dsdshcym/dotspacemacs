@@ -68,6 +68,7 @@
       ;; default
       (setq mu4e-maildir (expand-file-name "~/Maildir"))
 
+      (setq mu4e-refile-folder "/Gmail/[Gmail].All Mail")
       (setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
       (setq mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
       (setq mu4e-trash-folder  "/Gmail/[Gmail].Trash")
@@ -87,6 +88,7 @@
             '(("/Gmail/INBOX"             . ?i)
               ("/Gmail/[Gmail].Sent Mail" . ?s)
               ("/Gmail/[Gmail].Trash"     . ?t)
+              ("/Gmail/[Gmail].All Mail"  . ?a)
               ("/FudanMail/INBOX"         . ?f)
               ("/FudanMail/Lab"           . ?l)
               ("/FudanMail/13CS"          . ?c)
