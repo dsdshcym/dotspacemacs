@@ -24,7 +24,6 @@
         (org-plus-contrib :step pre)
         org-page
         flycheck
-        avy
         osx-dictionary
         org-tree-slide
         pdf-tools
@@ -257,10 +256,6 @@
                 (lambda ()
                   (setq show-trailing-whitespace nil))))
     )
-  )
-
-(defun dsdshcym/post-init-avy ()
-  (evil-leader/set-key "SPC" 'avy-goto-char-timer)
   )
 
 (defun dsdshcym/post-init-flycheck ()
