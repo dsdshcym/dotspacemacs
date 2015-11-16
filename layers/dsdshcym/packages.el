@@ -141,7 +141,7 @@
            (smtpmail-default-smtp-server "smtp.gmail.com")
            (smtpmail-smtp-user "dsdshcym")
            (smtpmail-smtp-server "smtp.gmail.com")
-           (smtpmail-stream-type starttls)
+           ;; (smtpmail-stream-type starttls)
            (smtpmail-smtp-service 587))
           ("FudanMail"
            (mu4e-sent-folder "/FudanMail/Sent Items")
@@ -176,14 +176,12 @@
 
       (evil-make-overriding-map mu4e-main-mode-map 'normal t)
       (evil-define-key 'normal mu4e-main-mode-map
-        "J" 'mu4e~headers-jump-to-maildir
-        "j" 'evil-next-line
+        "j" 'mu4e~headers-jump-to-maildir
         "RET" 'mu4e-view-message)
 
       (evil-make-overriding-map mu4e-headers-mode-map 'normal t)
       (evil-define-key 'normal mu4e-headers-mode-map
         "J" 'mu4e~headers-jump-to-maildir
-        "j" 'evil-next-line
         "C" 'mu4e-compose-new
         "o" 'mu4e-view-message
         )
