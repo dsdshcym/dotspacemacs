@@ -381,7 +381,9 @@ By default the (truly) last line."
                              "~/Org/notes"))
 
     ;; Overwrite the current window with the agenda
-    (setq org-agenda-window-setup 'other-window)
+    (setq org-agenda-window-setup 'current-window)
+
+    (setq org-agenda-restore-windows-after-quit t)
 
     (setq org-agenda-span 'day)
 
