@@ -107,6 +107,15 @@
       (setq mu4e-attachment-dir "~/Downloads")
 
       (setq mu4e-view-prefer-html t)
+
+      (add-hook 'mu4e-headers-mode-hook
+                (lambda ()
+                  (setq show-trailing-whitespace nil)))
+
+      (add-hook 'mu4e-view-mode-hook
+                (lambda ()
+                  (setq show-trailing-whitespace nil)))
+
       (add-to-list 'mu4e-view-actions
                    '("browser" . mu4e-action-view-in-browser) t)
 
