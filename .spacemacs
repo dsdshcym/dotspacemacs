@@ -246,7 +246,9 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
-  (evil-leader/set-key "bb" 'spacemacs/persp-helm-mini)
+  (evil-leader/set-key
+    "bb" 'spacemacs/persp-helm-mini
+    "bB" 'helm-mini)
 
   ;; ---------------------------------------------------------------------------
   ;; Smooth Scrolling
