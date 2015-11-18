@@ -306,7 +306,11 @@
            ido-kill-buffer
            outline-next-visible-heading
            outline-previous-visible-heading
-           outline-up-heading))
+           outline-up-heading
+           spacemacs/enter-ahs-forward
+           spacemacs/enter-ahs-backward
+           evil-visualstar/begin-search-forward
+           evil-visualstar/begin-search-backward))
     )
 
   (evil-define-motion evil-goto-line (count)
