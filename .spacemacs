@@ -252,9 +252,11 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
-  (evil-leader/set-key
+  (spacemacs/set-leader-keys
     "bb" 'spacemacs/persp-helm-mini
-    "bB" 'helm-mini)
+    "bB" 'helm-mini
+    "ww" 'ace-window
+    "wW" 'other-window)
 
   ;; ---------------------------------------------------------------------------
   ;; Smooth Scrolling

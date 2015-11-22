@@ -11,7 +11,7 @@
 ;;; License: GPLv3
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
-(evil-leader/set-key "fs" 'evil-write)
+(spacemacs/set-leader-keys "fs" 'evil-write)
 
 ;; ---------------------------------------------------------------------------
 ;; Dired
@@ -38,9 +38,9 @@
 ;; ---------------------------------------------------------------------------
 ;; Ruby mode
 ;; ---------------------------------------------------------------------------
-(evil-leader/set-key-for-mode 'ruby-mode
-  "msb" 'ruby-send-buffer
-  "msB" 'ruby-send-buffer-and-go)
+(spacemacs/set-leader-keys-for-major-mode 'ruby-mode
+  "sb" 'ruby-send-buffer
+  "sB" 'ruby-send-buffer-and-go)
 
 ;; ---------------------------------------------------------------------------
 ;; image-mode
@@ -101,7 +101,7 @@
 (evil-declare-key 'normal evil-org-mode-map "H" 'evil-window-top)
 (evil-declare-key 'normal evil-org-mode-map "L" 'evil-window-bottom)
 
-(evil-leader/set-key
+(spacemacs/set-leader-keys
   "aa" 'org-agenda-list
   "oa" 'org-agenda
   "ol" 'org-store-link
@@ -113,9 +113,9 @@
   "oc" 'org-capture
   "oj" '(lambda () (interactive) (org-refile '(4))))
 
-(evil-leader/set-key-for-mode 'org-mode
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
                               "ns" 'org-narrow-to-subtree
                               "nb" 'org-narrow-to-block
                               "ne" 'org-narrow-to-element
-                              "m/" 'org-sparse-tree
-                              "m<"  'private/org-begin-template)
+                              "/" 'org-sparse-tree
+                              "<"  'private/org-begin-template)

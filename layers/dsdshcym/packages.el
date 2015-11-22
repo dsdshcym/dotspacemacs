@@ -15,7 +15,6 @@
 (setq dsdshcym-packages
       '(
         evil
-        evil-leader
         smartparens
         spaceline
         evil-org
@@ -68,7 +67,7 @@
 (defun dsdshcym/init-mu4e ()
   (use-package mu4e
     :init
-    (evil-leader/set-key "am" 'mu4e)
+    (spacemacs/set-leader-keys "am" 'mu4e)
     :config
     (progn
       ;; default
@@ -233,8 +232,8 @@
     :defer t
     :config
     (progn
-      (evil-leader/set-key-for-mode 'org-mode "." 'org-tree-slide-move-next-tree)
-      (evil-leader/set-key-for-mode 'org-mode "," 'org-tree-slide-move-previous-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-mode "j" 'org-tree-slide-move-next-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-mode "k" 'org-tree-slide-move-previous-tree)
       (evil-define-key 'normal org-tree-slide-mode-map "H" 'org-tree-slide-move-previous-tree)
       (evil-define-key 'normal org-tree-slide-mode-map "L" 'org-tree-slide-move-next-tree)
       ;; (define-key org-tree-slide-mode-map (kbd "H")
@@ -253,7 +252,7 @@
     :defer t
     :init
     (progn
-      (evil-leader/set-key
+      (spacemacs/set-leader-keys
         "xdd" 'osx-dictionary-search-input
         "xdD" 'osx-dictionary-search-pointer))
     :config
@@ -330,13 +329,6 @@ By default the (truly) last line."
       (goto-char (point-min))
       (forward-line (1- count)))
     (evil-first-non-blank))
-  )
-
-(defun dsdshcym/post-init-evil-leader ()
-  (evil-leader/set-key
-    "ww" 'ace-window
-    "wW" 'other-window
-    )
   )
 
 (defun dsdshcym/post-init-smartparens ()
