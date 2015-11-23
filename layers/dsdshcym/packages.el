@@ -32,10 +32,16 @@
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
         langtool
         org-pdfview
+        undo-tree
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-undo-tree ()
+  (setq undo-tree-history-directory-alist '(("." . "/Users/dsdshcym/.emacs.d/.cache/undo-tree-history")))
+  (setq undo-tree-auto-save-history t)
+  )
 
 (defun dsdshcym/init-org-pdfview ()
   (use-package org-pdfview
