@@ -52,6 +52,7 @@ values."
                                        (rcirc
                                         :variables
                                         rcirc-enable-authinfo-support t)
+                                       dockerfile
                                        rcirc-accounts
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
