@@ -224,7 +224,8 @@
       (pdf-tools-install)
       (setq pdf-view-use-imagemagick t)
       (evil-make-overriding-map pdf-view-mode-map 'normal)
-      (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)))
+      (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)
+      (define-key pdf-view-mode-map (kbd "SPC") spacemacs-default-map)))
   )
 
 (defun dsdshcym/init-org-tree-slide ()
