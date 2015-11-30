@@ -436,9 +436,9 @@ By default the (truly) last line."
              "* %^{Content}\n%U"
              :clock-in t
              :clock-resume t)
-            ("l" "Link from Safari" entry
+            ("l" "Links" entry
              (file+headline "~/Org/refile.org" "Links")
-             "* %(org-mac-safari-get-frontmost-url)")
+             "* %a")
             ("L" "Link Bookmarks" entry
              (file+headline "~/Org/refile.org" "Links")
              "* [[%^{Link}][%^{Description}]]"
@@ -448,8 +448,8 @@ By default the (truly) last line."
              "- [ ] %^{Word} :: %?")
             ("c" "Contacts" entry
              (file "~/Org/contacts.org")
-             "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:"
-             )))
+             "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:")
+            ))
 
     ;; -----------------------------
     ;; Refile
