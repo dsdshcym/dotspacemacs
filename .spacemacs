@@ -42,6 +42,7 @@ values."
                                         c-c++-enable-clang-support t)
                                        python
                                        ruby
+                                       lua
                                        pandoc
                                        syntax-checking
                                        (spell-checking
