@@ -43,6 +43,7 @@ values."
                                        python
                                        ruby
                                        lua
+                                       yaml
                                        pandoc
                                        syntax-checking
                                        (spell-checking
