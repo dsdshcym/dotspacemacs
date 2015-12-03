@@ -368,11 +368,8 @@ By default the (truly) last line."
 (defun dsdshcym/post-init-spaceline ()
   (progn
     (setq spaceline-org-clock-p t)
-    (spaceline-define-segment date-time-segment
-      (format-time-string "%a %b %d %H:%M")
-      :face highlight-face)
-    (add-to-list 'spaceline-right 'date-time-segment))
   )
+)
 
 (defun dsdshcym/post-init-org ()
   (progn

@@ -249,8 +249,6 @@ user code."
   (add-hook 'view-mode-hook (lambda ()
                               (setq show-trailing-whitespace nil)))
 
-  (display-time)
-
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
