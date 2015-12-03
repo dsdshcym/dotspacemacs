@@ -114,8 +114,5 @@
   "oj" '(lambda () (interactive) (org-refile '(4))))
 
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
-                              "ns" 'org-narrow-to-subtree
-                              "nb" 'org-narrow-to-block
-                              "ne" 'org-narrow-to-element
                               "/" 'org-sparse-tree
                               "<"  'private/org-begin-template)
