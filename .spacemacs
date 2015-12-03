@@ -16,9 +16,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '((colors :variables
-                                               colors-enable-nyan-cat-progress-bar t)
-                                       (auto-completion :variables
+   dotspacemacs-configuration-layers '((auto-completion :variables
                                                         auto-completion-return-key-behavior nil
                                                         auto-completion-tab-key-behavior 'complete
                                                         auto-completion-complete-with-key-sequence nil
