@@ -11,7 +11,7 @@
 ;;; License: GPLv3
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
-(spacemacs/set-leader-keys "fs" 'evil-write)
+(spacemacs/set-leader-keys "fs" (kbd "C-x C-s"))
 
 ;; ---------------------------------------------------------------------------
 ;; Dired
