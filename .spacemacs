@@ -56,7 +56,7 @@ values."
                                        rcirc-accounts
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-escape neotree evil-mc eval-sexp-fu evil-search-highlight-persist)
+   dotspacemacs-excluded-packages '(evil-escape neotree evil-mc eval-sexp-fu evil-search-highlight-persist ace-window)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -256,9 +256,7 @@ user code."
   ;; ---------------------------------------------------------------------------
   (spacemacs/set-leader-keys
     "bb" 'spacemacs/persp-helm-mini
-    "bB" 'helm-mini
-    "ww" 'ace-window
-    "wW" 'other-window)
+    "bB" 'helm-mini)
 
   ;; ---------------------------------------------------------------------------
   ;; Smooth Scrolling
@@ -333,7 +331,6 @@ user code."
   ;; Ace Jump / Avy
   ;; ---------------------------------------------------------------------------
   (setq avy-all-windows t)
-  (setq aw-background nil)
 
   ;; ---------------------------------------------------------------------------
   ;; Own Customizations
