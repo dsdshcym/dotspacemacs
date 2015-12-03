@@ -14,6 +14,7 @@
 ;; which require an initialization must be listed explicitly in the list.
 (setq dsdshcym-packages
       '(
+        avy
         evil
         smartparens
         spaceline
@@ -36,6 +37,10 @@
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-avy ()
+  (setq avy-all-windows nil)
+  )
 
 (defun dsdshcym/post-init-undo-tree ()
   (setq undo-tree-history-directory-alist '(("." . "/Users/dsdshcym/.emacs.d/.cache/undo-tree-history")))

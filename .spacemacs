@@ -328,11 +328,6 @@ user code."
   ;; Define my own text object // use spacemacs|define-and-bind-text-object
 
   ;; ---------------------------------------------------------------------------
-  ;; Ace Jump / Avy
-  ;; ---------------------------------------------------------------------------
-  (setq avy-all-windows t)
-
-  ;; ---------------------------------------------------------------------------
   ;; Own Customizations
   ;; ---------------------------------------------------------------------------
   ;; override spacemacs/alternate-buffer to switch between
