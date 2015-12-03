@@ -321,7 +321,10 @@
            spacemacs/enter-ahs-forward
            spacemacs/enter-ahs-backward
            evil-visualstar/begin-search-forward
-           evil-visualstar/begin-search-backward))
+           evil-visualstar/begin-search-backward
+           org-export-dispatch
+           org-end-of-line
+           org-beginning-of-line))
     )
 
   (evil-define-motion evil-goto-line (count)
