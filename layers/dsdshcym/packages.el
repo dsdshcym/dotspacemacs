@@ -33,10 +33,14 @@
         langtool
         org-pdfview
         undo-tree
+        color-theme-sanityinc-tomorrow
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-color-theme-sanityinc-tomorrow ()
+  )
 
 (defun dsdshcym/post-init-avy ()
   (setq avy-all-windows nil)
