@@ -444,9 +444,9 @@ By default the (truly) last line."
              "* %^{Content}\n%U"
              :clock-in t
              :clock-resume t)
-            ("l" "Links" entry
+            ("l" "Link from Safari" entry
              (file+headline "~/Org/refile.org" "Links")
-             "* %a")
+             "* %(org-mac-safari-get-frontmost-url)")
             ("L" "Link Bookmarks" entry
              (file+headline "~/Org/refile.org" "Links")
              "* [[%^{Link}][%^{Description}]]"
