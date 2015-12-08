@@ -260,9 +260,6 @@ user code."
 
   (setq url-queue-timeout 10)
 
-  (add-hook 'view-mode-hook (lambda ()
-                              (setq show-trailing-whitespace nil)))
-
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
@@ -279,8 +276,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; elfeed
   ;; ---------------------------------------------------------------------------
-  (add-hook 'elfeed-show-mode-hook (lambda ()
-                                     (setq show-trailing-whitespace nil)))
 
   ;; ---------------------------------------------------------------------------
   ;; Dired
@@ -391,13 +386,7 @@ user code."
   (evil-declare-key 'normal term-raw-map (kbd "RET") 'term-send-return)
   (add-hook 'term-mode-hook
             (lambda ()
-              (setq term-buffer-maximum-size 10000)
-              (setq show-trailing-whitespace nil)))
-
-  ;; ---------------------------------------------------------------------------
-  ;; trailing-whitespace
-  ;; ---------------------------------------------------------------------------
-  (setq-default show-trailing-whitespace t)
+              (setq term-buffer-maximum-size 10000)))
 
   ;; ---------------------------------------------------------------------------
   ;; org-mode

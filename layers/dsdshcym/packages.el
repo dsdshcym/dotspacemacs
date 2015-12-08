@@ -125,14 +125,6 @@
 
       (setq mu4e-view-prefer-html t)
 
-      (add-hook 'mu4e-headers-mode-hook
-                (lambda ()
-                  (setq show-trailing-whitespace nil)))
-
-      (add-hook 'mu4e-view-mode-hook
-                (lambda ()
-                  (setq show-trailing-whitespace nil)))
-
       (add-to-list 'mu4e-view-actions
                    '("browser" . mu4e-action-view-in-browser) t)
 
@@ -278,10 +270,7 @@
     (progn
       ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
       (evil-make-overriding-map osx-dictionary-mode-map 'normal)
-      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps)
-      (add-hook 'osx-dictionary-mode-hook
-                (lambda ()
-                  (setq show-trailing-whitespace nil))))
+      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps))
     )
   )
 
