@@ -53,6 +53,9 @@ values."
                                         :variables
                                         rcirc-enable-authinfo-support t)
                                        dockerfile
+                                       (elfeed
+                                        :variables
+                                        rmh-elfeed-org-files (list "~/Dropbox/Org/rss_feed.org"))
                                        rcirc-accounts
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -270,6 +273,12 @@ user code."
   ;; ---------------------------------------------------------------------------
   (setq scroll-margin 0)
   (setq smooth-scroll-margin 0)
+
+  ;; ---------------------------------------------------------------------------
+  ;; elfeed
+  ;; ---------------------------------------------------------------------------
+  (add-hook 'elfeed-show-mode-hook (lambda ()
+                                     (setq show-trailing-whitespace nil)))
 
   ;; ---------------------------------------------------------------------------
   ;; Dired
