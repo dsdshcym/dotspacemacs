@@ -110,6 +110,14 @@
               ("/FudanMail/13CS"          . ?c)
               ("/FudanMail/Course"        . ?C)))
 
+      (setq mu4e-bookmarks
+            '(
+              ("flag:unread AND NOT flag:trashed AND NOT maildir:\"/Gmail/[Gmail].All Mail\"" "Unread messages"  ?u)
+              ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                  "Today's messages" ?t)
+              ("date:7d..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                     "Last 7 days"      ?w)
+              )
+            )
+
       ;; allow for updating mail using 'U' in the main view:
       (setq mu4e-get-mail-command "offlineimap")
 
