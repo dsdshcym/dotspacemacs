@@ -79,6 +79,8 @@
     (spacemacs/set-leader-keys "am" 'mu4e)
     :config
     (progn
+      (setq mu4e-confirm-quit nil)
+
       ;; default
       (setq mu4e-maildir (expand-file-name "~/Maildir"))
 
