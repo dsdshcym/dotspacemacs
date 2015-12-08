@@ -258,6 +258,8 @@ user code."
   (setq sentence-end-double-space nil)
   (setq vc-follow-symlinks t)
 
+  (setq url-queue-timeout 10)
+
   (add-hook 'view-mode-hook (lambda ()
                               (setq show-trailing-whitespace nil)))
 
