@@ -242,6 +242,7 @@ user code."
   (setq-default
    ruby-enable-ruby-on-rails-support t
    ruby-version-manager 'rvm)
+  (setq ns-use-native-fullscreen nil)
   )
 
 (defun dotspacemacs/user-config ()
