@@ -30,33 +30,33 @@ values."
                                        github
                                        version-control
                                        emacs-lisp
-                                       common-lisp
+                                       ;; common-lisp
                                        fasd
                                        osx
                                        org
-                                       markdown
+                                       ;; markdown
                                        (c-c++
                                         :variables
                                         c-c++-enable-clang-support t)
                                        python
                                        ruby
-                                       lua
+                                       ;; lua
                                        yaml
                                        pandoc
                                        syntax-checking
                                        (spell-checking
                                         :variables
                                         spell-checking-enable-by-default nil)
-                                       html
+                                       ;; html
                                        dash
-                                       (rcirc
-                                        :variables
-                                        rcirc-enable-authinfo-support t)
-                                       dockerfile
+                                       ;; (rcirc
+                                       ;;  :variables
+                                       ;;  rcirc-enable-authinfo-support t)
+                                       ;; dockerfile
                                        (elfeed
                                         :variables
                                         rmh-elfeed-org-files (list "~/Dropbox/Org/rss_feed.org"))
-                                       rcirc-accounts
+                                       ;; rcirc-accounts
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
