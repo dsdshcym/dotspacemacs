@@ -259,7 +259,8 @@ user code."
   (setq sentence-end-double-space nil)
   (setq vc-follow-symlinks t)
 
-  (setq url-queue-timeout 10)
+  (setq url-queue-timeout 60)
+  (setq url-queue-parallel-processes 4)
 
   (setq global-hl-line-mode nil)
 
