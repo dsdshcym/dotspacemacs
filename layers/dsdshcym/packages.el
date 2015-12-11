@@ -212,6 +212,8 @@
       (evil-make-overriding-map mu4e-headers-mode-map 'normal t)
       (evil-define-key 'normal mu4e-headers-mode-map
         "J" 'mu4e~headers-jump-to-maildir
+        "j" 'evil-next-line
+        "k" 'evil-previous-line
         "C" 'mu4e-compose-new
         "o" 'mu4e-view-message
         )
