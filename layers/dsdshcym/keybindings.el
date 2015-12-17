@@ -15,6 +15,7 @@
 (spacemacs/set-leader-keys "fs" (kbd "C-x C-s"))
 
 (define-key evil-ex-map (kbd "C-w") 'evil-delete-backward-word)
+(define-key evil-normal-state-map (kbd "<C-i>") 'evil-jumper/forward)
 
 ;; ---------------------------------------------------------------------------
 ;; Dired
