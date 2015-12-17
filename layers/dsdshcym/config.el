@@ -46,3 +46,6 @@
   :off (private/turn-off-hardtime-mode)
   :documentation "Toggle vim hardtime mode"
   :evil-leader "tH")
+
+;; http://emacs.stackexchange.com/questions/14940/emacs-doesnt-paste-in-evils-visual-mode-with-every-os-clipboard
+(fset 'evil-visual-update-x-selection 'ignore)
