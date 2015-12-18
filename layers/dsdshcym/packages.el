@@ -463,6 +463,9 @@ By default the (truly) last line."
              "* TODO %?\n:LOGBOOK:\n:END:\n%U"
              :clock-in t
              :clock-resume t)
+            ("f" "Task for current File" entry
+             (file "~/Org/refile.org")
+             "* TODO %?\n%U\n%a")
             ("n" "Note" entry
              (file "~/Org/refile.org")
              "* %?\n%U")
@@ -478,9 +481,6 @@ By default the (truly) last line."
              (file+headline "~/Org/refile.org" "Links")
              "* [[%^{Link}][%^{Description}]]"
              :immediate-finish t)
-            ("w" "New English word" checkitem
-             (file+headline "~/Org/word_notes.org" "New Words")
-             "- [ ] %^{Word} :: %?")
             ("c" "Contacts" entry
              (file "~/Org/contacts.org")
              "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:")
