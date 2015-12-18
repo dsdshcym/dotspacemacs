@@ -146,6 +146,8 @@
 
       (setq mu4e-view-prefer-html nil)
 
+      ;; Store link to message if in header view, not to header query
+      (setq org-mu4e-link-query-in-headers-mode nil)
 
       (add-to-list 'mu4e-view-actions
                    '("browser" . mu4e-action-view-in-browser) t)
