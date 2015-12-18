@@ -144,7 +144,8 @@
 
       (setq mu4e-attachment-dir "~/Downloads")
 
-      (setq mu4e-view-prefer-html t)
+      (setq mu4e-view-prefer-html nil)
+
 
       (add-to-list 'mu4e-view-actions
                    '("browser" . mu4e-action-view-in-browser) t)
