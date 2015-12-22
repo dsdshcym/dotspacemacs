@@ -383,6 +383,7 @@ user code."
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'meta)
   (setq mac-pass-command-to-system nil)
+  (setq ns-pop-up-frames nil)
 
   ;; ---------------------------------------------------------------------------
   ;; shell
