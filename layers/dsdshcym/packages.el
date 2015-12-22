@@ -34,6 +34,7 @@
         org-pdfview
         undo-tree
         color-theme-sanityinc-tomorrow
+        fcitx
         ))
 
 ;; List of packages to exclude.
@@ -59,6 +60,21 @@
                                     volatile-highlights
                                     holy-mode
                                     hybrid-mode))
+
+(defun dsdshcym/init-fcitx ()
+  (use-package fcitx
+    :defer nil
+    :init
+    (progn
+      (spacemacs|add-toggle rimeime
+        :status private/toggle-rimeime-mode
+        :on (private/turn-on-rimeime-mode)
+        :off (private/turn-off-rimeime-mode)
+        :documentation "Use Chinese Input when exiting the insert mode"
+        :evil-leader "tR")
+      )
+    )
+  )
 
 (defun dsdshcym/init-color-theme-sanityinc-tomorrow ()
   )

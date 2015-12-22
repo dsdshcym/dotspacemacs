@@ -33,13 +33,6 @@
 
 (private/set-my-font)
 
-(spacemacs|add-toggle rimeime
-  :status private/toggle-rimeime-mode
-  :on (private/turn-on-rimeime-mode)
-  :off (private/turn-off-rimeime-mode)
-  :documentation "Use Chinese Input when exiting the insert mode"
-  :evil-leader "tR")
-
 (spacemacs|add-toggle hardtime
   :status private/hardtime-mode
   :on (private/turn-on-hardtime-mode)
