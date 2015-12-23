@@ -435,7 +435,6 @@ By default the (truly) last line."
     (setq evil-leader/no-prefix-mode-rx '("Org-Agenda.*mode"))
     (setq org-agenda-diary-file "~/org/diary.org")
     (setq org-agenda-files '("~/Org"
-                             "~/Org/IFTTT/sleep.org.txt"
                              "~/Org/notes"))
 
     ;; Overwrite the current window with the agenda
