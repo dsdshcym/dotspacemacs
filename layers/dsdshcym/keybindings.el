@@ -12,7 +12,7 @@
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
-(spacemacs/set-leader-keys "fs" (kbd "C-x C-s"))
+(spacemacs/set-leader-keys "fs" 'evil-write)
 
 (define-key evil-ex-map (kbd "C-w") 'evil-delete-backward-word)
 (define-key evil-normal-state-map (kbd "<C-i>") 'evil-jumper/forward)
