@@ -258,6 +258,8 @@ user code."
           ("http" . "127.0.0.1:7777")
           ("https" . "127.0.0.1:7777"))
         )
+  (setq use-dialog-box nil)
+
   )
 
 (defun dotspacemacs/user-config ()
