@@ -369,7 +369,11 @@
            evil-visualstar/begin-search-backward
            org-export-dispatch
            org-end-of-line
-           org-beginning-of-line))
+           org-beginning-of-line
+           split-window-below
+           split-window-below-and-focus
+           split-window-right
+           split-window-right-and-focus))
     )
 
   (evil-define-motion evil-goto-line (count)
