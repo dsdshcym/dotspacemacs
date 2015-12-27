@@ -484,6 +484,9 @@ By default the (truly) last line."
              "* TODO %?\n:LOGBOOK:\n:END:\n%U"
              :clock-in t
              :clock-resume t)
+            ("d" "Distraction in a pomodoro" entry
+             (file "~/Org/refile.org")
+             "* TODO %?\nSCHEDULED: %t\n%U")
             ("f" "Task for current File" entry
              (file "~/Org/refile.org")
              "* TODO %?\n%U\n%a")
