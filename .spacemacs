@@ -252,14 +252,7 @@ user code."
 
   (setq ns-use-native-fullscreen nil)
 
-  (setq url-proxy-services
-        '(
-          ;; ("no_proxy" . "api.github.com")
-          ("http" . "127.0.0.1:7777")
-          ("https" . "127.0.0.1:7777"))
-        )
   (setq use-dialog-box nil)
-
   )
 
 (defun dotspacemacs/user-config ()
