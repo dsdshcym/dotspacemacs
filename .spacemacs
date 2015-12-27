@@ -253,6 +253,9 @@ user code."
   (setq ns-use-native-fullscreen nil)
 
   (setq use-dialog-box nil)
+
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-scale-org-headlines nil)
   )
 
 (defun dotspacemacs/user-config ()
