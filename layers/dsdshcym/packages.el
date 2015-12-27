@@ -258,7 +258,7 @@
   (use-package org-mu4e
     :config
     (progn
-      (setq org-mu4e-convert-to-html t)
+      (setq org-mu4e-convert-to-html nil)
       (add-hook 'mu4e-compose-mode-hook 'org~mu4e-mime-switch-headers-or-body)))
   )
 
