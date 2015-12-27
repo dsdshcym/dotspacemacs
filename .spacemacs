@@ -111,14 +111,14 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         sanityinc-tomorrow-bright
-                         sanityinc-tomorrow-night
+                         solarized-dark
+                         zenburn
                          )
    ;; If non nil the cursor color matches the state color.
-   dotspacemacs-colorize-cursor-according-to-state nil
+   dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
+   dotspacemacs-default-font '("Input"
                                :size 14
                                :weight normal
                                :width normal
