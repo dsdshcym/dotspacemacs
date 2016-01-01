@@ -73,7 +73,7 @@
                       (font-spec :family chinese :size chinese-size))))
 (defun private/set-my-font ()
   (interactive)
-  (private/set-cjk-font "PingFang SC" 16))
+  (private/set-cjk-font "Source Han Sans SC" 34))
 
 ;; A hack to get english input mode in normal mode by simulating keystrokes
 ;; when exit insert mode
