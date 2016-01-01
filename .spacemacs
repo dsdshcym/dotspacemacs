@@ -275,6 +275,10 @@ user code."
 
   (setq global-hl-line-mode nil)
 
+  (setq browse-url-generic-program
+        (executable-find "google-chrome-stable")
+        browse-url-browser-function 'browse-url-generic)
+
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
