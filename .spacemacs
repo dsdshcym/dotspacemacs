@@ -263,7 +263,6 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Basics
   ;; ---------------------------------------------------------------------------
-  (set-frame-parameter nil 'fullscreen 'fullboth)
   (setq user-mail-address "dsdshcym@gmail.com")
   (setq user-full-name "Yiming Chen")
 
