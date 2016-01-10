@@ -38,28 +38,7 @@
         ))
 
 ;; List of packages to exclude.
-(setq dsdshcym-excluded-packages '(evil-escape
-                                    neotree
-                                    evil-mc
-                                    eval-sexp-fu
-                                    evil-search-highlight-persist
-                                    ace-window
-                                    define-word
-                                    doc-view
-                                    evil-tutor
-                                    expand-region
-                                    flx-ido
-                                    golden-ratio
-                                    google-translate
-                                    helm-mode-manager
-                                    highlight-indentation
-                                    highlight-numbers
-                                    highlight-parentheses
-                                    leuven-theme
-                                    rainbow-delimiters
-                                    volatile-highlights
-                                    holy-mode
-                                    hybrid-mode))
+(setq dsdshcym-excluded-packages '())
 
 (defun dsdshcym/init-fcitx ()
   (use-package fcitx

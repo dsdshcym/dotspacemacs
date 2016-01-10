@@ -57,7 +57,28 @@ values."
                                        ;; rcirc-accounts
                                        dsdshcym)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(evil-escape
+                                    neotree
+                                    evil-mc
+                                    eval-sexp-fu
+                                    evil-search-highlight-persist
+                                    ace-window
+                                    define-word
+                                    doc-view
+                                    evil-tutor
+                                    expand-region
+                                    flx-ido
+                                    golden-ratio
+                                    google-translate
+                                    helm-mode-manager
+                                    highlight-indentation
+                                    highlight-numbers
+                                    highlight-parentheses
+                                    leuven-theme
+                                    rainbow-delimiters
+                                    volatile-highlights
+                                    holy-mode
+                                    hybrid-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
