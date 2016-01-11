@@ -128,9 +128,15 @@
 
       (setq mu4e-bookmarks
             '(
-              ("flag:unread AND NOT flag:trashed AND NOT maildir:\"/Gmail/[Gmail].All Mail\"" "Unread messages"  ?u)
-              ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                  "Today's messages" ?t)
-              ("date:7d..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                     "Last 7 days"      ?w)
+              ("flag:unread AND \
+                NOT flag:trashed AND \
+                NOT maildir:\"/Gmail/[Gmail].All Mail\" AND \
+                NOT maildir:\"/Gmail/[Gmail].Spam\""
+               "Unread messages"  ?u)
+              ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""
+               "Today's messages" ?t)
+              ("date:7d..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""
+               "Last 7 days"      ?w)
               )
             )
 
