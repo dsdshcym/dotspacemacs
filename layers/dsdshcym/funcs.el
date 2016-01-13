@@ -89,20 +89,26 @@
     (fcitx-evil-turn-on)
     (setq private/toggle-rimeime-mode t)))
 
-(defun private/osx-notif (title msg &optional subtitle group-id sound)
-  "Show a OS X notification. Sound can be found in ~/Library/Sounds and
-    /System/Library/Sounds"
+(defun private/notification (title msg &optional subtitle group-id sound)
   (interactive)
-  (call-process-shell-command
-   (concat "terminal-notifier"
-           " -title \"" title
-           "\" -message \"" msg
-           (if subtitle (concat "\" -subtitle \"" subtitle))
-           (if sound (concat "\" -sound \"" sound))
-           (if group-id (concat "\" -group \"" group-id))
-           "\" -activate " "org.gnu.Emacs"
-           " -sender " "org.gnu.Emacs")
-   ))
+  (if (spacemacs/system-is-mac)
+      (call-process-shell-command
+       (concat "terminal-notifier"
+               " -title \"" title
+               "\" -message \"" msg
+               (if subtitle (concat "\" -subtitle \"" subtitle))
+               (if sound (concat "\" -sound \"" sound))
+               (if group-id (concat "\" -group \"" group-id))
+               "\" -activate " "org.gnu.Emacs"
+               " -sender " "org.gnu.Emacs")
+       )
+    )
+  (if (spacemacs/system-is-linux)
+      (call-process-shell-command
+       (concat "notify-send" " \"" title "\" \"" msg "\"")
+       )
+    )
+  )
 
 ;; --------------------------------------------------------------------
 ;; org-mode helper functions
@@ -244,6 +250,6 @@
   (org-agenda-to-appt))
 
 (defun private/appt-display (min-to-app new-time msg)
-  (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
+  (private/notification "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
   (appt-disp-window min-to-app new-time msg)
   )
