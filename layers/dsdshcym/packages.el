@@ -457,10 +457,8 @@ By default the (truly) last line."
              :clock-resume t)
             ("d" "Distraction in a pomodoro" entry
              (file "~/Org/refile.org")
-             "* TODO %?\nSCHEDULED: %t\n%U")
-            ("f" "Task for current File" entry
-             (file "~/Org/refile.org")
-             "* TODO %?\n%U\n%a")
+             "* TODO %^{Task}\nSCHEDULED: %t\n%U"
+             :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
              "* %?\n%U")
@@ -469,13 +467,9 @@ By default the (truly) last line."
              "* %^{Content}\n%U"
              :clock-in t
              :clock-resume t)
-            ("l" "Link from Browser" entry
-             (file+headline "~/Org/refile.org" "Links")
-             "* %(org-mac-chrome-get-frontmost-url)")
-            ("L" "Link Bookmarks" entry
-             (file+headline "~/Org/refile.org" "Links")
-             "* [[%^{Link}][%^{Description}]]"
-             :immediate-finish t)
+            ("l" "Link" entry
+             (file "~/Org/refile.org")
+             "* %a\n%U")
             ("c" "Contacts" entry
              (file "~/Org/contacts.org")
              "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:")
