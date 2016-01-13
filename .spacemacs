@@ -259,6 +259,9 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   ;; User initialization goes here
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
   (setq-default
    ruby-enable-ruby-on-rails-support t
    ruby-version-manager 'rvm)
