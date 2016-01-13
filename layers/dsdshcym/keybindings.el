@@ -10,7 +10,6 @@
 ;;
 ;;; License: GPLv3
 
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
 (spacemacs/set-leader-keys "fs" 'evil-write)
 
