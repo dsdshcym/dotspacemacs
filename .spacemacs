@@ -22,40 +22,28 @@ values."
                                                         auto-completion-complete-with-key-sequence nil
                                                         auto-completion-enable-sort-by-usage t
                                                         auto-completion-show-snippets-in-popup t)
+                                       dsdshcym
+                                       (elfeed
+                                        :variables
+                                        rmh-elfeed-org-files (list "~/Dropbox/Org/rss_feed.org"))
+                                       emacs-lisp
                                        (shell
                                         :variables
                                         shell-default-shell 'ansi-term
                                         shell-default-term-shell "/bin/zsh")
+                                       fasd
                                        git
                                        github
-                                       version-control
-                                       emacs-lisp
-                                       ;; common-lisp
-                                       fasd
                                        org
-                                       ;; markdown
-                                       (c-c++
-                                        :variables
-                                        c-c++-enable-clang-support t)
+                                       pandoc
                                        python
                                        ruby
-                                       ;; lua
-                                       yaml
-                                       pandoc
-                                       syntax-checking
                                        (spell-checking
                                         :variables
                                         spell-checking-enable-by-default nil)
-                                       ;; html
-                                       ;; (rcirc
-                                       ;;  :variables
-                                       ;;  rcirc-enable-authinfo-support t)
-                                       ;; dockerfile
-                                       (elfeed
-                                        :variables
-                                        rmh-elfeed-org-files (list "~/Dropbox/Org/rss_feed.org"))
-                                       ;; rcirc-accounts
-                                       dsdshcym)
+                                       syntax-checking
+                                       version-control
+                                       yaml)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape
                                     neotree
