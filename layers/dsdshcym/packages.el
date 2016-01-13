@@ -16,24 +16,23 @@
       '(
         avy
         evil
-        smartparens
-        spaceline
         evil-org
+        fcitx
+        flycheck
+        langtool
+        (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
+        (mu4e-contrib :location "/usr/share/emacs/site-lisp/mu4e")
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
-        (org-plus-contrib :step pre)
+        (org-mu4e :location "/usr/share/emacs/site-lisp/mu4e")
         org-page
-        flycheck
+        org-pdfview
+        (org-plus-contrib :step pre)
         org-tree-slide
         pdf-tools
-        (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
-        (org-mu4e :location "/usr/share/emacs/site-lisp/mu4e")
-        (mu4e-contrib :location "/usr/share/emacs/site-lisp/mu4e")
-        langtool
-        org-pdfview
+        smartparens
+        spaceline
         undo-tree
-        color-theme-sanityinc-tomorrow
-        fcitx
         ))
 
 ;; List of packages to exclude.
@@ -52,9 +51,6 @@
         :evil-leader "tR")
       )
     )
-  )
-
-(defun dsdshcym/init-color-theme-sanityinc-tomorrow ()
   )
 
 (defun dsdshcym/post-init-avy ()
@@ -271,14 +267,6 @@
     (progn
       (spacemacs/set-leader-keys-for-minor-mode 'org-mode "j" 'org-tree-slide-move-next-tree)
       (spacemacs/set-leader-keys-for-minor-mode 'org-mode "k" 'org-tree-slide-move-previous-tree)
-      (evil-define-key 'normal org-tree-slide-mode-map "H" 'org-tree-slide-move-previous-tree)
-      (evil-define-key 'normal org-tree-slide-mode-map "L" 'org-tree-slide-move-next-tree)
-      ;; (define-key org-tree-slide-mode-map (kbd "H")
-      ;;   'org-tree-slide-move-next-tree)
-      ;;   (define-key org-tree-slide-mode-map (kbd "gj")
-      ;;     'org-tree-slide-move-next-tree)
-      ;;   (define-key org-tree-slide-mode-map (kbd "<f11>")
-      ;;     'org-tree-slide-content)
       (org-tree-slide-narrowing-control-profile)
       (setq org-tree-slide-skip-outline-level 4)
       (setq org-tree-slide-skip-done nil)))
