@@ -458,6 +458,21 @@ By default the (truly) last line."
     ;; -----------------------------
     ;; Capture
     ;; -----------------------------
+    ;; Thank you random guy from StackOverflow
+    ;; http://stackoverflow.com/questions/23517372/hook-or-advice-when-aborting-org-capture-before-template-selection
+
+    (defadvice org-capture
+        (after make-full-window-frame activate)
+      "Advise capture to be the only window when used as a popup"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-other-windows)))
+
+    (defadvice org-capture-finalize
+        (after delete-capture-frame activate)
+      "Advise capture-finalize to close the frame"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-frame)))
+
     (setq org-directory "~/Org")
     (setq org-default-notes-file "~/Org/refile.org")
     (setq org-capture-templates
