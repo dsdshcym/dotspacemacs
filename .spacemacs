@@ -398,6 +398,7 @@ user code."
   (setq eshell-cmpl-ignore-case t)
   (ansi-color-for-comint-mode-on)
   (setq pcomplete-ignore-case t)
+  (setq shell-pop-autocd-to-working-dir nil)
 
   ;; ---------------------------------------------------------------------------
   ;; Term Mode
