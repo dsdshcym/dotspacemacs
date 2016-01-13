@@ -19,7 +19,6 @@
         evil-org
         fcitx
         flycheck
-        langtool
         (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
         (mu4e-contrib :location "/usr/share/emacs/site-lisp/mu4e")
         ;; org is installed by `org-plus-contrib'
@@ -69,19 +68,6 @@
       (progn
         (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
         (add-to-list 'org-file-apps '("\\.pdf::\\([[:digit:]]+\\)\\'" . org-pdfview-open)))))
-  )
-
-(defun dsdshcym/init-langtool ()
-  (use-package langtool
-    :config
-    (progn
-      (setq langtool-language-tool-jar
-            "/usr/local/Cellar/languagetool/3.0/libexec/languagetool-commandline.jar")
-      (setq langtool-disabled-rules '("WHITESPACE_RULE"
-                                      "EN_UNPAIRED_BRACKETS"
-                                      "COMMA_PARENTHESIS_WHITESPACE"
-                                      "EN_QUOTES"))
-      ))
   )
 
 (defun dsdshcym/init-mu4e ()
