@@ -24,12 +24,11 @@
         (org-plus-contrib :step pre)
         org-page
         flycheck
-        osx-dictionary
         org-tree-slide
         pdf-tools
-        (mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
-        (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu4e")
-        (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu4e")
+        (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
+        (org-mu4e :location "/usr/share/emacs/site-lisp/mu4e")
+        (mu4e-contrib :location "/usr/share/emacs/site-lisp/mu4e")
         langtool
         org-pdfview
         undo-tree
@@ -63,7 +62,7 @@
   )
 
 (defun dsdshcym/post-init-undo-tree ()
-  (setq undo-tree-history-directory-alist '(("." . "/Users/dsdshcym/.emacs.d/.cache/undo-tree-history")))
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo-tree-history")))
   (setq undo-tree-auto-save-history t)
   )
 
@@ -285,22 +284,6 @@
       (setq org-tree-slide-skip-done nil)))
 )
 
-(defun dsdshcym/init-osx-dictionary ()
-  (use-package osx-dictionary
-    :defer t
-    :init
-    (progn
-      (spacemacs/set-leader-keys
-        "xdd" 'osx-dictionary-search-input
-        "xdD" 'osx-dictionary-search-pointer))
-    :config
-    (progn
-      ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
-      (evil-make-overriding-map osx-dictionary-mode-map 'normal)
-      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps))
-    )
-  )
-
 (defun dsdshcym/post-init-flycheck ()
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   )
@@ -422,9 +405,9 @@ By default the (truly) last line."
     ;; Agenda
     ;; -----------------------------
     (setq evil-leader/no-prefix-mode-rx '("Org-Agenda.*mode"))
-    (setq org-agenda-diary-file "~/org/diary.org")
+    (setq org-agenda-diary-file "~/Org/diary.org")
     (setq org-agenda-files '("~/Org"
-                             "~/Org/notes"))
+                             "~/Org/Notes"))
 
     ;; Overwrite the current window with the agenda
     (setq org-agenda-window-setup 'current-window)
