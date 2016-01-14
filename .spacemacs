@@ -270,7 +270,7 @@ user code."
 
   (setq url-proxy-services
         '(
-          ;; ("no_proxy" . "api.github.com")
+          ("no_proxy" . "127.0.0.1, localhost")
           ("http" . "127.0.0.1:7777")
           ("https" . "127.0.0.1:7777"))
         )
