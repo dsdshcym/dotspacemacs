@@ -32,10 +32,20 @@
         smartparens
         spaceline
         undo-tree
+        pangu-spacing
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-pangu-spacing ()
+  (use-package pangu-spacing
+    :init
+    (progn
+      (setq global-pangu-spacing-mode t)
+      (setq pangu-spacing-real-insert-separtor t)
+      ))
+  )
 
 (defun dsdshcym/init-fcitx ()
   (use-package fcitx
