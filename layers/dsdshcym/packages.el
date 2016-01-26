@@ -49,9 +49,9 @@
 
 (defun dsdshcym/init-pangu-spacing ()
   (use-package pangu-spacing
-    :init
+    :config
     (progn
-      (setq global-pangu-spacing-mode t)
+      (global-pangu-spacing-mode 1)
       (setq pangu-spacing-real-insert-separtor t)
       ))
   )
