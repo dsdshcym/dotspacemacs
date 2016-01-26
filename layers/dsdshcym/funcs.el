@@ -262,22 +262,14 @@
 
 ;; --------------------------------------------------------------------
 ;; org capture in elfeed
-;; http://heikkil.github.io/blog/2015/05/09/notes-from-elfeed-entries/
 ;; --------------------------------------------------------------------
-(defun private/elfeed-link-title (entry)
-  "Copy the entry title and URL as org link to the clipboard."
-  (interactive)
-  (let* ((link (elfeed-entry-link entry))
-         (title (elfeed-entry-title entry))
-         (titlelink (concat "[[" link "][" title "]]")))
-    (when titlelink
-      (kill-new titlelink)
-      (x-set-selection 'PRIMARY titlelink)
-      (message "Yanked: %s" titlelink))))
+(defun private/org-elfeed-entry-store-link ()
+  (when elfeed-show-entry
+    (let* ((link (elfeed-entry-link elfeed-show-entry))
+           (title (elfeed-entry-title elfeed-show-entry)))
+      (org-store-link-props
+       :link link
+       :description title)
+      )))
 
-(defun private/elfeed-show-capture-link ()
-  "Fastest way to capture entry link to org agenda from elfeed show mode"
-  (interactive)
-  (elfeed-link-title elfeed-show-entry)
-  (org-capture nil "n")
-  (yank))
+(add-hook 'org-store-link-functions 'private/org-elfeed-entry-store-link)
