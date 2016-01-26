@@ -259,3 +259,25 @@
   (private/notification "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
   (appt-disp-window min-to-app new-time msg)
   )
+
+;; --------------------------------------------------------------------
+;; org capture in elfeed
+;; http://heikkil.github.io/blog/2015/05/09/notes-from-elfeed-entries/
+;; --------------------------------------------------------------------
+(defun private/elfeed-link-title (entry)
+  "Copy the entry title and URL as org link to the clipboard."
+  (interactive)
+  (let* ((link (elfeed-entry-link entry))
+         (title (elfeed-entry-title entry))
+         (titlelink (concat "[[" link "][" title "]]")))
+    (when titlelink
+      (kill-new titlelink)
+      (x-set-selection 'PRIMARY titlelink)
+      (message "Yanked: %s" titlelink))))
+
+(defun private/elfeed-show-capture-link ()
+  "Fastest way to capture entry link to org agenda from elfeed show mode"
+  (interactive)
+  (elfeed-link-title elfeed-show-entry)
+  (org-capture nil "n")
+  (yank))

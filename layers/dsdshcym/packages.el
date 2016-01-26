@@ -33,10 +33,19 @@
         spaceline
         undo-tree
         pangu-spacing
+        elfeed
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-elfeed ()
+  (evilified-state-evilify-map elfeed-show-mode-map
+    :mode elfeed-show-mode
+    :eval-after-load elfeed-show
+    :bindings
+    (kbd "M-L") 'private/elfeed-show-capture-link)
+  )
 
 (defun dsdshcym/init-pangu-spacing ()
   (use-package pangu-spacing
