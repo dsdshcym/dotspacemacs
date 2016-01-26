@@ -174,10 +174,6 @@
                       (buffer-file-name x)))
                 (buffer-list))))
 
-(defun bh/verify-refile-target ()
-  "Exclude todo keywords with a done state from refile targets"
-  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
-
 (defun bh/is-project-p ()
   "Any task with a todo keyword subtask"
   (save-restriction

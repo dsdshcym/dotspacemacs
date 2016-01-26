@@ -488,9 +488,6 @@ By default the (truly) last line."
                                (org-agenda-files :maxlevel . 6)))
     (setq org-refile-allow-creating-parent-nodes 'confirm)
 
-    ;; Exclude DONE state tasks from refile targets
-    (setq org-refile-target-verify-function 'bh/verify-refile-target)
-
     ;; -----------------------------
     ;; Clock
     ;; -----------------------------
