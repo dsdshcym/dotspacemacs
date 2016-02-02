@@ -34,10 +34,19 @@
         undo-tree
         pangu-spacing
         elfeed
+        (clip2org :location local)
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-clip2org ()
+  (use-package clip2org
+    :config
+    (progn
+      (setq clip2org-clippings-file "/mnt/Kindle/documents/My Clippings.txt")
+      (setq clip2org-persistence-file (expand-file-name "clip2org-persist.txt" spacemacs-cache-directory))))
+  )
 
 (defun dsdshcym/post-init-elfeed ()
   (evilified-state-evilify-map elfeed-show-mode-map
