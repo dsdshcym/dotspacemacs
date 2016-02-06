@@ -260,7 +260,7 @@
 ;; org capture in elfeed
 ;; --------------------------------------------------------------------
 (defun private/org-elfeed-entry-store-link ()
-  (when elfeed-show-entry
+  (when (and (boundp 'elfeed-show-entry) elfeed-show-entry)
     (let* ((link (elfeed-entry-link elfeed-show-entry))
            (title (elfeed-entry-title elfeed-show-entry)))
       (org-store-link-props
