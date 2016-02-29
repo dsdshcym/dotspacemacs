@@ -375,10 +375,11 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; override spacemacs/alternate-buffer to switch between
   ;; current and last unvisible buffer
-  (defun spacemacs/alternate-buffer ()
+  (defun spacemacs/alternate-buffer-in-persp ()
     "Switch back and forth between current and last buffer."
     (interactive)
-    (switch-to-buffer (other-buffer (current-buffer) nil)))
+    (with-persp-buffer-list ()
+      (switch-to-buffer (other-buffer (current-buffer) nil))))
 
   (setq switch-to-visible-buffer nil)
 
