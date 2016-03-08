@@ -302,6 +302,8 @@ user code."
         (executable-find "google-chrome-stable")
         browse-url-browser-function 'browse-url-generic)
 
+  (fcitx-evil-turn-on)
+
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
