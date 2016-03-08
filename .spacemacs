@@ -43,7 +43,8 @@ values."
                                         spell-checking-enable-by-default nil)
                                        syntax-checking
                                        version-control
-                                       yaml)
+                                       yaml
+                                       pdf-tools)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape
                                     neotree

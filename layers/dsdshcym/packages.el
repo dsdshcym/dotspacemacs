@@ -28,7 +28,6 @@
         org-pdfview
         (org-plus-contrib :step pre)
         org-tree-slide
-        pdf-tools
         smartparens
         spaceline
         undo-tree
@@ -261,17 +260,6 @@
     :config
     (progn
       (setq mu4e-html2text-command 'mu4e-shr2text)))
-  )
-
-(defun dsdshcym/init-pdf-tools ()
-  (use-package pdf-tools
-    :config
-    (progn
-      (pdf-tools-install)
-      (setq pdf-view-use-imagemagick t)
-      (evil-make-overriding-map pdf-view-mode-map 'normal)
-      (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)
-      (define-key pdf-view-mode-map (kbd "SPC") spacemacs-default-map)))
   )
 
 (defun dsdshcym/init-org-tree-slide ()
