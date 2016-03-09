@@ -47,14 +47,6 @@
       (setq clip2org-persistence-file (expand-file-name "clip2org-persist.txt" spacemacs-cache-directory))))
   )
 
-(defun dsdshcym/post-init-elfeed ()
-  (evilified-state-evilify-map elfeed-show-mode-map
-    :mode elfeed-show-mode
-    :eval-after-load elfeed-show
-    :bindings
-    (kbd "M-L") 'private/elfeed-show-capture-link)
-  )
-
 (defun dsdshcym/init-pangu-spacing ()
   (use-package pangu-spacing
     :config
