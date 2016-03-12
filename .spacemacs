@@ -284,8 +284,9 @@ user code."
 
   (setq url-proxy-services
         '(
-          ("no_proxy" . "127.0.0.1, localhost")
-          ("http" . "127.0.0.1:7777"))
+          ("no_proxy" . "^\\(localhost\\|10.*\\|127.*\\)")
+          ("http" . "127.0.0.1:7777")
+          ("https" . "127.0.0.1:7777"))
         )
   (setq use-dialog-box nil)
 
