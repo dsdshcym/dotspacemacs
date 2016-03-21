@@ -106,10 +106,7 @@
       (setq mu4e-trash-folder  "/Gmail/[Gmail].Trash")
 
       ;; don't save message to Sent Messages, GMail/IMAP will take care of this
-      (setq mu4e-sent-messages-behavior
-            (lambda ()
-              (if (string= (message-sendmail-envelope-from) "dsdshcym@gmail.com")
-                  'delete 'sent)))
+      (setq mu4e-sent-messages-behavior 'delete)
 
       (setq sendmail-program (executable-find "msmtp"))
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
