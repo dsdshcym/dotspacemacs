@@ -538,6 +538,7 @@ By default the (truly) last line."
        (sql . t)
        (C . t)
        (dot . t)
+       (scheme . t)
        ))
 
     (setq org-export-backends '(beamer html latex md gfm))

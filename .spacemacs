@@ -47,7 +47,8 @@ values."
                                        syntax-checking
                                        version-control
                                        yaml
-                                       pdf-tools)
+                                       pdf-tools
+                                       scheme)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape
                                     neotree
@@ -326,6 +327,7 @@ user code."
   (spacemacs/set-leader-keys
     "bb" 'spacemacs/persp-helm-mini
     "bB" 'helm-mini)
+  (setq geiser-scheme-implementation 'guile)
 
   ;; ---------------------------------------------------------------------------
   ;; elfeed
