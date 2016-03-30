@@ -16,9 +16,9 @@
       '(
         avy
         evil
-        smartparens
-        spaceline
         evil-org
+        fcitx
+        flycheck
         ;; org is installed by `org-plus-contrib'
         (org :location built-in)
         (org-plus-contrib :step pre)
@@ -30,36 +30,34 @@
         (mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
         (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
-        langtool
         org-pdfview
+        smartparens
+        spaceline
         undo-tree
-        color-theme-sanityinc-tomorrow
-        fcitx
+        pangu-spacing
+        elfeed
+        (clip2org :location local)
         ))
 
 ;; List of packages to exclude.
-(setq dsdshcym-excluded-packages '(evil-escape
-                                    neotree
-                                    evil-mc
-                                    eval-sexp-fu
-                                    evil-search-highlight-persist
-                                    ace-window
-                                    define-word
-                                    doc-view
-                                    evil-tutor
-                                    expand-region
-                                    flx-ido
-                                    golden-ratio
-                                    google-translate
-                                    helm-mode-manager
-                                    highlight-indentation
-                                    highlight-numbers
-                                    highlight-parentheses
-                                    leuven-theme
-                                    rainbow-delimiters
-                                    volatile-highlights
-                                    holy-mode
-                                    hybrid-mode))
+(setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-clip2org ()
+  (use-package clip2org
+    :config
+    (progn
+      (setq clip2org-clippings-file "/Volumes/Kindle/documents/My Clippings.txt")
+      (setq clip2org-persistence-file (expand-file-name "clip2org-persist.txt" spacemacs-cache-directory))))
+  )
+
+(defun dsdshcym/init-pangu-spacing ()
+  (use-package pangu-spacing
+    :config
+    (progn
+      (global-pangu-spacing-mode 1)
+      (setq pangu-spacing-real-insert-separtor t)
+      ))
+  )
 
 (defun dsdshcym/init-fcitx ()
   (use-package fcitx
@@ -76,15 +74,12 @@
     )
   )
 
-(defun dsdshcym/init-color-theme-sanityinc-tomorrow ()
-  )
-
 (defun dsdshcym/post-init-avy ()
   (setq avy-all-windows nil)
   )
 
 (defun dsdshcym/post-init-undo-tree ()
-  (setq undo-tree-history-directory-alist '(("." . "/Users/dsdshcym/.emacs.d/.cache/undo-tree-history")))
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo-tree-history")))
   (setq undo-tree-auto-save-history t)
   )
 
@@ -95,19 +90,6 @@
       (progn
         (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
         (add-to-list 'org-file-apps '("\\.pdf::\\([[:digit:]]+\\)\\'" . org-pdfview-open)))))
-  )
-
-(defun dsdshcym/init-langtool ()
-  (use-package langtool
-    :config
-    (progn
-      (setq langtool-language-tool-jar
-            "/usr/local/Cellar/languagetool/3.0/libexec/languagetool-commandline.jar")
-      (setq langtool-disabled-rules '("WHITESPACE_RULE"
-                                      "EN_UNPAIRED_BRACKETS"
-                                      "COMMA_PARENTHESIS_WHITESPACE"
-                                      "EN_QUOTES"))
-      ))
   )
 
 (defun dsdshcym/init-mu4e ()
@@ -127,10 +109,10 @@
       (setq mu4e-trash-folder  "/Gmail/[Gmail].Trash")
 
       ;; don't save message to Sent Messages, GMail/IMAP will take care of this
-      (setq mu4e-sent-messages-behavior
-            (lambda ()
-              (if (string= (message-sendmail-envelope-from) "dsdshcym@gmail.com")
-                  'delete 'sent)))
+      (setq mu4e-sent-messages-behavior 'delete)
+
+      (setq sendmail-program (executable-find "msmtp"))
+      (setq message-send-mail-function 'message-send-mail-with-sendmail)
 
       (setq mu4e-update-interval 1800)
 
@@ -149,9 +131,15 @@
 
       (setq mu4e-bookmarks
             '(
-              ("flag:unread AND NOT flag:trashed AND NOT maildir:\"/Gmail/[Gmail].All Mail\"" "Unread messages"  ?u)
-              ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                  "Today's messages" ?t)
-              ("date:7d..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""                     "Last 7 days"      ?w)
+              ("flag:unread AND \
+                NOT flag:trashed AND \
+                NOT maildir:\"/Gmail/[Gmail].All Mail\" AND \
+                NOT maildir:\"/Gmail/[Gmail].Spam\""
+               "Unread messages"  ?u)
+              ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""
+               "Today's messages" ?t)
+              ("date:7d..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""
+               "Last 7 days"      ?w)
               )
             )
 
@@ -174,33 +162,15 @@
       (add-to-list 'mu4e-view-actions
                    '("org-contact-add" . mu4e-action-add-org-contact) t)
 
-      (setq message-send-mail-function 'smtpmail-send-it
-            starttls-use-gnutls t
-            smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-            smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg")
-            smtpmail-default-smtp-server "smtp.gmail.com"
-            smtpmail-smtp-server "smtp.gmail.com"
-            smtpmail-smtp-service 587)
-
       (defvar my-mu4e-account-alist
         '(("Gmail"
            (mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
            (mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
-           (user-mail-address "dsdshcym@gmail.com")
-           (smtpmail-default-smtp-server "smtp.gmail.com")
-           (smtpmail-smtp-user "dsdshcym")
-           (smtpmail-smtp-server "smtp.gmail.com")
-           ;; (smtpmail-stream-type starttls)
-           (smtpmail-smtp-service 587))
+           (user-mail-address "dsdshcym@gmail.com"))
           ("FudanMail"
            (mu4e-sent-folder "/FudanMail/Sent Items")
            (mu4e-drafts-folder "/FudanMail/Drafts")
-           (user-mail-address "12307130174@fudan.edu.cn")
-           (smtpmail-default-smtp-server "mail.fudan.edu.cn")
-           (smtpmail-smtp-user "12307130174@fudan.edu.cn")
-           (smtpmail-smtp-server "mail.fudan.edu.cn")
-           (smtpmail-stream-type ssl)
-           (smtpmail-smtp-service 465))))
+           (user-mail-address "12307130174@fudan.edu.cn"))))
 
       (defun my-mu4e-set-account ()
         "Set the account for composing a message."
@@ -269,17 +239,6 @@
       (setq mu4e-html2text-command 'mu4e-shr2text)))
   )
 
-(defun dsdshcym/init-pdf-tools ()
-  (use-package pdf-tools
-    :config
-    (progn
-      (pdf-tools-install)
-      (setq pdf-view-use-imagemagick t)
-      (evil-make-overriding-map pdf-view-mode-map 'normal)
-      (add-hook 'pdf-view-mode-hook #'evil-normalize-keymaps)
-      (define-key pdf-view-mode-map (kbd "SPC") spacemacs-default-map)))
-  )
-
 (defun dsdshcym/init-org-tree-slide ()
   (use-package org-tree-slide
     :defer t
@@ -287,14 +246,6 @@
     (progn
       (spacemacs/set-leader-keys-for-minor-mode 'org-mode "j" 'org-tree-slide-move-next-tree)
       (spacemacs/set-leader-keys-for-minor-mode 'org-mode "k" 'org-tree-slide-move-previous-tree)
-      (evil-define-key 'normal org-tree-slide-mode-map "H" 'org-tree-slide-move-previous-tree)
-      (evil-define-key 'normal org-tree-slide-mode-map "L" 'org-tree-slide-move-next-tree)
-      ;; (define-key org-tree-slide-mode-map (kbd "H")
-      ;;   'org-tree-slide-move-next-tree)
-      ;;   (define-key org-tree-slide-mode-map (kbd "gj")
-      ;;     'org-tree-slide-move-next-tree)
-      ;;   (define-key org-tree-slide-mode-map (kbd "<f11>")
-      ;;     'org-tree-slide-content)
       (org-tree-slide-narrowing-control-profile)
       (setq org-tree-slide-skip-outline-level 4)
       (setq org-tree-slide-skip-done nil)))
@@ -421,6 +372,11 @@ By default the (truly) last line."
 )
 
 (defun dsdshcym/post-init-org ()
+  (use-package org-indent
+    :config
+    (progn
+      (setq org-startup-indented t)))
+
   (progn
     ;; --------------------------------------------------------------------
     ;; Functions which name starts with "bh" are from
@@ -437,9 +393,9 @@ By default the (truly) last line."
     ;; Agenda
     ;; -----------------------------
     (setq evil-leader/no-prefix-mode-rx '("Org-Agenda.*mode"))
-    (setq org-agenda-diary-file "~/org/diary.org")
+    (setq org-agenda-diary-file "~/Org/diary.org")
     (setq org-agenda-files '("~/Org"
-                             "~/Org/notes"))
+                             "~/Org/Notes"))
 
     ;; Overwrite the current window with the agenda
     (setq org-agenda-window-setup 'current-window)
@@ -473,6 +429,21 @@ By default the (truly) last line."
     ;; -----------------------------
     ;; Capture
     ;; -----------------------------
+    ;; Thank you random guy from StackOverflow
+    ;; http://stackoverflow.com/questions/23517372/hook-or-advice-when-aborting-org-capture-before-template-selection
+
+    (defadvice org-capture
+        (after make-full-window-frame activate)
+      "Advise capture to be the only window when used as a popup"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-other-windows)))
+
+    (defadvice org-capture-finalize
+        (after delete-capture-frame activate)
+      "Advise capture-finalize to close the frame"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-frame)))
+
     (setq org-directory "~/Org")
     (setq org-default-notes-file "~/Org/refile.org")
     (setq org-capture-templates
@@ -486,10 +457,8 @@ By default the (truly) last line."
              :clock-resume t)
             ("d" "Distraction in a pomodoro" entry
              (file "~/Org/refile.org")
-             "* TODO %?\nSCHEDULED: %t\n%U")
-            ("f" "Task for current File" entry
-             (file "~/Org/refile.org")
-             "* TODO %?\n%U\n%a")
+             "* TODO %^{Task}\nSCHEDULED: %t\n%U"
+             :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
              "* %?\n%U")
@@ -498,13 +467,9 @@ By default the (truly) last line."
              "* %^{Content}\n%U"
              :clock-in t
              :clock-resume t)
-            ("l" "Link from Browser" entry
-             (file+headline "~/Org/refile.org" "Links")
+            ("l" "Link" entry
+             (file "~/Org/refile.org")
              "* %(org-mac-chrome-get-frontmost-url)")
-            ("L" "Link Bookmarks" entry
-             (file+headline "~/Org/refile.org" "Links")
-             "* [[%^{Link}][%^{Description}]]"
-             :immediate-finish t)
             ("c" "Contacts" entry
              (file "~/Org/contacts.org")
              "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:")
@@ -517,9 +482,6 @@ By default the (truly) last line."
                                (private/opened-buffer-files :maxlevel . 6)
                                (org-agenda-files :maxlevel . 6)))
     (setq org-refile-allow-creating-parent-nodes 'confirm)
-
-    ;; Exclude DONE state tasks from refile targets
-    (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
     ;; -----------------------------
     ;; Clock
@@ -592,6 +554,7 @@ By default the (truly) last line."
        (sql . t)
        (C . t)
        (dot . t)
+       (scheme . t)
        ))
 
     (setq org-export-backends '(beamer html latex md gfm))

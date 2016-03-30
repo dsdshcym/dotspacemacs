@@ -89,20 +89,26 @@
     (fcitx-evil-turn-on)
     (setq private/toggle-rimeime-mode t)))
 
-(defun private/osx-notif (title msg &optional subtitle group-id sound)
-  "Show a OS X notification. Sound can be found in ~/Library/Sounds and
-    /System/Library/Sounds"
+(defun private/notification (title msg &optional subtitle group-id sound)
   (interactive)
-  (call-process-shell-command
-   (concat "terminal-notifier"
-           " -title \"" title
-           "\" -message \"" msg
-           (if subtitle (concat "\" -subtitle \"" subtitle))
-           (if sound (concat "\" -sound \"" sound))
-           (if group-id (concat "\" -group \"" group-id))
-           "\" -activate " "org.gnu.Emacs"
-           " -sender " "org.gnu.Emacs")
-   ))
+  (if (spacemacs/system-is-mac)
+      (call-process-shell-command
+       (concat "terminal-notifier"
+               " -title \"" title
+               "\" -message \"" msg
+               (if subtitle (concat "\" -subtitle \"" subtitle))
+               (if sound (concat "\" -sound \"" sound))
+               (if group-id (concat "\" -group \"" group-id))
+               "\" -activate " "org.gnu.Emacs"
+               " -sender " "org.gnu.Emacs")
+       )
+    )
+  (if (spacemacs/system-is-linux)
+      (call-process-shell-command
+       (concat "notify-send" " \"" title "\" \"" msg "\"")
+       )
+    )
+  )
 
 ;; --------------------------------------------------------------------
 ;; org-mode helper functions
@@ -161,10 +167,6 @@
                                          (buffer-file-name x)))
                       (buffer-file-name x)))
                 (buffer-list))))
-
-(defun bh/verify-refile-target ()
-  "Exclude todo keywords with a done state from refile targets"
-  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
 (defun bh/is-project-p ()
   "Any task with a todo keyword subtask"
@@ -244,6 +246,20 @@
   (org-agenda-to-appt))
 
 (defun private/appt-display (min-to-app new-time msg)
-  (private/osx-notif "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
+  (private/notification "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
   (appt-disp-window min-to-app new-time msg)
   )
+
+;; --------------------------------------------------------------------
+;; org capture in elfeed
+;; --------------------------------------------------------------------
+(defun private/org-elfeed-entry-store-link ()
+  (when (and (boundp 'elfeed-show-entry) elfeed-show-entry)
+    (let* ((link (elfeed-entry-link elfeed-show-entry))
+           (title (elfeed-entry-title elfeed-show-entry)))
+      (org-store-link-props
+       :link link
+       :description title)
+      )))
+
+(add-hook 'org-store-link-functions 'private/org-elfeed-entry-store-link)
