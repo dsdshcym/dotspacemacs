@@ -26,11 +26,9 @@
         flycheck
         osx-dictionary
         org-tree-slide
-        pdf-tools
         (mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
         (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
         (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
-        org-pdfview
         smartparens
         spaceline
         undo-tree
@@ -81,15 +79,6 @@
 (defun dsdshcym/post-init-undo-tree ()
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo-tree-history")))
   (setq undo-tree-auto-save-history t)
-  )
-
-(defun dsdshcym/init-org-pdfview ()
-  (use-package org-pdfview
-    :config
-    (eval-after-load 'arg
-      (progn
-        (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
-        (add-to-list 'org-file-apps '("\\.pdf::\\([[:digit:]]+\\)\\'" . org-pdfview-open)))))
   )
 
 (defun dsdshcym/init-mu4e ()
