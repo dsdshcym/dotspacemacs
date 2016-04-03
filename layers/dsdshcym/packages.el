@@ -546,14 +546,15 @@ By default the (truly) last line."
        (scheme . t)
        ))
 
+    (setq org-export-babel-evaluate nil
+          org-confirm-babel-evaluate nil)
+
     (setq org-export-backends '(beamer html latex md gfm))
 
     (setq org-export-with-sub-superscripts '{}
           org-export-with-section-numbers 3
           org-export-with-todo-keywords nil
           org-export-with-timestamps nil)
-
-    (setq org-confirm-babel-evaluate t)
 
     ;; {{ export org-mode in Chinese into PDF
     ;; @see http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
