@@ -35,10 +35,19 @@
         pangu-spacing
         elfeed
         (clip2org :location local)
+        osx-browse
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/init-osx-browse ()
+  (use-package osx-browse
+    :config
+    (progn
+      (setq osx-browse-prefer-background t)
+      (osx-browse-mode 1)))
+  )
 
 (defun dsdshcym/init-clip2org ()
   (use-package clip2org
