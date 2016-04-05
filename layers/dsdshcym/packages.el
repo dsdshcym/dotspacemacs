@@ -361,11 +361,6 @@ By default the (truly) last line."
 )
 
 (defun dsdshcym/post-init-org ()
-  (use-package org-indent
-    :config
-    (progn
-      (setq org-startup-indented t)))
-
   (progn
     ;; --------------------------------------------------------------------
     ;; Functions which name starts with "bh" are from
