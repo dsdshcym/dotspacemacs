@@ -100,9 +100,6 @@
       ;; don't save message to Sent Messages, GMail/IMAP will take care of this
       (setq mu4e-sent-messages-behavior 'delete)
 
-      (setq sendmail-program (executable-find "msmtp"))
-      (setq message-send-mail-function 'message-send-mail-with-sendmail)
-
       (setq mu4e-update-interval 1800)
 
       (setq mu4e-html2text-command "pandoc -f html -t plain")
@@ -151,15 +148,33 @@
       (add-to-list 'mu4e-view-actions
                    '("org-contact-add" . mu4e-action-add-org-contact) t)
 
+      (setq message-send-mail-function 'smtpmail-send-it
+            starttls-use-gnutls t
+            smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+            smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg")
+            smtpmail-default-smtp-server "smtp.gmail.com"
+            smtpmail-smtp-server "smtp.gmail.com"
+            smtpmail-smtp-service 587)
+
       (defvar my-mu4e-account-alist
         '(("Gmail"
            (mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
            (mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
-           (user-mail-address "dsdshcym@gmail.com"))
+           (user-mail-address "dsdshcym@gmail.com")
+           (smtpmail-default-smtp-server "smtp.gmail.com")
+           (smtpmail-smtp-user "dsdshcym")
+           (smtpmail-smtp-server "smtp.gmail.com")
+           ;; (smtpmail-stream-type starttls)
+           (smtpmail-smtp-service 587))
           ("FudanMail"
            (mu4e-sent-folder "/FudanMail/Sent Items")
            (mu4e-drafts-folder "/FudanMail/Drafts")
-           (user-mail-address "12307130174@fudan.edu.cn"))))
+           (user-mail-address "12307130174@fudan.edu.cn")
+           (smtpmail-default-smtp-server "mail.fudan.edu.cn")
+           (smtpmail-smtp-user "12307130174@fudan.edu.cn")
+           (smtpmail-smtp-server "mail.fudan.edu.cn")
+           (smtpmail-stream-type ssl)
+           (smtpmail-smtp-service 465))))
 
       (defun my-mu4e-set-account ()
         "Set the account for composing a message."
