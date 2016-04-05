@@ -33,7 +33,7 @@ values."
                                        emacs-lisp
                                        (shell
                                         :variables
-                                        shell-default-shell 'ansi-term
+                                        shell-default-shell 'eshell
                                         shell-default-term-shell "/bin/zsh")
                                        fasd
                                        git
