@@ -285,6 +285,8 @@ user code."
 
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
+
+  (setq geiser-default-implementation 'guile)
   )
 
 (defun dotspacemacs/user-config ()
@@ -315,7 +317,6 @@ user code."
   (spacemacs/set-leader-keys
     "bb" 'spacemacs/persp-helm-mini
     "bB" 'helm-mini)
-  (setq geiser-scheme-implementation 'guile)
 
   ;; ---------------------------------------------------------------------------
   ;; elfeed
