@@ -458,30 +458,33 @@ By default the (truly) last line."
     (setq org-capture-templates
           '(("t" "Task" entry
              (file "~/Org/refile.org")
-             "* TODO %?\n%U")
+             "* TODO %?\n  %U")
             ("T" "Clock-in Task" entry
              (file "~/Org/refile.org")
-             "* TODO %?\n:LOGBOOK:\n:END:\n%U"
+             "* TODO %?\n  %U"
              :clock-in t
              :clock-resume t)
             ("d" "Distraction in a pomodoro" entry
              (file "~/Org/refile.org")
-             "* TODO %^{Task}\nSCHEDULED: %t\n%U"
+             "* TODO %^{Task}\n  SCHEDULED: %t\n  %U"
              :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
-             "* %?\n%U")
+             "* %?\n  %U")
+            ("l" "Note with link to current file" entry
+             (file "~/Org/refile.org")
+             "* %?\n  %a")
             ("j" "Journal" entry
              (file+datetree "~/Org/diary.org")
-             "* %^{Content}\n%U"
+             "* %^{Content}\n  %U"
              :clock-in t
              :clock-resume t)
-            ("l" "Link" entry
+            ("c" "Link from Chrome" entry
              (file "~/Org/refile.org")
              "* %(org-mac-chrome-get-frontmost-url)")
-            ("c" "Contacts" entry
+            ("C" "Contacts" entry
              (file "~/Org/contacts.org")
-             "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL: %(org-contacts-template-email)\n:END:")
+             "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
             ))
 
     ;; -----------------------------
