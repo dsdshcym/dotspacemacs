@@ -478,12 +478,24 @@ By default the (truly) last line."
              "* %^{Content}\n  %U"
              :clock-in t
              :clock-resume t)
+            ("J" "Journal from Phone" entry
+             (file+datetree "~/Org/diary.org")
+             "* %^{Content}\n  :LOGBOOK:\n  CLOCK: %^{Begin}U--%^{End}U\n  :END:")
             ("c" "Link from Chrome" entry
              (file "~/Org/refile.org")
              "* %(org-mac-chrome-get-frontmost-url)")
-            ("C" "Contacts" entry
+            ("C" "Clock-in Link from Chrome" entry
+             (file "~/Org/refile.org")
+             "* %(org-mac-chrome-get-frontmost-url)"
+             :clock-in t
+             :clock-resume t)
+            ("p" "People (Contacts)" entry
              (file "~/Org/contacts.org")
              "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
+            ("k" "Push to Kindle" entry
+             (file+headline "~/Org/refile.org" "Push to Kindle")
+             "* %(org-mac-chrome-get-frontmost-url)"
+             :immediate-finish t)
             ))
 
     ;; -----------------------------
