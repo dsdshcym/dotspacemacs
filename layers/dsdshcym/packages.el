@@ -457,25 +457,25 @@ By default the (truly) last line."
     (setq org-capture-templates
           '(("t" "Task" entry
              (file "~/Org/refile.org")
-             "* TODO %?\n  %U")
+             "* TODO %?\n")
             ("T" "Clock-in Task" entry
              (file "~/Org/refile.org")
-             "* TODO %?\n  %U"
+             "* TODO %?\n"
              :clock-in t
              :clock-resume t)
             ("d" "Distraction in a pomodoro" entry
              (file "~/Org/refile.org")
-             "* TODO %^{Task}\n  SCHEDULED: %t\n  %U"
+             "* TODO %^{Task}\n  SCHEDULED: %t\n"
              :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
-             "* %?\n  %U")
+             "* %?\n")
             ("l" "Note with link to current file" entry
              (file "~/Org/refile.org")
              "* %?\n  %a")
             ("j" "Journal" entry
              (file+datetree "~/Org/diary.org")
-             "* %^{Content}\n  %U"
+             "* %^{Content}\n"
              :clock-in t
              :clock-resume t)
             ("J" "Journal from Phone" entry
