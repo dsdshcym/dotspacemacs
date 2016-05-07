@@ -472,7 +472,7 @@ By default the (truly) last line."
              "* %?\n")
             ("l" "Note with link to current file" entry
              (file "~/Org/refile.org")
-             "* %?\n  %a")
+             "* %a")
             ("j" "Journal" entry
              (file+datetree "~/Org/diary.org")
              "* %^{Content}\n"
