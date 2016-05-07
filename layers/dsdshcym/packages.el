@@ -494,7 +494,7 @@ By default the (truly) last line."
              "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
             ("k" "Push to Kindle" entry
              (file+headline "~/Org/refile.org" "Push to Kindle")
-             "* %(org-mac-chrome-get-frontmost-url)"
+             "* %a"
              :immediate-finish t)
             ))
 
