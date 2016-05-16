@@ -392,6 +392,8 @@ By default the (truly) last line."
     ;; --------------------------------------------------------------------
     (mapc #'evil-declare-ignore-repeat
           '(org-cycle
+            org-shifttab
+            org-ctrl-c-ctrl-c
             org-next-visible-heading
             org-previous-visible-heading))
 
