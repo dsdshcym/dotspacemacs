@@ -682,5 +682,5 @@ By default the (truly) last line."
 
     (setq org-cycle-separator-lines 0)
     (setq org-blank-before-new-entry '((heading . nil)
-                                       (plain-list-item . auto)))
+                                       (plain-list-item . nil)))
     ))
