@@ -294,6 +294,7 @@ user code."
    ruby-version-manager 'rvm)
 
   (setq ns-use-native-fullscreen nil)
+  (setq mouse-highlight nil)
 
   (setq use-dialog-box nil)
 
