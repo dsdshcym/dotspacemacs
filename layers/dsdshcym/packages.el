@@ -480,7 +480,8 @@ By default the (truly) last line."
              :clock-resume t)
             ("J" "Journal from Phone" entry
              (file+datetree "~/Org/diary.org")
-             "* %^{Content}\n  :LOGBOOK:\n  CLOCK: %^{Begin}U--%^{End}U\n  :END:")
+             "* %^{Content}\n  :LOGBOOK:\n  CLOCK: %^{Begin}U--%^{End}U\n  :END:"
+             :immediate-finish t)
             ("c" "Link from Chrome" entry
              (file "~/Org/refile.org")
              "* %(org-mac-chrome-get-frontmost-url)")
