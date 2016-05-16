@@ -26,9 +26,9 @@
         flycheck
         osx-dictionary
         org-tree-slide
-        (mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
-        (org-mu4e :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
-        (mu4e-contrib :location "/usr/local/share/emacs/site-lisp/mu/mu4e")
+        (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
+        (org-mu4e :location "/usr/share/emacs/site-lisp/mu4e")
+        (mu4e-contrib :location "/usr/share/emacs/site-lisp/mu4e")
         smartparens
         spaceline
         undo-tree
