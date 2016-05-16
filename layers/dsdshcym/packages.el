@@ -395,6 +395,8 @@ By default the (truly) last line."
             org-next-visible-heading
             org-previous-visible-heading))
 
+    (setq org-startup-indented nil)
+
     (add-hook 'org-mode-hook (lambda () (setq evil-shift-width 2)))
 
     ;; -----------------------------
