@@ -54,13 +54,16 @@ values."
                                        pandoc
                                        python
                                        ruby
+                                       ruby-on-rails
                                        (spell-checking
                                         :variables
                                         spell-checking-enable-by-default nil)
                                        syntax-checking
                                        version-control
                                        yaml
-                                       scheme)
+                                       scheme
+                                       dockerfile
+                                       html)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape
                                     neotree
