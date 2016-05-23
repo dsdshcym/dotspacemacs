@@ -24,7 +24,6 @@
         (org-plus-contrib :step pre)
         org-page
         flycheck
-        osx-dictionary
         org-tree-slide
         (mu4e :location "/usr/share/emacs/site-lisp/mu4e")
         (org-mu4e :location "/usr/share/emacs/site-lisp/mu4e")
@@ -254,22 +253,6 @@
       (setq org-tree-slide-skip-outline-level 4)
       (setq org-tree-slide-skip-done nil)))
 )
-
-(defun dsdshcym/init-osx-dictionary ()
-  (use-package osx-dictionary
-    :defer t
-    :init
-    (progn
-      (spacemacs/set-leader-keys
-        "xdd" 'osx-dictionary-search-input
-        "xdD" 'osx-dictionary-search-pointer))
-    :config
-    (progn
-      ;; http://blog.binchen.org/posts/use-git-timemachine-with-evil.html
-      (evil-make-overriding-map osx-dictionary-mode-map 'normal)
-      (add-hook 'osx-dictionary-mode-hook #'evil-normalize-keymaps))
-    )
-  )
 
 (defun dsdshcym/post-init-flycheck ()
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
