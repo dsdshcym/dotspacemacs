@@ -50,7 +50,6 @@ values."
                                        git
                                        github
                                        org
-                                       osx
                                        pandoc
                                        python
                                        ruby
