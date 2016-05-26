@@ -445,7 +445,7 @@ By default the (truly) last line."
     (setq org-capture-templates
           '(("t" "Task" entry
              (file "~/Org/refile.org")
-             "* TODO %?\n")
+             "* TODO %?\n  %U")
             ("T" "Clock-in Task" entry
              (file "~/Org/refile.org")
              "* TODO %?\n"
@@ -457,10 +457,15 @@ By default the (truly) last line."
              :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
-             "* %?\n")
+             "* %?\n  %U")
             ("l" "Note with link to current file" entry
              (file "~/Org/refile.org")
-             "* %a")
+             "* %a\n  %U")
+            ("L" "(Clocked in) Note with link to current file" entry
+             (file "~/Org/refile.org")
+             "* %a"
+             :clock-in t
+             :clock-resume t)
             ("j" "Journal" entry
              (file+datetree "~/Org/diary.org")
              "* %^{Content}\n"
@@ -470,20 +475,12 @@ By default the (truly) last line."
              (file+datetree "~/Org/diary.org")
              "* %^{Content}\n  :LOGBOOK:\n  CLOCK: %^{Begin}U--%^{End}U\n  :END:"
              :immediate-finish t)
-            ("c" "Link from Chrome" entry
-             (file "~/Org/refile.org")
-             "* %(org-mac-chrome-get-frontmost-url)")
-            ("C" "Clock-in Link from Chrome" entry
-             (file "~/Org/refile.org")
-             "* %(org-mac-chrome-get-frontmost-url)"
-             :clock-in t
-             :clock-resume t)
             ("p" "People (Contacts)" entry
              (file "~/Org/contacts.org")
              "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
             ("k" "Push to Kindle" entry
              (file+headline "~/Org/refile.org" "Push to Kindle")
-             "* %a"
+             "* %a\n  %U"
              :immediate-finish t)
             ))
 
