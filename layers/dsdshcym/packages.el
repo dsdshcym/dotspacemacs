@@ -487,9 +487,7 @@ By default the (truly) last line."
     ;; -----------------------------
     ;; Refile
     ;; -----------------------------
-    (setq org-refile-targets '((nil :maxlevel . 9)
-                               (private/opened-buffer-files :maxlevel . 6)
-                               (org-agenda-files :maxlevel . 6)))
+    (setq org-refile-targets '((private/opened-buffer-files :maxlevel . 9)))
     (setq org-refile-allow-creating-parent-nodes 'confirm)
 
     ;; -----------------------------
