@@ -257,8 +257,8 @@
     :defer t
     :config
     (progn
-      (spacemacs/set-leader-keys-for-minor-mode 'org-mode "j" 'org-tree-slide-move-next-tree)
-      (spacemacs/set-leader-keys-for-minor-mode 'org-mode "k" 'org-tree-slide-move-previous-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "j" 'org-tree-slide-move-next-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "k" 'org-tree-slide-move-previous-tree)
       (org-tree-slide-narrowing-control-profile)
       (setq org-tree-slide-skip-outline-level 4)
       (setq org-tree-slide-skip-done nil)))
