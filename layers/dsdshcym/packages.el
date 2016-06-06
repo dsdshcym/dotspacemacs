@@ -44,7 +44,7 @@
   (use-package clip2org
     :config
     (progn
-      (setq clip2org-clippings-file "/Volumes/Kindle/documents/My Clippings.txt")
+      (setq clip2org-clippings-file "/mnt/Kindle/documents/My Clippings.txt")
       (setq clip2org-persistence-file (expand-file-name "clip2org-persist.txt" spacemacs-cache-directory))))
   )
 
