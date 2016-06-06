@@ -247,7 +247,6 @@
 
 (defun private/appt-display (min-to-app new-time msg)
   (private/notification "Org Agenda Appointment" msg (format "Appointment in %s minute(s)" min-to-app) "1")
-  (appt-disp-window min-to-app new-time msg)
   )
 
 ;; --------------------------------------------------------------------
