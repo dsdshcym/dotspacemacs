@@ -35,10 +35,18 @@
         pangu-spacing
         elfeed
         (clip2org :location local)
+        zeal-at-point
         ))
 
 ;; List of packages to exclude.
 (setq dsdshcym-excluded-packages '())
+
+(defun dsdshcym/post-init-zeal-at-point ()
+  (use-package zeal-at-point
+    :config
+    (push '(ruby-mode . "ruby,rails") zeal-at-point-mode-alist)
+    )
+  )
 
 (defun dsdshcym/init-clip2org ()
   (use-package clip2org
