@@ -44,15 +44,17 @@ values."
                                        emacs-lisp
                                        (shell
                                         :variables
-                                        shell-default-shell 'eshell
+                                        shell-default-shell 'ansi-term
                                         shell-default-term-shell "/bin/zsh")
                                        fasd
                                        git
                                        github
                                        org
                                        pandoc
-                                       python
-                                       ruby
+                                       (python :variables python-test-runner '(pytest nose))
+                                       (ruby :variables
+                                             ruby-version-manager 'rbenv
+                                             ruby-test-runner 'rspec)
                                        ruby-on-rails
                                        (spell-checking
                                         :variables
@@ -61,8 +63,11 @@ values."
                                        version-control
                                        yaml
                                        scheme
-                                       dockerfile
-                                       html)
+                                       docker
+                                       html
+                                       javascript
+                                       pdf-tools
+                                       markdown)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-escape
                                     neotree
@@ -70,26 +75,17 @@ values."
                                     eval-sexp-fu
                                     evil-search-highlight-persist
                                     ace-window
-                                    define-word
-                                    doc-view
                                     evil-tutor
                                     expand-region
                                     flx-ido
-                                    golden-ratio
                                     google-translate
-                                    helm-mode-manager
-                                    highlight-indentation
-                                    highlight-numbers
-                                    highlight-parentheses
                                     leuven-theme
-                                    rainbow-delimiters
-                                    volatile-highlights
                                     holy-mode
                                     hybrid-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages nil))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -131,12 +127,12 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(projects)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'emacs-lisp-mode
+   dotspacemacs-scratch-mode 'org-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -179,6 +175,9 @@ values."
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift nil
+   ;; If non-nil, J and K move lines up and down when in visual mode.
+   ;; (default nil)
+   dotspacemacs-visual-line-move-text nil
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -189,7 +188,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -247,15 +246,18 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling nil
+   dotspacemacs-smooth-scrolling t
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
    dotspacemacs-line-numbers nil
+   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; (default 'evil)
+   dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -292,8 +294,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   ;; User initialization goes here
   (setq-default
-   ruby-enable-ruby-on-rails-support t
-   ruby-version-manager 'rvm)
+   ruby-enable-ruby-on-rails-support t)
 
   (setq ns-use-native-fullscreen nil)
   (setq mouse-highlight nil)
@@ -304,11 +305,23 @@ user code."
   (setq solarized-scale-org-headlines nil)
 
   (setq geiser-default-implementation 'guile)
+
+  (setq url-proxy-services
+        '(
+          ("no_proxy" . "^\\(localhost\\|10.*\\|127.0.0.1\\|api.github.com\\)")
+          ("http" . "127.0.0.1:7777")
+          ;; ("https" . "127.0.0.1:7777")
+          ))
   )
 
 (defun dotspacemacs/user-config ()
   ;;   "This is were you can ultimately override default Spacemacs configuration.
   ;; This function is called at the very end of Spacemacs initialization."
+
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome")
+
+  (setq sp-highlight-pair-overlay nil)
 
   ;; ---------------------------------------------------------------------------
   ;; Basics
@@ -333,9 +346,11 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; Keybindings
   ;; ---------------------------------------------------------------------------
-  (spacemacs/set-leader-keys
-    "bb" 'spacemacs/persp-helm-mini
-    "bB" 'helm-mini)
+  ;; (spacemacs/set-leader-keys
+  ;;   "bb" 'spacemacs/persp-helm-mini
+  ;;   "bB" 'helm-mini)
+
+  (setq ivy-initial-inputs-alist nil)
 
   ;; ---------------------------------------------------------------------------
   ;; elfeed
@@ -353,7 +368,7 @@ user code."
   (setq tramp-default-method "ssh")
 
   ;; See http://stackoverflow.com/questions/3465567/how-to-use-ssh-and-sudo-together-with-tramp-in-emacs
-  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+  ;; (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
   ;; --------------------------
   ;; kill-buffer without prompt
@@ -361,12 +376,6 @@ user code."
   (setq kill-buffer-query-functions
         (remq 'process-kill-buffer-query-function
               kill-buffer-query-functions))
-
-  ;; ---------------------------------------------------------------------------
-  ;; Python / Anaconda Mode
-  ;; ---------------------------------------------------------------------------
-  (setq anaconda-mode-server-script "/usr/local/lib/python2.7/site-packages/anaconda_mode.py")
-  (add-to-list 'dash-at-point-mode-alist '(python-mode . "python2,python3,django,twisted,sphinx,flask,tornado,sqlalchemy,numpy,scipy,saltcvp"))
 
   ;; ---------------------------------------------------------------------------
   ;; SQL
@@ -388,7 +397,7 @@ user code."
   ;; ---------------------------------------------------------------------------
   ;; C/C++ indent style
   ;; ---------------------------------------------------------------------------
-  (setq-default c-default-style "java")
+  ;; (setq-default c-default-style "java")
   (setq gdb-many-windows t
         gdb-show-main t)
 
@@ -409,6 +418,7 @@ user code."
     (interactive)
     (with-persp-buffer-list ()
       (switch-to-buffer (other-buffer (current-buffer) nil))))
+  (evil-leader/set-key "<tab>" 'spacemacs/alternate-buffer-in-persp)
 
   (setq switch-to-visible-buffer nil)
 
@@ -454,10 +464,10 @@ user code."
   ;; org-mode
   ;; ---------------------------------------------------------------------------
   ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
-  (bh/org-agenda-to-appt)
+  ;; (bh/org-agenda-to-appt)
 
   ;; Activate appointments so we get notifications
-  (appt-activate t)
+  ;; (appt-activate t)
   )
 
 ;; Custom variables
@@ -471,15 +481,18 @@ user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil t)
- '(ahs-default-range (quote ahs-range-whole-buffer) t)
- '(ahs-idle-interval 0.25 t)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil t)
+ '(ahs-inhibit-face-list nil)
+ '(custom-safe-themes
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(magit-use-overlays nil t)
  '(package-selected-packages
    (quote
-    (company iedit projectile-rails inflections feature-mode hydra live-py-mode magit-popup git-commit fcitx packed inf-ruby yaml-mode uuidgen anaconda-mode git-gutter+ emms-player-mpv emms helm-core auto-complete f flycheck avy projectile org-pdfview evil-indent-plus yasnippet magit persp-mode langtool evil smartparens helm mmm-mode markdown-toc markdown-mode gh-md pdf-tools magit-gh-pulls github-clone github-browse-file git-link gist rvm ruby-tools ruby-test-mode robe bundler ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toc-org tagedit spray spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slime slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rcirc-notify rcirc-color rainbow-mode rainbow-identifiers rainbow-delimiters quelpa pyvenv pytest pyenv-mode popwin pip-requirements pcre2el pbcopy paradox pandoc-mode page-break-lines ox-pandoc osx-trash osx-dictionary org-tree-slide org-repo-todo org-present org-pomodoro org-plus-contrib org-page org-bullets open-junk-file multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode launchctl jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger flycheck-pos-tip flx-ido fill-column-indicator fasd fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl define-word dash-at-point cython-mode company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (simple-httpd elfeed-web alert dumb-jump string-inflection spinner link-hint help-fns+ evil-visual-mark-mode evil-ediff column-enforce-mode py-isort grizzl elfeed-org with-editor yapfify rake ht orgit org zeal-at-point marshal helm-gtags flyspell-correct-helm ggtags evil-unimpaired rspec-mode async web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode popup s counsel-dash org-projectile github-search dash-functional xterm-color powerline neotree evil-escape request pcache org-download elfeed gh geiser anzu docker docker-tramp git-gutter flyspell-correct-ivy hl-todo flyspell-correct bind-map dash slack emojify circe oauth2 websocket nlinum-relative nlinum parent-mode evil-commentary ess-smart-equals ess-R-object-popup ess-R-data-view ctable ess julia-mode wgrep smex ivy-hydra counsel-projectile swiper ivy counsel company iedit projectile-rails inflections feature-mode hydra live-py-mode magit-popup git-commit fcitx packed inf-ruby yaml-mode uuidgen anaconda-mode git-gutter+ emms-player-mpv emms helm-core auto-complete f flycheck avy projectile org-pdfview evil-indent-plus yasnippet magit persp-mode langtool evil smartparens helm mmm-mode markdown-toc markdown-mode gh-md pdf-tools magit-gh-pulls github-clone github-browse-file git-link gist rvm ruby-tools ruby-test-mode robe bundler ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toc-org tagedit spray spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slime slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rcirc-notify rcirc-color rainbow-mode rainbow-identifiers rainbow-delimiters quelpa pyvenv pytest pyenv-mode popwin pip-requirements pcre2el pbcopy paradox pandoc-mode page-break-lines ox-pandoc osx-trash osx-dictionary org-tree-slide org-repo-todo org-present org-pomodoro org-plus-contrib org-page org-bullets open-junk-file multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode launchctl jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger flycheck-pos-tip flx-ido fill-column-indicator fasd fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl define-word dash-at-point cython-mode company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-automatically-star t)
  '(paradox-github-token t t)
  '(ring-bell-function (quote ignore)))

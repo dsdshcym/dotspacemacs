@@ -61,7 +61,7 @@
     :config
     (progn
       (global-pangu-spacing-mode 1)
-      (setq pangu-spacing-real-insert-separtor t)
+      ;; (setq pangu-spacing-real-insert-separtor t)
       ))
   )
 
@@ -137,6 +137,7 @@
               ("flag:unread AND \
                 NOT flag:trashed AND \
                 NOT maildir:\"/Gmail/[Gmail].All Mail\" AND \
+                NOT maildir:\"/Strikingly/[Gmail].All Mail\" AND \
                 NOT maildir:\"/Gmail/[Gmail].Spam\""
                "Unread messages"  ?u)
               ("date:today..now AND NOT maildir:\"/Gmail/[Gmail].All Mail\""
@@ -265,8 +266,8 @@
     :defer t
     :config
     (progn
-      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "j" 'org-tree-slide-move-next-tree)
-      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "k" 'org-tree-slide-move-previous-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "." 'org-tree-slide-move-next-tree)
+      (spacemacs/set-leader-keys-for-minor-mode 'org-tree-slide "," 'org-tree-slide-move-previous-tree)
       (org-tree-slide-narrowing-control-profile)
       (setq org-tree-slide-skip-outline-level 4)
       (setq org-tree-slide-skip-done nil)))
@@ -461,7 +462,7 @@ By default the (truly) last line."
              :clock-resume t)
             ("d" "Distraction in a pomodoro" entry
              (file "~/Org/refile.org")
-             "* TODO %^{Task}\n  SCHEDULED: %t\n"
+             "* TODO %^{Task}\n  SCHEDULED: %t\n  %l"
              :immediate-finish t)
             ("n" "Note" entry
              (file "~/Org/refile.org")
@@ -490,13 +491,27 @@ By default the (truly) last line."
              (file+headline "~/Org/refile.org" "Push to Kindle")
              "* %a\n  %U"
              :immediate-finish t)
+            ("P" "Online Video" entry
+             (file "~/Org/refile.org")
+             "* %a %(org-capture-play-video)"
+             :clock-in t
+             :clock-resume t)
             ))
+
+    (defun org-capture-play-video ()
+      (let ((link (plist-get org-store-link-plist :link)))
+        (you-get link)
+        nil))
+
+    (defun you-get (link)
+      (start-process "you-get" "*you-get*" "/usr/bin/you-get" "-p mpv" "--no-caption" link))
 
     ;; -----------------------------
     ;; Refile
     ;; -----------------------------
     (setq org-refile-targets '((private/opened-buffer-files :maxlevel . 9)))
     (setq org-refile-allow-creating-parent-nodes 'confirm)
+    (setq org-refile-use-cache t)
 
     ;; -----------------------------
     ;; Clock
@@ -529,7 +544,7 @@ By default the (truly) last line."
     ;; Include current clocking task in clock reports
     (setq org-clock-report-include-clocking-task t)
 
-    (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
+    ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
 
     ;; Make clockcheck more accurate
     (setq org-agenda-clock-consistency-checks
@@ -544,9 +559,10 @@ By default the (truly) last line."
     (setq org-tag-alist '((:startgroup)
                           ("@SCHOOL" . ?s)
                           ("@HOME" . ?h)
+                          ("@WORK" . ?w)
                           (:endgroup)
-                          ("TOWATCH" . ?w)
-                          ("TOREAD" . ?r)))
+                          ("TOWATCH" . ?W)
+                          ("TOREAD" . ?R)))
 
     ;; -----------------------------
     ;; Archive

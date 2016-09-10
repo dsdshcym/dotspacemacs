@@ -177,7 +177,7 @@ clip2org-include-pdf-folder."
                                    (concat "[" (substring (cdr org-time-stamp-formats) 1 -1) "]")
                                    (org-read-date t t date))))
 
-              (org-set-property "PAGE" page)
+              ;; (org-set-property "PAGE" page)
               (org-set-property "LOCATION" loc)
               (org-set-property "BOOK" (car book))
 
